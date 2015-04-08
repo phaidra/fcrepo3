@@ -1,0 +1,94 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Fedora Server Library 3.8.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-remote-resources-plugin:1.5:process (process-remote-resources) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ fcrepo-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO] Copying 1 resource to META-INF/resources
+[INFO] Copying 1 resource to resources
+[INFO] Copying 3 resources to batch-demo
+[INFO] Copying 1 resource
+[INFO] Copying 5 resources
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ fcrepo-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 559 source files to /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] Note: Some input files use or override a deprecated API.
+[WARNING] Note: Recompile with -Xlint:deprecation for details.
+[WARNING] Note: Some input files use unchecked or unsafe operations.
+[WARNING] Note: Recompile with -Xlint:unchecked for details.
+[INFO] 4 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/utilities/TypeUtility.java:[628,61] convertDatastreamDefToGenDatastreamDef(org.fcrepo.server.storage.types.DatastreamDef) is already defined in org.fcrepo.server.utilities.TypeUtility
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/DefaultManagement.java:[1943,29] addRelationship(org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String) in org.fcrepo.server.management.DefaultManagement cannot be applied to (org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.net.URI)
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/DefaultManagement.java:[1964,29] purgeRelationship(org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String) in org.fcrepo.server.management.DefaultManagement cannot be applied to (org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.net.URI)
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/journal/JournalCreator.java:[418,33] cannot find symbol
+symbol  : variable ARGUMENT_NAME_RELATIONSHIPS
+location: class org.fcrepo.server.journal.JournalCreator
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/journal/JournalCreator.java:[430,33] cannot find symbol
+symbol  : variable ARGUMENT_NAME_RELATIONSHIPS
+location: class org.fcrepo.server.journal.JournalCreator
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/utilities/TypeUtility.java:[622,17] cannot find symbol
+symbol  : constructor RelationshipTuple(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String)
+location: class org.fcrepo.server.storage.types.RelationshipTuple
+[INFO] 6 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 27.989 s
+[INFO] Finished at: 2015-01-16T13:47:13+01:00
+[INFO] Final Memory: 24M/175M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.0:compile (default-compile) on project fcrepo-server: Compilation failure: Compilation failure:
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/utilities/TypeUtility.java:[628,61]
+convertDatastreamDefToGenDatastreamDef(org.fcrepo.server.storage.types.DatastreamDef)
+is already defined in org.fcrepo.server.utilities.TypeUtility
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/DefaultManagement.java:[1943,29]
+addRelationship(org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String)
+in org.fcrepo.server.management.DefaultManagement
+cannot be applied to (org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.net.URI)
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/DefaultManagement.java:[1964,29] purgeRelationship(org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String)
+in org.fcrepo.server.management.DefaultManagement
+cannot be applied to (org.fcrepo.server.Context,java.lang.String,java.lang.String,java.lang.String,boolean,java.net.URI)
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/journal/JournalCreator.java:[418,33]
+cannot find symbol
+[ERROR] symbol  : variable ARGUMENT_NAME_RELATIONSHIPS
+[ERROR] location: class org.fcrepo.server.journal.JournalCreator
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/journal/JournalCreator.java:[430,33]
+cannot find symbol
+[ERROR] symbol  : variable ARGUMENT_NAME_RELATIONSHIPS
+[ERROR] location: class org.fcrepo.server.journal.JournalCreator
+
+[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/utilities/TypeUtility.java:[622,17]
+cannot find symbol
+[ERROR] symbol  : constructor RelationshipTuple(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String)
+[ERROR] location: class org.fcrepo.server.storage.types.RelationshipTuple
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

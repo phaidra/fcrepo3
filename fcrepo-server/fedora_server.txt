@@ -1,0 +1,59 @@
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:21:fedora.serverHost.label = Fedora server host
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:22:fedora.serverHost.description = \
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:27:fedora.serverHost.defaultValue = localhost
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:29:fedora.serverContext.label = Fedora application server context
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:30:fedora.serverContext.description = \
+target/test-classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:36:fedora.serverContext.defaultValue = fedora
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:21:fedora.serverHost.label = Fedora server host
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:22:fedora.serverHost.description = \
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:27:fedora.serverHost.defaultValue = localhost
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:29:fedora.serverContext.label = Fedora application server context
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:30:fedora.serverContext.description = \
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:36:fedora.serverContext.defaultValue = fedora
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:21:fedora.serverHost.label = Fedora server host
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:22:fedora.serverHost.description = \
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:27:fedora.serverHost.defaultValue = localhost
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:29:fedora.serverContext.label = Fedora application server context
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:30:fedora.serverContext.description = \
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:36:fedora.serverContext.defaultValue = fedora
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:21:fedora.serverHost.label = Fedora server host
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:22:fedora.serverHost.description = \
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:27:fedora.serverHost.defaultValue = localhost
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:29:fedora.serverContext.label = Fedora application server context
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:30:fedora.serverContext.description = \
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:36:fedora.serverContext.defaultValue = fedora
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:92:     * ("http://local.fedora.server") which is the way Fedora internally keeps
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:125:     * (which consists of the string "local.fedora.server" standing in place of
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:143:     * "local.fedora.server" standing in place of the actual "hostname:port" on
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:159:     * URL syntax (which consists of the string "local.fedora.server" standing
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:186:            Pattern.compile("http://local.fedora.server/");
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:191:            Pattern.compile("http://local.fedora.server/fedora/");
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:306:     * Fedora local URL syntax ("http://local.fedora.server/..."). Then look for
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:312:     * "http://local.fedora.server/fedora/get/demo:1/DS1" is converted to
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:315:     * "http://local.fedora.server/fedora/get/demo:1/sdef:1/getFoo?in="
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:316:     * http://local.fedora.server/fedora/get/demo:2/DC" is converted to
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:342:     * (http://local.fedora.server/..."). First, look for relative URLs that
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:351:     * "http://local.fedora.server/fedora/get/demo:1/DS1"
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:354:     * "http://local.fedora.server/fedora/get/demo:1/sdef:1/getFoo?in="
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:355:     * http://local.fedora.server/fedora/get/demo:2/DC"
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:357:     * converted to "http://local.fedora.server/saxon..."
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:368:        // (i.e., "http://local.fedora.server/...")\
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:733:     * 'local.fedora.server' with fedora's baseURL)
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:334:        // in case host is 'local.fedora.server', and has not been normalized (e.g. on validating datastream add)
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:653:					// simply a callback to the fedora server. If the reference
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:656:					// reference is to the fedora server,
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:659:					// fedora server itself.
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:826:				// See if datastream reference is to fedora server itself or an
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:828:				// M and X type datastreams always reference fedora server. With
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:832:				// simply a callback to the fedora server. If the reference is
+src/main/java/org/fcrepo/server/access/dissemination/DisseminationService.java:836:				// If the referenc s to the fedora server, use the special role
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:240:            // If callback is to fedora server itself and callback is over SSL,
+src/main/java/org/fcrepo/server/Server.java:104:     * fedora/server/resources/Server.properties.
+src/main/java/org/fcrepo/server/Server.java:482:            System.getProperty("fedora.serverProfile");
+src/main/java/org/fcrepo/server/Server.java:562:                logger.debug("fedora.serverProfile property not set... will always "
+src/main/java/org/fcrepo/server/Server.java:565:                logger.debug("fedora.serverProfile property was '{}"
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:3:package fedora.server.security.servletfilters.ldap;
+src/main/java/org/fcrepo/server/security/servletfilters/db/FilterDB.java:3:package fedora.server.security.servletfilters.db;
+src/test/java/org/fcrepo/server/storage/translation/TestDOTranslationUtility.java:135:                            .format("http://local.fedora.server/" + getFedoraAppServerContext() + "/get/%s/%s",
+src/test/java/org/fcrepo/server/storage/translation/TestXMLDODeserializer.java:261:        ds1.xmlContent = "<test>http://local.fedora.server/</test>".getBytes();
+src/test/java/org/fcrepo/server/storage/translation/TestXMLDODeserializer.java:272:        assertFalse(content.contains("local.fedora.server"));

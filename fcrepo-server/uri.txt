@@ -1,0 +1,1192 @@
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:252:messaging.uri.label = Messaging Provider URI
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:254:Please enter the messaging provider URI. For more information about        \n\
+target/maven-shared-archive-resources/server/org/fcrepo/utilities/install/OptionDefinition.properties:255:using ActiveMQ broker URIs, see                                            \n\
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:252:messaging.uri.label = Messaging Provider URI
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:254:Please enter the messaging provider URI. For more information about        \n\
+target/classes/org/fcrepo/utilities/install/OptionDefinition.properties:255:using ActiveMQ broker URIs, see                                            \n\
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:252:messaging.uri.label = Messaging Provider URI
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:254:Please enter the messaging provider URI. For more information about        \n\
+target/classes/server/org/fcrepo/utilities/install/OptionDefinition.properties:255:using ActiveMQ broker URIs, see                                            \n\
+src/main/java/org/fcrepo/oai/SimpleMetadataFormat.java:20:    private final String m_namespaceURI;
+src/main/java/org/fcrepo/oai/SimpleMetadataFormat.java:24:                                String namespaceURI) {
+src/main/java/org/fcrepo/oai/SimpleMetadataFormat.java:27:        m_namespaceURI = namespaceURI;
+src/main/java/org/fcrepo/oai/SimpleMetadataFormat.java:38:    public String getNamespaceURI() {
+src/main/java/org/fcrepo/oai/SimpleMetadataFormat.java:39:        return m_namespaceURI;
+src/main/java/org/fcrepo/oai/OAIResponder.java:73:                                            .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId)
+src/main/java/org/fcrepo/oai/OAIResponder.java:390:            out.println("      <metadataNamespace>" + f.getNamespaceURI()
+src/main/java/org/fcrepo/oai/MetadataFormat.java:28:     * Get the URI of the namespace.
+src/main/java/org/fcrepo/oai/MetadataFormat.java:30:    public abstract String getNamespaceURI();
+src/main/java/org/fcrepo/server/config/webxml/WebXML.java:98:            wx = (WebXML) reader.parse(new File(webxml).toURI().toString());
+src/main/java/org/fcrepo/server/storage/types/DigitalObjectUtil.java:19:     * type and Format URI for all "reserved" datastreams.
+src/main/java/org/fcrepo/server/storage/types/DigitalObjectUtil.java:56:                                               String formatURI) {
+src/main/java/org/fcrepo/server/storage/types/DigitalObjectUtil.java:59:            ds.DSFormatURI = formatURI;
+src/main/java/org/fcrepo/server/storage/types/TupleArrayTripleIterator.java:8:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/storage/types/TupleArrayTripleIterator.java:57:        } catch (URISyntaxException e) {
+src/main/java/org/fcrepo/server/storage/types/TupleArrayTripleIterator.java:58:            throw new TrippiException("Invalid URI in Triple", e);
+src/main/java/org/fcrepo/server/storage/types/DigitalObject.java:233:     *        The property name, either a string, or URI as string.
+
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:9:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:55:    public String DSFormatURI;
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:139:        MultiValueMap<URI> environmentAttributes = beginEnvironmentMap("");
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:326:        target.DSFormatURI = DSFormatURI;
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:358:    private static final MultiValueMap<URI> beginEnvironmentMap(String messageProtocol) {
+src/main/java/org/fcrepo/server/storage/types/Datastream.java:359:        MultiValueMap<URI> environmentMap = new MultiValueMap<URI>();
+
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:8:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:9:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:27:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:48:    public final URI datatype;
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:71:                             URI datatype) {
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:80:                             URI datatype,
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:145:    public Triple toTriple(Map<String, String> namespaces) throws URISyntaxException {
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:147:                                new SimpleURIReference(new URI(subject)),
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:150:                                RelationshipTuple.makeObjectFromURIandLiteral(object,
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:156:    public static URI makePredicateFromRel(String relationship, Map<String,String> map)
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:157:            throws URISyntaxException {
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:174:        URI retVal = null;
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:175:        retVal = new URI(predicate);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:181:            throws URISyntaxException {
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:182:        URI predURI = RelationshipTuple.makePredicateFromRel(predicate, map);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:183:        PredicateNode node = new SimpleURIReference(predURI);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:187:    public static ObjectNode makeObjectFromURIandLiteral(String objURI,
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:189:                                                         URI literalType,
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:191:            throws URISyntaxException {
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:195:                obj = new SimpleLiteral(objURI, literalType);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:197:                obj = new SimpleLiteral(objURI, language);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:199:                obj = new SimpleLiteral(objURI);
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:202:            obj = new SimpleURIReference(new URI(objURI));
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:223:    public static RelationshipTuple fromNodes(org.openrdf.model.Resource s, org.openrdf.model.URI p,
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:227:        // the rdf streams parsed by Fedora will only contain URIs and Literals, no BNodes
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:236:        return new RelationshipTuple(subject, predicate, literal.getLexicalForm(), true, literal.getDatatypeURI(), literal.getLanguage());
+src/main/java/org/fcrepo/server/storage/types/RelationshipTuple.java:242:                URI.create(literal.getDatatype().stringValue()), null);
+
+
+
+src/main/java/org/fcrepo/server/storage/types/BasicDigitalObject.java:269:     *        The extended property name, either a string, or URI as string.
+src/main/java/org/fcrepo/server/storage/types/BasicDigitalObject.java:306:        return hasRelationship(PID.toURIReference(m_pid), predicate, object);
+src/main/java/org/fcrepo/server/storage/types/BasicDigitalObject.java:357:                JRDF.sameSubject(subject, PID.toURI(m_pid)))
+src/main/java/org/fcrepo/server/storage/types/BasicDigitalObject.java:371:        return getRelationships(PID.toURIReference(m_pid), predicate, object);
+src/main/java/org/fcrepo/server/storage/types/BasicDigitalObject.java:427:                JRDF.sameSubject(subject, PID.toURI(m_pid)))
+src/main/java/org/fcrepo/server/storage/service/HTTPOperation.java:16:     * operationLocation: a relative URI for the operation. The URI is
+src/main/java/org/fcrepo/server/storage/service/HTTPOperation.java:17:     * ultimately combined with the URI in the http:address element to (see Port
+src/main/java/org/fcrepo/server/storage/service/HTTPOperation.java:18:     * object) form the full URI for the HTTP request.
+src/main/java/org/fcrepo/server/storage/service/Part.java:20:    public String partBaseTypeNamespaceURI;
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:46:     * URI-to-namespace prefix mapping info from SAX2 startPrefixMapping events.
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:206:    public void startElement(String namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:213:        checkForUnsupportedPattern(namespaceURI, localName, qName, attrs);
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:216:        if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:220:            if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:226:                if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:245:                        wsdlSimpleType.baseTypeNamespaceURI = XML_XSD.uri;
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:251:                        && namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:260:        else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:266:        } else if (inMessage && namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:275:        else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:282:            if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:292:                if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:304:                } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:325:        else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:332:            if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:348:            } else if (namespaceURI.equalsIgnoreCase(WSDL_HTTP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:351:            } else if (namespaceURI.equalsIgnoreCase(SOAP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:359:        else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:375:            if (namespaceURI.equalsIgnoreCase(WSDL_HTTP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:383:            } else if (namespaceURI.equalsIgnoreCase(SOAP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:393:            } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:396:            } else if (namespaceURI.equalsIgnoreCase(WSDL_HTTP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:403:            } else if (namespaceURI.equalsIgnoreCase(SOAP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:413:                if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:418:                } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:423:                } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:427:                    if (namespaceURI.equalsIgnoreCase(WSDL_HTTP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:432:                    } else if (namespaceURI.equalsIgnoreCase(WSDL_MIME.uri)) {
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:435:                        tmp_MIMEContent.add(parseMIMEBinding(namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:445:                    if (namespaceURI.equalsIgnoreCase(WSDL_MIME.uri)) {
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:448:                        tmp_MIMEContent.add(parseMIMEBinding(namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:464:    public void endElement(String namespaceURI, String localName, String qName)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:470:                    if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:476:                } else if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:482:            } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:489:            if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:495:            else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:508:                if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:514:            } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:525:            if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:533:            } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:543:                if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:553:                } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:563:                } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:572:            } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:602:    private MIMEContent parseMIMEBinding(String namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:610:        if (namespaceURI.equalsIgnoreCase(WSDL_MIME.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:613:        } else if (namespaceURI.equalsIgnoreCase(WSDL_MIME.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:707:                msg.messageParts[i].partBaseTypeNamespaceURI = XML_XSD.uri;
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:722:                    msg.messageParts[i].partBaseTypeNamespaceURI =
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:723:                            schemaType.baseTypeNamespaceURI;
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:745:    private void checkForUnsupportedPattern(String namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:751:        if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:755:        } else if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:759:        } else if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:763:        } else if (namespaceURI.equalsIgnoreCase(XML_XSD.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:769:        else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:773:        } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:777:        } else if (namespaceURI.equalsIgnoreCase(WSDL.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:784:        else if (namespaceURI.equalsIgnoreCase(SOAP.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:788:        } else if (namespaceURI.equalsIgnoreCase(WSDL_MIME.uri)
+src/main/java/org/fcrepo/server/storage/service/WSDLParser.java:792:        } else if (namespaceURI.equalsIgnoreCase(WSDL_HTTP.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:44:     * URI-to-namespace prefix mapping info from SAX2 startPrefixMapping events.
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:156:    public void startElement(String namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:160:        if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:164:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:179:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:182:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:185:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:192:    public void endElement(String namespaceURI, String localName, String qName)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:194:        if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:196:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:200:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:203:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/DSInputSpecParser.java:206:        } else if (namespaceURI.equalsIgnoreCase(BINDING_SPEC.uri)
+src/main/java/org/fcrepo/server/storage/service/Type.java:18:    public String baseTypeNamespaceURI;
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:43:     * URI-to-namespace prefix mapping info from SAX2 startPrefixMapping events.
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:145:    public void startElement(String namespaceURI,
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:149:        if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:154:        } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:167:            if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:183:            } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:199:            } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:216:                if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:219:                } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:228:    public void endElement(String namespaceURI, String localName, String qName)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:230:        if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:236:        } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:252:            if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:258:            } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:264:            } else if (namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/MmapParser.java:272:                    && namespaceURI.equalsIgnoreCase(METHOD_MAP.uri)
+src/main/java/org/fcrepo/server/storage/service/SOAPOperation.java:16:     * soapAction: a URI for the soap request
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:19:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:61:import org.fcrepo.utilities.NormalizedURI;
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:486:    private String getDSFormatURI(Entry entry) {
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:487:        List<Category> formatURI = entry.getCategories(MODEL.FORMAT_URI.uri);
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:488:        if (formatURI.isEmpty() || formatURI.size() > 1) {
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:491:            return formatURI.get(0).getTerm();
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:561:        ds.DSFormatURI = getDSFormatURI(entry);
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:609:            NormalizedURI nUri = new NormalizedURI(m_tempDir.toURI().toString() + contentSrc.toString());
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:612:            File f = new File(nUri.toURI());
+src/main/java/org/fcrepo/server/storage/translation/AtomDODeserializer.java:619:        } catch (URISyntaxException e) {
+src/main/java/org/fcrepo/server/storage/translation/DOTranslator.java:34:     *        the format of the stream (typically a format URI).
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:83:    // Namespace prefix-to-URI mapping info from SAX2 startPrefixMapping events.
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:118:    private String m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:338:                m_dsFormatURI = grab(a, FOXML.uri, "FORMAT_URI");
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:339:                if (m_dsFormatURI.length() == 0) {
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:340:                    m_dsFormatURI = null;
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:342:                checkMETSFormat(m_dsFormatURI);
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:609:            m_dsFormatURI = "";
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:775:        ds.DSFormatURI = m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:835:        ds.DSFormatURI = m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:895:    private void checkMETSFormat(String formatURI) {
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:896:        if (formatURI != null && !formatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:897:            Matcher m = metsPattern.matcher(formatURI);
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:898:            //Matcher m = metsURI.matcher(formatURI);
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:902:                        new StringTokenizer(formatURI.substring(index), ".");
+src/main/java/org/fcrepo/server/storage/translation/handlers/FOXMLContentHandler.java:945:        m_dsFormatURI = "";
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:160:        m_feed.setId(m_pid.toURI());
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:207:                dsvEntry.setId(m_pid.toURI() + "/" + dsv.DatastreamID + "/"
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:212:                ThreadHelper.addInReplyTo(dsvEntry, m_pid.toURI() + "/"
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:220:                if (dsv.DSFormatURI != null && !dsv.DSFormatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:221:                    dsvEntry.addCategory(MODEL.FORMAT_URI.uri,
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:222:                                         dsv.DSFormatURI,
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:250:            dsEntry.setId(m_pid.toURI() + "/" + latestCreated.DatastreamID);
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:254:                    .addLink(m_pid.toURI()
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:284:        String dsId = m_pid.toURI() + "/AUDIT";
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:306:        ThreadHelper.addInReplyTo(dsvEntry, m_pid.toURI() + "/AUDIT");
+src/main/java/org/fcrepo/server/storage/translation/AtomDOSerializer.java:307:        dsvEntry.addCategory(MODEL.FORMAT_URI.uri, AUDIT1_0.uri, null);
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:603:        // If we have a METS MDClass value, and DSFormatURI isn't already
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:604:        // assigned, preserve MDClass and MDType in a DSFormatURI.
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:605:        // Note that the system is taking over the DSFormatURI in this case.
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:606:        // Therefore, if a client subsequently modifies the DSFormatURI
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:611:                    && ds.DSFormatURI == null) {
+src/main/java/org/fcrepo/server/storage/translation/DOTranslationUtility.java:634:                ds.DSFormatURI =
+src/main/java/org/fcrepo/server/storage/translation/DOTranslatorModule.java:29: * (typically a format URI), and the value of the parameter is a fully-qualified
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:103:    /** Namespace prefix-to-URI mapping info from SAX2 startPrefixMapping events. */
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:149:    private String m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:426:                m_dsFormatURI = grab(a, METS.uri, "FORMAT_URI");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:453:                m_dsFormatURI = "";
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:503:                String formatURI = grab(a, METS.uri, "FORMAT_URI");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:504:                if (formatURI != null && !formatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:505:                    m_dsFormatURI = formatURI;
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:902:        ds.DSFormatURI = m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:952:        ds.DSFormatURI = m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:1171:        ds.DSFormatURI = m_dsFormatURI;
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDODeserializer.java:1238:        m_dsFormatURI = "";
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:156:            writer.print(FOXML.FEDORA_URI.localName);
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:279:                        writer.print(" FEDORA_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:322:                if (vds.DSFormatURI != null && !vds.DSFormatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:323:                    writer.print(" FORMAT_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:324:                    StreamUtility.enc(vds.DSFormatURI, writer);
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:417:                writer.print(" FEDORA_URI=\"info:fedora/");
+src/main/java/org/fcrepo/server/storage/translation/FOXMLDOSerializer.java:428:            writer.print("\" MIMETYPE=\"text/xml\" FORMAT_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:345:            if (ds.DSFormatURI != null && !ds.DSFormatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:346:                writer.print(" FORMAT_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:347:                StreamUtility.enc(ds.DSFormatURI, writer);
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:424:            writer.print(" FORMAT_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:535:                    if (dsc.DSFormatURI != null && !dsc.DSFormatURI.isEmpty()) {
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:536:                        writer.print(" FORMAT_URI=\"");
+src/main/java/org/fcrepo/server/storage/translation/METSFedoraExtDOSerializer.java:537:                        StreamUtility.enc(dsc.DSFormatURI, writer);
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:10:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:262:            File cFile = new File(fileUrl.toURI()).getCanonicalFile();
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:264:            URI cURI = cFile.toURI();
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:265:            logger.info("Checking resolution security on {}", cURI);
+src/main/java/org/fcrepo/server/storage/DefaultExternalContentManager.java:272:            String cUriString = cURI.toString();
+src/main/java/org/fcrepo/server/storage/DefaultDOManager.java:894:                // SET MIMETYPE AND FORMAT_URIS FOR LEGACY OBJECTS' DATASTREAMS
+src/main/java/org/fcrepo/server/storage/DefaultDOManager.java:1062:            dc.DSFormatURI = OAI_DC2_0.uri;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:10:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:11:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:30:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:241:        String pidURI = PID.toURI(m_obj.getPid());
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:242:        if (subject.startsWith(pidURI)) {
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:243:            if (subject.length() == pidURI.length()) {
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:246:            if (subject.charAt(pidURI.length()) == '/') {
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:250:        throw new GeneralException("Cannot determine which relationship datastream to update for subject " + subject + ".  Relationship subjects must be the URI of the object or the URI of a datastream within the object.");
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:302:                newds.DSFormatURI = RELS_EXT1_0.uri;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:305:                    newds.DSFormatURI = RELS_INT1_0.uri;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:347:                    newds.DSFormatURI = relsDatastream.DSFormatURI;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:435:                    newds.DSFormatURI = relsDatastream.DSFormatURI;
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:488:                        o = new SimpleLiteral(object, new URI(datatype));
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:491:                    o = new SimpleURIReference(new URI(object));
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:494:            return new SimpleTriple(new SimpleURIReference(new URI(subject)),
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:495:                                    new SimpleURIReference(new URI(predicate)),
+src/main/java/org/fcrepo/server/storage/SimpleDOWriter.java:497:        } catch (URISyntaxException e) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:9:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:18: * Provides a hash-based <code>file:</code> mapping for any URI.
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:20: * The path component of each internal URI is derived from an MD5 hash of
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:21: * the external URI. The filename component is a reversible encoding of the
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:22: * external URI that is safe to use as a filename on modern filesystems.
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:26: * of each internal URI will be composed. Within the pattern, the # character
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:49: * The last part of the internal URI is a "filesystem-safe" encoding of the
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:50: * external URI. All characters will be UTF-8 percent-encoded ("URI escaped")
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:53: * it occurs as the last character of the URI.
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:87:    public URI getExternalId(URI internalId) throws NullPointerException {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:91:        String encodedURI;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:93:            encodedURI = fullPath;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:95:            encodedURI = fullPath.substring(i + 1);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:96:        return URI.create(decode(encodedURI));
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:100:    public URI getInternalId(URI externalId) throws NullPointerException {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:109:        return URI.create(buffer.toString());
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:192:    private static String decode(String encodedURI) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:193:        if (encodedURI.endsWith("%2E")) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:194:            encodedURI = encodedURI.substring(0, encodedURI.length() - 3).concat(".");
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java:197:            return URLDecoder.decode(encodedURI, "UTF-8");
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:12:import java.net.URI;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:13:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:69:     *   <li> be able to accept <code>info:fedora/</code> URIs as blob ids.
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:224:            URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:258:            URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:279:            URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:312:            Iterator<URI> blobIds = listBlobIds(connection);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:334:            newBlob = connection.getBlob(new URI(origId + "/new"), null);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:401:            return blob.moveTo(new URI(newId), null);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:404:        } catch (URISyntaxException wontHappen) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:416:            URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:438:            URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:475:                                URI blobId,
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:513:        URI blobId = getBlobId(key);
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:543:    private static Iterator<URI> listBlobIds(BlobStoreConnection connection) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:571:     * and dsVersionId segments URI-percent-encoded with UTF-8 character
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:579:    private static URI getBlobId(String token) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:583:                return new URI(new PID(token).toURI());
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:590:                return new URI(Constants.FEDORA.uri
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:598:        } catch (URISyntaxException e) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:610:    private static String getToken(URI blobId) {
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:679:        private final Iterator<URI> blobIds;
+src/main/java/org/fcrepo/server/storage/lowlevel/akubra/AkubraLowlevelStorage.java:682:                                            Iterator<URI> blobIds) {
+src/main/java/org/fcrepo/server/storage/DOReader.java:85:     * Gets the content of the entire digital object as XML, with public URIs as
+src/main/java/org/fcrepo/server/storage/DOReader.java:90:     * valid URI pointers for ALL its datastreams.
+src/main/java/org/fcrepo/server/storage/DOReader.java:99:     * @return the content of the entire digital object as XML, with public URIs
+src/main/java/org/fcrepo/server/utilities/CXFUtility.java:37:     * provides (see http://www.w3.org/TR/SOAP/#_Toc478383499) a special URI for
+src/main/java/org/fcrepo/server/utilities/CXFUtility.java:39:     * other URIs up to the application. Soap 1.2 provides (see
+src/main/java/org/fcrepo/server/utilities/CXFUtility.java:40:     * http://www.w3.org/TR/soap12-part1/#soaproles) three special URIs -- one
+src/main/java/org/fcrepo/server/utilities/CXFUtility.java:43:     * the URI v1.2 provides.
+src/main/java/org/fcrepo/server/utilities/ServerUtility.java:11:import java.net.URI;
+src/main/java/org/fcrepo/server/utilities/ServerUtility.java:163:        URI uri = URI.create(url);
+src/main/java/org/fcrepo/server/utilities/TypeUtility.java:68:        out.setFormatURI(in.DSFormatURI);
+src/main/java/org/fcrepo/server/utilities/RuntimeWSDL.java:56:            //   where $scheme the uppercase URI scheme of the endpoint
+src/main/java/org/fcrepo/server/utilities/DCFields.java:125:        m_lang = attrs.getValue(XMLConstants.XML_NS_URI, "lang");
+src/main/java/org/fcrepo/server/upload/UploadResource.java:48:     * @return a URI with the (custom) uploaded:// scheme and a unique
+src/main/java/org/fcrepo/server/validation/ecm/Errors.java:63:    public static String invalidFormatURIorMimeType(String dsid, String contentmodel) {
+src/main/java/org/fcrepo/server/validation/ecm/Errors.java:64:        return "Datastream '" + dsid + "' is does not have the FORMAT_URI and MIME_TYPE attributes required by '" +
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:162:                .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:201:        public LSInput resolveResource(String type, String namespaceURI, String publicId, String systemId,
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:202:                                       String baseURI) {
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:213:                    input.setBaseURI(baseURI);
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:215:                    input.setBaseURI(baseURI);
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:233:            private String systemId, publicId, baseURI;
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:290:            public String getBaseURI() {
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:291:                return baseURI;
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:295:            public void setBaseURI(String baseURI) {
+src/main/java/org/fcrepo/server/validation/ecm/SchemaValidator.java:296:                this.baseURI = baseURI;
+src/main/java/org/fcrepo/server/validation/ecm/jaxb/Form.java:15: *       &lt;attribute name="FORMAT_URI" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+src/main/java/org/fcrepo/server/validation/ecm/jaxb/Form.java:27:    @XmlAttribute(name = "FORMAT_URI")
+src/main/java/org/fcrepo/server/validation/ecm/jaxb/Form.java:28:    @XmlSchemaType(name = "anyURI")
+src/main/java/org/fcrepo/server/validation/ecm/jaxb/Form.java:40:    public String getFORMATURI() {
+src/main/java/org/fcrepo/server/validation/ecm/jaxb/Form.java:50:    public void setFORMATURI(String value) {
+src/main/java/org/fcrepo/server/validation/ecm/FormValidator.java:31:            if (form.getFORMATURI() != null) {
+src/main/java/org/fcrepo/server/validation/ecm/FormValidator.java:32:                if (!form.getFORMATURI().equals(objectDatastream.DSFormatURI)) {
+src/main/java/org/fcrepo/server/validation/ecm/FormValidator.java:60:            problems.add(Errors.invalidFormatURIorMimeType(dsid,contentmodel));
+src/main/java/org/fcrepo/server/validation/DOValidatorXMLErrorHandler.java:46:                "URI=" + systemId + " Line=" + spe.getLineNumber() + ": "
+src/main/java/org/fcrepo/server/validation/DOValidatorImpl.java:144:            SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+src/main/java/org/fcrepo/server/validation/DOValidatorImpl.java:183:     *           The format URI of the object serialization.
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:9:import java.net.URI;
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:34: * object URI (RELS-EXT) or a datastream URI (RELS-INT). The sub-elements are
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:36: * any resource (identified by URI) via an RDF 'resource' attribute, or a
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:67: * &lt;Description&gt; must be the URI of the digital object in which the
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:71: * &lt;Description&gt; element(s) must be valid URIs of datastreams for the
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:73: * not actually have to exist, but these URIs must be syntactically valid. This
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:76: * <li>If the target of the statement is a resource (identified by a URI), the
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:78: * absolute URI.</li>
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:110:    private String m_doURI;
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:142:            m_doURI = pid.toURI();
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:156:    public void startElement(String nsURI,
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:161:        if (nsURI.equals(RDF.uri) && localName.equalsIgnoreCase("RDF")) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:164:            if (nsURI.equals(RDF.uri)
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:177:                    checkAboutURI(grab(a, RDF.uri, "about"));
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:187:                checkBadAssertion(nsURI, localName, qName);
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:188:                String resourceURI = grab(a, RDF.uri, "resource");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:189:                if (resourceURI.length() > 0) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:190:                    checkResourceURI(resourceURI, qName);
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:194:                    if (nsURI.equals(MODEL.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:209:                    String datatypeURI = grab(a, RDF.uri, "datatype");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:210:                    if (datatypeURI.length() == 0) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:213:                        m_literalType = datatypeURI;
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:241:    public void endElement(String nsURI, String localName, String qName)
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:246:        if (nsURI.equals(RDF.uri) && localName.equalsIgnoreCase("Description")) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:304:     * @param nsURI
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:305:     *        the namespace URI of the predicate being evaluated
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:311:    private void checkBadAssertion(String nsURI, String localName, String qName)
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:315:                && (nsURI.equals(DC.uri) || nsURI.equals(OAI_DC.uri))) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:321:        } else if (nsURI.equals(MODEL.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:345:        } else if (nsURI.equals(VIEW.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:353:     * checkAboutURI: ensure that the RDF <Description> is about the digital
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:358:     * @param aboutURI
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:359:     *        the URI value of the RDF 'about' attribute
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:362:    private void checkAboutURI(String aboutURI) throws SAXException {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:364:            if (!m_doURI.equals(aboutURI)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:367:                        + " an improper URI in the 'about' attribute of the"
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:369:                        + " The URI must be that of the digital object"
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:371:                        + m_doURI + ").");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:374:            int doLength = m_doURI.length();
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:375:            if (!(aboutURI.startsWith(m_doURI) &&
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:376:                  aboutURI.length() > doLength &&
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:377:                  (aboutURI.charAt(doLength) == '/'))) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:380:                        + " an improper URI in the 'about' attribute of the"
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:382:                        + " The URI must be a datastream in the digital object"
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:384:                        + m_doURI + ", " + aboutURI + ").");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:387:            String dsId = aboutURI.substring(doLength + 1);
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:393:                        + " an improper URI in the 'about' attribute of the"
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:423:     * checkResourceURI: ensure that the target resource is a proper URI.
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:425:     * @param resourceURI
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:426:     *        the URI value of the RDF 'resource' attribute
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:431:    private void checkResourceURI(String resourceURI, String relName)
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:434:        URI uri;
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:436:            uri = new URI(resourceURI);
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:440:                    + " The RDF 'resource' is not a valid URI.");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:446:                    + " The specified RDF 'resource' is not an absolute URI.");
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:454:     * @param datatypeURI
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:455:     *        the URI value of the RDF 'datatype' attribute
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:462:    private void checkTypedValue(String datatypeURI,
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:465:        if (datatypeURI.equals(RDF_XSD.INT.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:473:        } else if (datatypeURI.equals(RDF_XSD.LONG.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:481:        } else if (datatypeURI.equals(RDF_XSD.FLOAT.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:489:        } else if (datatypeURI.equals(RDF_XSD.DOUBLE.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:497:        } else if (datatypeURI.equals(RDF_XSD.DATE_TIME.uri)) {
+src/main/java/org/fcrepo/server/validation/RelsValidator.java:516:                    + "If specified, the RDF 'datatype' must be the URI of one of\n"
+src/main/java/org/fcrepo/server/validation/ValidationUtility.java:49:     * using the file URI scheme, other datastreams may not.
+src/main/java/org/fcrepo/server/validation/DOValidatorXMLSchema.java:54:                    SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+src/main/java/org/fcrepo/server/Context.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/Context.java:18:    public MultiValueMap<URI> getEnvironmentAttributes();
+src/main/java/org/fcrepo/server/Context.java:20:    public Iterator<URI> environmentAttributes();
+src/main/java/org/fcrepo/server/Context.java:22:    public int nEnvironmentValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:24:    public String getEnvironmentValue(URI name);
+src/main/java/org/fcrepo/server/Context.java:26:    public String[] getEnvironmentValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:28:    // subject attributes may just be roleNames, and aren't necessarily URIs
+src/main/java/org/fcrepo/server/Context.java:37:    public Iterator<URI> actionAttributes();
+src/main/java/org/fcrepo/server/Context.java:39:    public int nActionValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:41:    public String getActionValue(URI name);
+src/main/java/org/fcrepo/server/Context.java:43:    public String[] getActionValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:45:    public Iterator<URI> resourceAttributes();
+src/main/java/org/fcrepo/server/Context.java:47:    public int nResourceValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:49:    public String getResourceValue(URI name);
+src/main/java/org/fcrepo/server/Context.java:51:    public String[] getResourceValues(URI name);
+src/main/java/org/fcrepo/server/Context.java:59:    public void setActionAttributes(MultiValueMap<URI> actionAttributes);
+src/main/java/org/fcrepo/server/Context.java:61:    public void setResourceAttributes(MultiValueMap<URI> resourceAttributes);
+src/main/java/org/fcrepo/server/hooks/APIHooksImpl.java:183:				newds.DSFormatURI = "";
+src/main/java/org/fcrepo/server/hooks/APIHooksImpl.java:212:	            newds.DSFormatURI=orig.DSFormatURI;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:50:    private MultiValueMap<URI> m_environmentAttributes;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:53:    public final MultiValueMap<URI> getEnvironmentAttributes() {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:59:    private MultiValueMap<URI> m_actionAttributes;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:61:    private MultiValueMap<URI> m_resourceAttributes;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:86:                            MultiValueMap<URI> environmentAttributes,
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:100:        m_actionAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:102:        m_resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:115:    public void setEnvironmentValues(MultiValueMap<URI> environmentAttributes) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:118:            m_environmentAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:124:    public Iterator<URI> environmentAttributes() {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:129:    public int nEnvironmentValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:134:    public String getEnvironmentValue(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:139:    public String[] getEnvironmentValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:202:    public void setActionAttributes(MultiValueMap<URI> actionAttributes) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:204:            m_actionAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:212:    public Iterator<URI> actionAttributes() {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:217:    public int nActionValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:222:    public String getActionValue(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:227:    public String[] getActionValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:232:    public Iterator<URI> resourceAttributes() {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:237:    public void setResourceAttributes(MultiValueMap<URI> resourceAttributes) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:239:            m_resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:247:    public int nResourceValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:252:    public String getResourceValue(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:257:    public String[] getResourceValues(URI name) {
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:278:    private static final MultiValueMap<URI> beginEnvironmentMap(String messageProtocol)
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:280:        MultiValueMap<URI> environmentMap = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:299:                                                    MultiValueMap<URI> environmentMap,
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:393:        MultiValueMap<URI> environmentMap = beginEnvironmentMap(messageProtocol);
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:406:        MultiValueMap<URI> environmentMap = null;
+src/main/java/org/fcrepo/server/ReadOnlyContext.java:410:            environmentMap.set(Constants.HTTP_REQUEST.SECURITY.attributeId, request
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:10:import java.net.URI;
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:160:                                + request.getRequestURI();
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:228:            if (request.getRequestURI().endsWith("getDS")
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:369:                Iterator<URI> it = context.environmentAttributes();
+src/main/java/org/fcrepo/server/access/dissemination/DatastreamResolverServlet.java:371:                    URI name = it.next();
+src/main/java/org/fcrepo/server/access/WSDLServlet.java:28: * instance, based on the request URI.
+src/main/java/org/fcrepo/server/access/RISearchServlet.java:207:                    + request.getRequestURI() + " (actionLabel=" + ACTION_LABEL
+src/main/java/org/fcrepo/server/access/RISearchServlet.java:261:            String requestURI,
+src/main/java/org/fcrepo/server/access/RISearchServlet.java:270:            enc(requestURI.replaceAll("/$", ""), out);
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:102:    private String requestURI = null;
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:137:        requestURI =
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:142:        String[] URIArray = request.getRequestURL().toString().split("/");
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:143:        if (URIArray.length == 6 || URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:146:                PID = Server.getPID(URIArray[5]).toString(); // normalize PID
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:154:            if (URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:157:                    versDateTime = DateUtility.parseDateStrict(URIArray[6]);
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:187:            logger.error("Object not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:194:            logger.error("Error Listing Methods: " + requestURI + " (actionLabel="
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:203:            logger.error("Object not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:364:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/ListMethodsServlet.java:367:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/MethodParameterResolverServlet.java:28: * API-A-LITE interface dissemination request in the form of a URI. The initial
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:101:    private String requestURI = null;
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:137:        requestURI =
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:142:        String[] URIArray = request.getRequestURL().toString().split("/");
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:143:        if (URIArray.length == 6 || URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:147:                PID = Server.getPID(URIArray[5]).toString(); // normalize PID
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:155:            if (URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:158:                versDateTime = DateUtility.parseDateStrict(URIArray[6]);
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:188:            logger.error("Object not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:195:            logger.error("Object not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:353:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/ListDatastreamsServlet.java:356:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:150:    private String requestURI = null;
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:185:        requestURI = request.getQueryString() != null ?
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:188:        logger.info("Got request: {}", requestURI);
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:208:        String[] URIArray = requestURI.substring(0, request.getRequestURL().length()).split("/");
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:209:        if (URIArray.length == 6 || URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:212:            if (URIArray.length == 7) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:214:                if (URIArray[6].indexOf(":") == -1) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:218:                    dsID = URLDecoder.decode(URIArray[6], "UTF-8");
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:224:                        versDateTime = DateUtility.parseDateStrict(URIArray[6]);
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:229:                                        + URIArray[6]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:235:                                        + URIArray[0]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:237:                                        + URIArray[2]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:239:                                        + URIArray[3]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:241:                                        + URIArray[4]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:244:                                        + requestURI + "\"  .  ";
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:262:                // URIArray.length==6 so this is a GetObjectProfile request
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:265:        } else if (URIArray.length > 7) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:268:            methodName = URLDecoder.decode(URIArray[7], "UTF-8");
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:269:            if (URIArray.length == 8) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:270:                if (URIArray[6].indexOf(":") == -1) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:275:                    dsID = URLDecoder.decode(URIArray[6], "UTF-8");
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:278:                        versDateTime = DateUtility.parseDateStrict(URIArray[7]);
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:283:                                        + URIArray[7]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:288:                                        + URIArray[0]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:290:                                        + URIArray[2]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:292:                                        + URIArray[3]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:294:                                        + URIArray[4]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:297:                                        + requestURI + "\"  .  ";
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:308:            } else if (URIArray.length == 9) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:310:                    versDateTime = DateUtility.parseDateStrict(URIArray[8]);
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:315:                                    + URIArray[8]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:320:                                    + URIArray[0]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:322:                                    + URIArray[2]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:324:                                    + URIArray[3]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:326:                                    + URIArray[4]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:329:                                    + requestURI + "\"  .  ";
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:345:            if (URIArray.length > 9) {
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:349:                                + URIArray[0]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:351:                                + URIArray[2]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:353:                                + URIArray[3]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:355:                                + URIArray[4]
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:358:                                + requestURI + "\"  .  ";
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:403:        PID = URIArray[5];
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:422:                sDefPID = URIArray[6];
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:458:            logger.error("Method not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:463:            logger.error("Datastream not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:468:            logger.error("Object not found for request: " + requestURI
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:473:            logger.error("Dissemination failed: " + requestURI
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:479:                    + requestURI + " (actionLabel=" + actionLabel + ")", e);
+src/main/java/org/fcrepo/server/access/FedoraAccessServlet.java:483:            logger.error("Authorization failed for request: " + requestURI
+src/main/java/org/fcrepo/server/access/DefaultAccess.java:266:        for (String cModelURI: reader.getContentModels()){
+src/main/java/org/fcrepo/server/access/DefaultAccess.java:267:            String cModelPID = cModelURI.substring("info:fedora/".length());
+src/main/java/org/fcrepo/server/access/DefaultAccess.java:631:                .getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId);
+src/main/java/org/fcrepo/server/access/DefaultAccess.java:725:                                        .getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId)
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:111:        String[] URIArray = request.getRequestURL().toString().split("/");
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:112:        if (URIArray.length != 6 || !URIArray[4].equals("getObjectHistory")) {
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:119:        PID = URIArray[5];
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:140:                    + request.getRequestURI() + " (actionLabel=" + ACTION_LABEL
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:148:                    + request.getRequestURI() + " (actionLabel=" + ACTION_LABEL
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:289:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/GetObjectHistoryServlet.java:291:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/DynamicAccessImpl.java:212:                                            .getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId)
+src/main/java/org/fcrepo/server/access/DescribeRepositoryServlet.java:245:                    .getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/access/DescribeRepositoryServlet.java:247:                    .getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:170:                                String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:186:            cje.addArgument(ARGUMENT_NAME_FORMAT_URI, formatURI);
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:208:                                        String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:223:            cje.addArgument(ARGUMENT_NAME_FORMAT_URI, formatURI);
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:244:                                            String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:260:            cje.addArgument(ARGUMENT_NAME_FORMAT_URI, formatURI);
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:374:                                   String objURI,
+src/main/java/org/fcrepo/server/journal/JournalCreator.java:382:            cje.addArgument(ARGUMENT_NAME_OBJECT, objURI);
+src/main/java/org/fcrepo/server/journal/JournalConstants.java:229:    String ARGUMENT_NAME_FORMAT_URI = "formatUri";
+src/main/java/org/fcrepo/server/journal/managementmethods/ModifyDatastreamByReferenceMethod.java:32:                .getStringArgument(ARGUMENT_NAME_FORMAT_URI), parent
+src/main/java/org/fcrepo/server/journal/managementmethods/AddDatastreamMethod.java:36:                        .getStringArgument(ARGUMENT_NAME_FORMAT_URI), parent
+src/main/java/org/fcrepo/server/journal/managementmethods/ModifyDatastreamByValueMethod.java:34:                .getStringArgument(ARGUMENT_NAME_FORMAT_URI), parent
+src/main/java/org/fcrepo/server/journal/xmlhelpers/ContextXmlReader.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/journal/xmlhelpers/ContextXmlReader.java:107:    private MultiValueMap<URI> convertStringMap(MultiValueMap<String> input) {
+src/main/java/org/fcrepo/server/journal/xmlhelpers/ContextXmlReader.java:108:        MultiValueMap<URI> result = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/xmlhelpers/ContextXmlReader.java:111:            result.set(URI.create(name), input.getStringArray(name));
+src/main/java/org/fcrepo/server/journal/JournalConsumer.java:145:                                String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalConsumer.java:164:                                            String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalConsumer.java:183:                                        String formatURI,
+src/main/java/org/fcrepo/server/journal/JournalConsumer.java:260:                                   String objURI,
+src/main/java/org/fcrepo/server/journal/JournalConsumer.java:272:                                     String objURI,
+src/main/java/org/fcrepo/server/journal/entry/JournalEntry.java:12:import java.net.URI;
+src/main/java/org/fcrepo/server/journal/entry/JournalEntry.java:109:    public void setRecoveryValue(URI attribute, String value) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntry.java:115:    public void setRecoveryValues(URI attribute, String[] values) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:25:    private MultiValueMap<URI> environmentAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:29:    private MultiValueMap<URI> actionAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:31:    private MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:33:    private MultiValueMap<URI> recoveryAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:56:        for (Iterator<URI> keys = source.environmentAttributes(); keys.hasNext();) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:57:            URI key = keys.next();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:65:        for (Iterator<URI> keys = source.actionAttributes(); keys.hasNext();) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:66:            URI key = keys.next();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:69:        for (Iterator<URI> keys = source.resourceAttributes(); keys.hasNext();) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:70:            URI key = keys.next();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:89:    public MultiValueMap<URI> getEnvironmentAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:93:    public Iterator<URI> environmentAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:97:    public int nEnvironmentValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:101:    public String getEnvironmentValue(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:105:    public String[] getEnvironmentValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:125:    public Iterator<URI> actionAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:129:    public int nActionValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:133:    public String getActionValue(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:137:    public String[] getActionValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:141:    public Iterator<URI> resourceAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:145:    public int nResourceValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:149:    public String getResourceValue(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:153:    public String[] getResourceValues(URI name) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:157:    public void setActionAttributes(MultiValueMap<URI> actionAttributes) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:159:            actionAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:164:    public void setResourceAttributes(MultiValueMap<URI> resourceAttributes) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:166:            resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:183:    public Iterator<URI> getRecoveryNames() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:187:    public String getRecoveryValue(URI attribute) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:191:    public String[] getRecoveryValues(URI attribute) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:211:    public MultiValueMap<URI> getActionAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:215:    public void setEnvironmentAttributes(MultiValueMap<URI> environmentAttributes) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:227:    public MultiValueMap<URI> getResourceAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:231:    public void setRecoveryAttributes(MultiValueMap<URI> recoveryAttributes) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:235:    public MultiValueMap<URI> getRecoveryAttributes() {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:239:    public void setRecoveryValue(URI attribute, String value) {
+src/main/java/org/fcrepo/server/journal/entry/JournalEntryContext.java:243:    public void setRecoveryValues(URI attribute, String[] values) {
+src/main/java/org/fcrepo/server/journal/Journaler.java:219:                                String formatURI,
+src/main/java/org/fcrepo/server/journal/Journaler.java:233:                                    formatURI,
+src/main/java/org/fcrepo/server/journal/Journaler.java:251:                                            String formatURI,
+src/main/java/org/fcrepo/server/journal/Journaler.java:264:                                                  formatURI,
+src/main/java/org/fcrepo/server/journal/Journaler.java:281:                                        String formatURI,
+src/main/java/org/fcrepo/server/journal/Journaler.java:294:                                              formatURI,
+src/main/java/org/fcrepo/server/Server.java:14:import java.net.URI;
+src/main/java/org/fcrepo/server/Server.java:1092:            if (!rootElement.getNamespaceURI().equals(CONFIG_NAMESPACE)) {
+src/main/java/org/fcrepo/server/Server.java:1522:        URI propName = Constants.ENVIRONMENT.CURRENT_DATE_TIME.attributeId;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:20:import java.net.URI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:21:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:38:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:79:import org.jrdf.graph.URIReference;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:422:                                String formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:481:                                         formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:586:            ds.DSFormatURI = formatURI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:663:                logMsg.append(", formatURI: ").append(formatURI);
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:687:                                            String formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:719:                                                        formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:765:            if (formatURI == null) {
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:766:                formatURI = orig.DSFormatURI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:825:            newds.DSFormatURI = formatURI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:892:                logMsg.append(", formatURI: ").append(formatURI);
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:913:                                        String formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:942:                                                   formatURI,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:990:            if (formatURI == null) {
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:991:                formatURI = orig.DSFormatURI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1063:            newds.DSFormatURI = formatURI;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1107:                logMsg.append(", formatURI: ").append(formatURI);
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1731:    // helper class to get pid from subject and to get URI form of subject
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1740:            // if we weren't given a pid, assume it's a URI
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1744:            // otherwise return URI from the pid
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1748:            return PID.toURI(subject);
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1761:                throw new GeneralException("Subject URI must be in the " + Constants.FEDORA.uri + " scheme.");
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1792:                URIReference pred = null;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1794:                    pred = new SimpleURIReference(new URI(relationship));
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1796:                URIReference subj = null;
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1798:                    subj = new SimpleURIReference(new URI(SubjectProcessor.getSubjectAsUri(subject)));
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1803:            } catch (URISyntaxException e) {
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1804:                throw new GeneralException("Relationship must be a URI", e);
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:206:     * formatURI ,)String dsLocation ,)String controlGroup ,)String dsState
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:216:                                String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:239:                                              formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:260:     * ,)String mimeType ,)String formatURI ,)String dsLocation ,)String
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:269:                                              String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:291:                                                 formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:309:     * altIDs ,)String dsLabel ,)String mimeType ,)String formatURI
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:319:                                          String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMMTOMImpl.java:345:                                             formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:208:     * formatURI ,)String dsLocation ,)String controlGroup ,)String dsState
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:218:                                String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:241:                                              formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:261:     * altIDs ,)String dsLabel ,)String mimeType ,)String formatURI ,)String
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:271:                                              String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:293:                                                 formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:311:     * altIDs ,)String dsLabel ,)String mimeType ,)String formatURI
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:321:                                          String formatURI,
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:343:                                                                              formatURI,
+src/main/java/org/fcrepo/server/management/Management.java:64:                                @PName("formatURI") String formatURI,
+src/main/java/org/fcrepo/server/management/Management.java:78:                                            @PName("formatURI") String formatURI,
+src/main/java/org/fcrepo/server/management/Management.java:92:                                        @PName("formatURI") String formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:238:                                String formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:252:                                  formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:401:                                            String formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:414:                                                formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:432:                                        String formatURI,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:444:                                            formatURI,
+src/main/java/org/fcrepo/server/management/GetNextPIDServlet.java:280:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/management/GetNextPIDServlet.java:282:                    .getEnvironmentValue(HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:329:     * versionable dsState formatURI checksumType checksum logMessage
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:343:                                     @QueryParam(RestParam.FORMAT_URI) String formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:362:                                     formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:375:     * dsLabel versionable dsState formatURI checksumType checksum logMessage
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:390:                                  @QueryParam(RestParam.FORMAT_URI) String formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:407:                                     formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:427:                                             String formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:524:                                                      formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:558:                                                        formatURI,
+src/main/java/org/fcrepo/server/rest/DatastreamResource.java:583:                                                            formatURI,
+src/main/java/org/fcrepo/server/rest/FedoraObjectsResource.java:13:import java.net.URI;
+src/main/java/org/fcrepo/server/rest/FedoraObjectsResource.java:532:            URI createdLocation = m_uriInfo.getRequestUri().resolve(URLEncoder.encode(pid, DEFAULT_ENC));
+src/main/java/org/fcrepo/server/rest/RestParam.java:23:    String FORMAT_URI = "formatURI";
+src/main/java/org/fcrepo/server/rest/RelationshipResource.java:52:     * @param subject The subject uri. If null, defaults to the URI form of pid,
+src/main/java/org/fcrepo/server/rest/RelationshipResource.java:78:            subject = PID.toURI(pid);
+src/main/java/org/fcrepo/server/rest/RelationshipResource.java:143:                subject = PID.toURI(pid);
+src/main/java/org/fcrepo/server/rest/RelationshipResource.java:181:                subject = PID.toURI(pid);
+src/main/java/org/fcrepo/server/rest/DefaultSerializer.java:48:                .equals(context.getEnvironmentValue(Constants.HTTP_REQUEST.SECURITY.attributeId))) {
+src/main/java/org/fcrepo/server/rest/DefaultSerializer.java:164:        appendXML(null, prefix, "dsFormatURI", dsProfile.DSFormatURI, buffer, true);
+src/main/java/org/fcrepo/server/rest/BaseRestResource.java:12:import java.net.URI;
+src/main/java/org/fcrepo/server/rest/BaseRestResource.java:143:                URI location = URI.create(IOUtils.toString(result.getStream()));
+src/main/java/org/fcrepo/server/RecoveryContext.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/RecoveryContext.java:23:    public Iterator<URI> getRecoveryNames();
+src/main/java/org/fcrepo/server/RecoveryContext.java:29:    public String getRecoveryValue(URI attribute);
+src/main/java/org/fcrepo/server/RecoveryContext.java:35:    public String[] getRecoveryValues(URI attribute);
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:10:import java.net.URI;
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:16:import org.jrdf.graph.URIReference;
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:22:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:53:            URIReference objURI = new SimpleURIReference(
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:54:                    new URI(PID.toURI(reader.GetObjectPID())));
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:57:            addMethodDefTriples(objURI, reader, set);
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:68:    private void addMethodDefTriples(URIReference objURI,
+src/main/java/org/fcrepo/server/resourceIndex/ServiceDefinitionTripleGenerator_3_0.java:74:                add(objURI, MODEL.DEFINES_METHOD, element.methodName, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:15:import org.jrdf.graph.URIReference;
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:20:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:56:    private URIReference addCommonTriples(DOReader reader, Set<Triple> set)
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:61:            URIReference objURI = new SimpleURIReference(
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:62:                    new URI(PID.toURI(reader.GetObjectPID())));
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:64:            addCoreObjectTriples(reader, objURI, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:68:                addCoreDatastreamTriples(ds, objURI, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:70:                    addDCTriples(ds, objURI, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:74:            addRelationshipTriples(reader, objURI, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:76:            return objURI;
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:96:                                      URIReference objURI,
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:99:        add(objURI, MODEL.CREATED_DATE, r.getCreateDate(), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:100:        add(objURI, MODEL.LABEL, r.GetObjectLabel(), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:101:        add(objURI, MODEL.OWNER, r.getOwnerId(), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:102:        add(objURI, MODEL.STATE, getStateResource(r.GetObjectState()), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:103:        add(objURI, VIEW.LAST_MODIFIED_DATE, r.getLastModDate(), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:119:                                          URIReference objURI,
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:122:        URIReference dsURI = new SimpleURIReference(
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:123:                new URI(objURI.getURI().toString() + "/" + ds.DatastreamID));
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:125:        add(objURI, VIEW.DISSEMINATES, dsURI, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:127:        URIReference dsDissType = new SimpleURIReference(
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:128:                new URI(FEDORA.uri + "*/" + ds.DatastreamID));
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:130:        add(dsURI, VIEW.DISSEMINATION_TYPE, dsDissType, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:135:        add(dsURI, VIEW.IS_VOLATILE, isVolatile, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:136:        add(dsURI, VIEW.LAST_MODIFIED_DATE, ds.DSCreateDT, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:137:        add(dsURI, VIEW.MIME_TYPE, ds.DSMIME, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:138:        add(dsURI, MODEL.STATE, getStateResource(ds.DSState), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:147:                              URIReference objURI,
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:155:                    add(objURI, predicate, dcField.getValue(), set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:157:                    add(objURI, predicate, dcField.getValue(), lang, set);
+src/main/java/org/fcrepo/server/resourceIndex/FedoraObjectTripleGenerator_3_0.java:170:                                        URIReference objURI,
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:8:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:15:import org.fcrepo.common.rdf.SimpleURIReference;
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:35:    private static URI PREDICATE = URI.create(TEST_PREDICATE);
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:44:                new SimpleTriple(new SimpleURIReference(
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:45:                                                        new URI(Constants.FEDORA.uri.concat(reader.GetObjectPID()))),
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:46:                                                        new SimpleURIReference(PREDICATE),
+src/main/java/org/fcrepo/server/resourceIndex/UvaStdImgTripleGenerator_1.java:53:        catch (URISyntaxException e){
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:24:import org.jrdf.graph.URIReference;
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:216:     * Gets a localized URIReference based on the given Node.
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:218:    private URIReference getLocalizedResource(Node n)
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:220:        if (n instanceof URIReference) {
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:221:            URIReference u = (URIReference) n;
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:222:            return _connector.getElementFactory().createResource(u.getURI());
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:225:                    + n.getClass().getName() + " is not a URIReference");
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:230:     * Gets a localized URIReference or Literal based on the given Node.
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:234:        if (n instanceof URIReference) {
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:239:            if (l.getDatatypeURI() != null) {
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:241:                                                    l.getDatatypeURI());
+src/main/java/org/fcrepo/server/resourceIndex/ResourceIndexImpl.java:250:                    + n.getClass().getName() + " is not a URIReference "
+src/main/java/org/fcrepo/server/resourceIndex/TripleGeneratorBase.java:78:                                                  RDF_XSD.DATE_TIME.getURI());
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:8:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:67:            registerAttribute(Constants.DATASTREAM.FORMAT_URI);
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:70:            registerAttribute(Constants.MODEL.HAS_MODEL.getURI(),
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:71:                              STRING_ATTRIBUTE_TYPE_URI);
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:75:        } catch (URISyntaxException e1) {
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:108:                context.getResourceAttribute(STRING_ATTRIBUTE_TYPE_URI,
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:153:                                               URI attributeId,
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:154:                                               URI resourceCategory,
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:248:                    || Constants.DATASTREAM.FORMAT_URI.attributeId.equals(attributeId)
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:284:                } else if (Constants.DATASTREAM.FORMAT_URI.attributeId
+src/main/java/org/fcrepo/server/security/ResourceAttributeFinderModule.java:287:                    values[0] = datastream.DSFormatURI;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:216:                                           String formatURI,
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:227:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:228:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:232:                name = Constants.DATASTREAM.FORMAT_URI.attributeId;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:233:                resourceAttributes.set(name, formatURI);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:277:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:278:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:280:                name = Constants.OBJECT.FORMAT_URI.attributeId;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:325:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:357:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:358:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:390:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:436:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:437:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:471:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:503:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:504:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:506:                name = Constants.OBJECT.FORMAT_URI.attributeId;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:596:                                                         String datastreamNewFormatURI,
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:605:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:606:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:612:                name = Constants.DATASTREAM.NEW_FORMAT_URI.attributeId;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:613:                resourceAttributes.set(name, datastreamNewFormatURI);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:645:                                                     String newDatastreamFormatURI,
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:653:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:654:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:660:                name = Constants.DATASTREAM.NEW_FORMAT_URI.attributeId;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:661:                resourceAttributes.set(name, newDatastreamFormatURI);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:695:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:696:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:732:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:733:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:785:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:786:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:819:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:820:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:854:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:855:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:944:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:945:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:984:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:985:            URI name = null;
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1051:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1080:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1108:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1191:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1228:            MultiValueMap<URI> actionAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1282:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1314:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1346:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1368:    public void enforceRetrieveFile(Context context, String fileURI) throws AuthzException {
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1370:            logger.debug("Entered enforceRetrieveFile for {}", fileURI);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1374:                MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1375:                resourceAttributes.set(Constants.DATASTREAM.FILE_URI.attributeId, fileURI);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1379:                throw new AuthzOperationalException(target + " couldn't be set " + Constants.DATASTREAM.FILE_URI.uri, e);
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1386:                             extractNamespace(fileURI),
+src/main/java/org/fcrepo/server/security/DefaultAuthorization.java:1400:            MultiValueMap<URI> resourceAttributes = new MultiValueMap<URI>();
+src/main/java/org/fcrepo/server/security/Attribute.java:4:import java.net.URI;
+src/main/java/org/fcrepo/server/security/Attribute.java:19:    public URI getId();
+src/main/java/org/fcrepo/server/security/Attribute.java:26:    public URI getType();
+src/main/java/org/fcrepo/server/security/servletfilters/xmluserfile/FedoraUsers.java:14:import java.net.URI;
+src/main/java/org/fcrepo/server/security/servletfilters/xmluserfile/FedoraUsers.java:60:        return getInstance(fedoraUsersXML.toURI());
+src/main/java/org/fcrepo/server/security/servletfilters/xmluserfile/FedoraUsers.java:63:    public static FedoraUsers getInstance(URI fedoraUsersXML) {
+src/main/java/org/fcrepo/server/security/servletfilters/ExtendedHttpServletRequestWrapper.java:525:            logger.debug("this.getRequestURI()=={}", getRequestURI());
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:101:	public static final String SECURITY_PRINCIPAL_KEY = "security-principal";
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:102:	public static final String SECURITY_CREDENTIALS_KEY = "security-credentials";
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:120:	private String SECURITY_PRINCIPAL = null;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:121:	private String SECURITY_CREDENTIALS = null;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:163:		} else if (SECURITY_PRINCIPAL_KEY.equals(key)) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:164:			SECURITY_PRINCIPAL = value;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:165:		} else if (SECURITY_CREDENTIALS_KEY.equals(key)) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:166:			SECURITY_CREDENTIALS = value;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:218:		log.debug("  SECURITY_PRINCIPAL: " + SECURITY_PRINCIPAL);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:219:		log.debug("  SECURITY_CREDENTIALS: " + SECURITY_CREDENTIALS);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:256:			if(!SECURITY_PRINCIPAL.equals(""))
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:303:			if(!SECURITY_PRINCIPAL.equals(""))
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:363:		envSimpleBind.put(Context.SECURITY_AUTHENTICATION, "simple");
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:364:		envSimpleBind.put(Context.SECURITY_PRINCIPAL, SECURITY_PRINCIPAL);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:365:		envSimpleBind.put(Context.SECURITY_CREDENTIALS, SECURITY_CREDENTIALS);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:368:		log.debug("   SECURITY_PRINCIPAL: " + envSimpleBind.get(Context.SECURITY_PRINCIPAL));
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:369:		log.debug("   SECURITY_CREDENTIALS: " + envSimpleBind.get(Context.SECURITY_CREDENTIALS));
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:528:		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:529:		env.put(Context.SECURITY_PRINCIPAL, dn);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdapSimpleBind.java:530:		env.put(Context.SECURITY_CREDENTIALS, password);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:62:    public static final String SECURITY_AUTHENTICATION_KEY =
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:65:    public static final String SECURITY_PRINCIPAL_KEY = "security-principal";
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:67:    public static final String SECURITY_CREDENTIALS_KEY =
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:91:    public String SECURITY_AUTHENTICATION = "none";
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:93:    public String SECURITY_PRINCIPAL = null;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:95:    public String SECURITY_CREDENTIALS = null;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:123:                if (SECURITY_AUTHENTICATION != null
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:124:                        && !SECURITY_AUTHENTICATION.isEmpty()) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:129:                if (SECURITY_PRINCIPAL != null
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:130:                        && !SECURITY_PRINCIPAL.isEmpty()) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:135:                if (SECURITY_CREDENTIALS != null
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:136:                        && !SECURITY_CREDENTIALS.isEmpty()) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:209:            } else if (SECURITY_AUTHENTICATION_KEY.equals(key)) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:210:                SECURITY_AUTHENTICATION = value;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:212:            } else if (SECURITY_PRINCIPAL_KEY.equals(key)) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:213:                SECURITY_PRINCIPAL = value;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:215:            } else if (SECURITY_CREDENTIALS_KEY.equals(key)) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:216:                SECURITY_CREDENTIALS = value;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:253:        boolean bindRequired = "simple".equals(SECURITY_AUTHENTICATION);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:293:                env.put(Context.SECURITY_AUTHENTICATION,
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:294:                        SECURITY_AUTHENTICATION);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:299:                    userForBind = SECURITY_PRINCIPAL;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:300:                    passwordForBind = SECURITY_CREDENTIALS;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:304:                    if (SECURITY_PRINCIPAL == null
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:305:                            || SECURITY_PRINCIPAL.isEmpty()) {
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:310:                        userForBind = SECURITY_PRINCIPAL;
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:314:                env.put(Context.SECURITY_CREDENTIALS, passwordForBind);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:317:                env.put(Context.SECURITY_PRINCIPAL, userFormattedForBind);
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:319:            logger.debug("{}bind w {}", m, env.get(Context.SECURITY_AUTHENTICATION));
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:320:            logger.debug("{}user== {}", m, env.get(Context.SECURITY_PRINCIPAL));
+src/main/java/org/fcrepo/server/security/servletfilters/ldap/FilterLdap.java:321:            logger.debug("{}passwd=={}", m, env.get(Context.SECURITY_CREDENTIALS));
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:3:import java.net.URI;
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:4:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:96:            Map<String,FunctionProxy> proxies, List<FunctionCluster> clusters) throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:101:            Map<String,FunctionProxy> proxies, List<FunctionCluster> clusters) throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:106:            Map<String,FunctionProxy> proxies, List<FunctionCluster> clusters) throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:111:            Map<String,FunctionProxy> proxies, List<FunctionCluster> clusters) throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/PDPConfigurationFactory.java:118:            result.addAbstractFunction(proxies.get(id), new URI(id));
+src/main/java/org/fcrepo/server/security/RequestCtx.java:93:    public abstract void encode(OutputStream output, String nsURI);
+src/main/java/org/fcrepo/server/security/RequestCtx.java:106:            String nsURI);
+src/main/java/org/fcrepo/server/security/Authorization.java:72:                                     String formatURI,
+src/main/java/org/fcrepo/server/security/Authorization.java:143:                                                   String formatURI,
+src/main/java/org/fcrepo/server/security/Authorization.java:154:                                               String formatURI,
+src/main/java/org/fcrepo/server/security/Authorization.java:264:    public void enforceRetrieveFile(Context context, String fileURI)
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:49:        registerAttribute(Constants.HTTP_REQUEST.SECURITY);
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:76:        final URI contextIdType = STRING_ATTRIBUTE_TYPE_URI;
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:77:        final URI contextIdId = Constants.ACTION.CONTEXT_ID.attributeId;
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:121:                                               URI attributeId,
+src/main/java/org/fcrepo/server/security/ContextAttributeFinderModule.java:122:                                               URI resourceCategory,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:8:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:45:    protected static final Map<URI, EvaluationResult> EMPTY_RESULTS =
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:46:            new HashMap<URI, EvaluationResult>(3);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:48:    private static EvaluationResult getEmptyResult(URI attributeType) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:80:    private final boolean parmsOk(URI attributeType,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:81:                                  URI attributeId,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:114:            if (!STRING_ATTRIBUTE_TYPE_URI.equals(attributeType)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:186:    protected final HashSet<URI> attributesDenied = new HashSet<URI>();
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:188:    private final HashSet<URI> attributeIdUris =
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:189:            new HashSet<URI>();
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:191:    private final Hashtable<URI, URI> attributeTypes =
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:192:            new Hashtable<URI, URI>();
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:196:            throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:198:        URI idUri = new URI(id);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:199:        URI typeUri = new URI(type);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:204:    protected final void registerAttribute(URI id, URI type)
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:205:            throws URISyntaxException {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:217:    protected final void denyAttribute(URI id) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:223:    protected final URI getAttributeIdUri(String id) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:224:        URI test = URI.create(id);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:230:        return attributeIdUris.contains(URI.create(id));
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:233:    protected final boolean hasAttribute(URI id) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:239:        Iterator<URI> it = attributeIdUris.iterator();
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:251:    protected final URI getAttributeTypeUri(String id) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:252:        return getAttributeType(URI.create(id));
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:255:    protected final URI getAttributeType(URI id) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:281:    private final boolean willService(URI attributeId) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:303:    public EvaluationResult findAttribute(URI attributeType,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:304:                                          URI attributeId,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:305:                                          URI issuer,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:306:                                          URI category,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:315:                attributeType = STRING_ATTRIBUTE_TYPE_URI;
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:348:            if (attributeType.equals(STRING_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:350:            } else if (attributeType.equals(DATETIME_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:355:            } else if (attributeType.equals(DATE_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:360:            } else if (attributeType.equals(TIME_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:365:            } else if (attributeType.equals(INTEGER_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:386:                if (attributeType.equals(STRING_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:388:                } else if (attributeType.equals(DATETIME_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:396:                } else if (attributeType.equals(DATE_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:403:                } else if (attributeType.equals(TIME_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:410:                } else if (attributeType.equals(INTEGER_ATTRIBUTE_TYPE_URI)) {
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:430:    protected static final URI DATE_ATTRIBUTE_TYPE_URI = URI.create(DateAttribute.identifier);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:432:    protected static final URI DATETIME_ATTRIBUTE_TYPE_URI = URI.create(DateTimeAttribute.identifier);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:434:    protected static final URI INTEGER_ATTRIBUTE_TYPE_URI = URI.create(IntegerAttribute.identifier);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:436:    protected static final URI STRING_ATTRIBUTE_TYPE_URI = URI.create(StringAttribute.identifier);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:438:    protected static final URI TIME_ATTRIBUTE_TYPE_URI = URI.create(TimeAttribute.identifier);
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:441:                                                  URI attributeId,
+src/main/java/org/fcrepo/server/security/AttributeFinderModule.java:442:                                                  URI resourceCategory,
+src/main/java/org/fcrepo/server/security/PolicyParser.java:46:    private static final String W3C_XML_SCHEMA_NS_URI = "http://www.w3.org/2001/XMLSchema";
+src/main/java/org/fcrepo/server/security/PolicyParser.java:49:    private static final SchemaFactory SCHEMA_FACTORY = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:10:import java.net.URI;
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:76:    private static final String BE_SECURITY_XML_LOCATION =
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:95:    private static final URI STRING_ATTRIBUTE = URI.create(StringAttribute.identifier);
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:97:    private static final URI EMPTY_URI = URI.create("");
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:219:                                    + BE_SECURITY_XML_LOCATION);
+src/main/java/org/fcrepo/server/security/PolicyFinderModule.java:345:        return new PolicySet(EMPTY_URI,
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:7:import java.net.URI;
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:8:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:25:    public static final URI ATTRIBUTE_ID = URI.create(Constants.ENVIRONMENT.uri + ":springConfigured");
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:40:            registerAttribute(ATTRIBUTE_ID, STRING_ATTRIBUTE_TYPE_URI);
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:52:        } catch (URISyntaxException e1) {
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:63:                                               URI attributeId,
+src/main/java/org/fcrepo/server/security/TestAttributeFinderModule.java:64:                                               URI resourceCategory,
+src/main/java/org/fcrepo/server/security/BESecurityConfig.java:473:        writer.println("<" + _CONFIG + " xmlns=\"" + BE_SECURITY.uri + "\"");
+src/main/java/org/fcrepo/server/security/BESecurityConfig.java:475:        writer.println(indent + " xsi:schemaLocation=\"" + BE_SECURITY.uri
+src/main/java/org/fcrepo/server/security/BESecurityConfig.java:476:                + " " + BE_SECURITY1_0.xsdLocation + "\"");
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:135:        if (uri.equals(BE_SECURITY.uri)
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:141:            tmp_role = grab(a, BE_SECURITY.uri, ROLE);
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:144:                                              BE_SECURITY.uri,
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:146:            setProperty(CALL_SSL, grab(a, BE_SECURITY.uri, CALL_SSL));
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:147:            setProperty(CALL_USERNAME, grab(a, BE_SECURITY.uri, CALL_USERNAME));
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:148:            setProperty(CALL_PASSWORD, grab(a, BE_SECURITY.uri, CALL_PASSWORD));
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:150:                                                  BE_SECURITY.uri,
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:152:            setProperty(CALLBACK_SSL, grab(a, BE_SECURITY.uri, CALLBACK_SSL));
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:153:            setProperty(IPLIST, grab(a, BE_SECURITY.uri, IPLIST));
+src/main/java/org/fcrepo/server/security/BackendSecurityDeserializer.java:197:        if (uri.equals(BE_SECURITY.uri)
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:43:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:59:import org.jboss.security.xacml.sunxacml.attr.AnyURIAttribute;
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:104:    static final URI STRING_ATTRIBUTE_TYPE_URI = URI.create(StringAttribute.identifier);
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:113:    private HashMap<URI, Map<String, List<Attribute>>> subjectMap;
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:223:        subjectMap = new HashMap<URI,Map<String, List<Attribute>>>();
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:256:            URI category = subject.getCategory();
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:315:        //SECURITY-162: Relax resource-id requirement
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:541:    public EvaluationResult getSubjectAttribute(URI type, URI id,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:542:                                                URI category) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:558:    public EvaluationResult getSubjectAttribute(URI type, URI id, URI issuer,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:559:                                                URI category) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:586:    public EvaluationResult getResourceAttribute(URI type, URI id,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:587:                                                 URI issuer) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:603:    public EvaluationResult getActionAttribute(URI type, URI id, URI issuer) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:619:    public EvaluationResult getEnvironmentAttribute(URI type, URI id,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:620:                                                    URI issuer) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:629:    private EvaluationResult getGenericAttributes(URI type, URI id, URI issuer,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:630:                                                  Map<String, List<Attribute>> map, URI category,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:706:    private Attribute checkContext(URI type, URI id, URI issuer,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:707:                                        URI category, int designatorType) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:708:        if (!STRING_ATTRIBUTE_TYPE_URI.equals(type)) return null;
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:744:    private EvaluationResult callHelper(URI type, URI id, URI issuer,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:745:                                        URI category, int adType) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:771:                                         Node namespaceNode, URI type,
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:787:            } else if (AnyURIAttribute.identifier.equals(type)) {
+src/main/java/org/fcrepo/server/security/impl/BasicEvaluationCtx.java:788:                return AnyURIAttribute.getInstance(value);
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:38:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:67:   //SECURITY-157: support multiple values
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:80:   public BasicAttribute(URI id, String issuer, DateTimeAttribute issueInstant,
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:89:   public BasicAttribute(URI id, URI type, String issuer, DateTimeAttribute issueInstant,
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:100:    *        {@link #Attribute(URI,String,DateTimeAttribute,AttributeValue)}.
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:114:   public BasicAttribute(URI id, URI type, String issuer,
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:132:      final URI id;
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:133:      final URI type;
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:152:         id = new URI(attrs.getNamedItem("AttributeId").getNodeValue());
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:159:         type = new URI(attrs.getNamedItem("DataType").getNodeValue());
+src/main/java/org/fcrepo/server/security/impl/BasicAttribute.java:188:             * SECURITY-157: multiple values
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:3:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:19:import org.jboss.security.xacml.sunxacml.attr.AnyURIAttribute;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:29:    static final URI SUBJECT_ID_URI = Constants.SUBJECT.LOGIN_ID.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:31:    static final URI ACTION_ID_URI = Constants.ACTION.ID.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:33:    static final URI ACTION_API_URI = Constants.ACTION.API.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:35:    static final URI ACTION_CONTEXT_URI = Constants.ACTION.CONTEXT_ID.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:37:    static final URI RESOURCE_PID_URI = Constants.OBJECT.PID.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:39:    static final URI RESOURCE_NAMESPACE_URI = Constants.OBJECT.NAMESPACE.attributeId;
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:104:                    new SingletonAttribute(SUBJECT_ID_URI, null, null, stringAttribute);
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:123:                new SingletonAttribute(ACTION_ID_URI,
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:129:                new SingletonAttribute(ACTION_API_URI,
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:136:                new SingletonAttribute(ACTION_CONTEXT_URI,
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:152:                    null, null, AnyURIAttribute.getInstance(pid));
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:163:                new SingletonAttribute(RESOURCE_PID_URI,
+src/main/java/org/fcrepo/server/security/impl/AbstractPolicyEnforcementPoint.java:169:                new SingletonAttribute(RESOURCE_NAMESPACE_URI,
+src/main/java/org/fcrepo/server/security/impl/SingletonAttribute.java:38:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/SingletonAttribute.java:68:   public SingletonAttribute(URI id, String issuer, DateTimeAttribute issueInstant,
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:44:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:45:import java.net.URISyntaxException;
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:213:     * @throws URISyntaxException if there is a badly formed URI
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:241:                URI category = null;
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:245:                        category = new URI(catNode.getNodeValue());
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:247:                        throw new ParsingException("Invalid Category URI", e);
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:406:    public void encode(OutputStream output, String nsURI) {
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:407:        encode(output, new Indenter(0), nsURI);
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:422:    public void encode(OutputStream output, Indenter indenter, String nsURI) {
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:430:        if (nsURI != null) {
+src/main/java/org/fcrepo/server/security/impl/BasicRequestCtx.java:431:            out.append("<Request xmlns=\"").append(nsURI).println("\">");
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:40:import java.net.URI;
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:60:    protected URI id;
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:61:    protected URI type;
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:77:   public AbstractAttribute(URI id, String issuer, DateTimeAttribute issueInstant) 
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:85:   public URI getId() {
+src/main/java/org/fcrepo/server/security/impl/AbstractAttribute.java:90:   public URI getType() {
+src/main/java/org/fcrepo/server/messaging/AtomAPIMMessage.java:103:    private final static String formatPredicate = "http://www.fedora.info/definitions/1/0/types/formatURI";
+src/main/java/org/fcrepo/server/messaging/FedoraMethod.java:85:                // pid (deprecated), Fedora object URI or datastream URI
+src/main/java/org/fcrepo/server/messaging/FedoraMethod.java:88:                    // info:fedora URI?
+src/main/java/org/fcrepo/server/messaging/FedoraMethod.java:91:                    } else { // not a URI, assume pid
+src/main/java/org/fcrepo/server/messaging/FedoraTypes.java:59:            xpath.setNamespaceURIs(ns2prefix);
+src/main/java/org/fcrepo/server/messaging/FedoraTypes.java:76:            xpath.setNamespaceURIs(ns2prefix);
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:54:        assertEquals(XMLNamespace.NULL_NS_URI, nsCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:55:        assertEquals(XMLConstants.XML_NS_URI, nsCtx.getNamespaceURI(XMLConstants.XML_NS_PREFIX));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:56:        assertEquals(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, nsCtx.getNamespaceURI(XMLConstants.XMLNS_ATTRIBUTE));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:66:        map.put(XMLConstants.XML_NS_PREFIX, XMLConstants.XML_NS_URI);
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:69:            fail("Added a mapping for " + XMLConstants.XML_NS_URI);
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:77:     * Test method for {@link org.fcrepo.utilities.NamespaceContextImpl#getNamespaceURI(java.lang.String)}.
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:80:    public void testGetNamespaceURI() {
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:82:        assertEquals(XMLNamespace.NULL_NS_URI, nsCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:83:        assertEquals(XMLConstants.XML_NS_URI, nsCtx.getNamespaceURI(XMLConstants.XML_NS_PREFIX));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:84:        assertEquals(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, nsCtx.getNamespaceURI(XMLConstants.XMLNS_ATTRIBUTE));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:94:        assertEquals(XMLConstants.XML_NS_PREFIX, nsCtx.getPrefix(XMLConstants.XML_NS_URI));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:95:        assertEquals(XMLConstants.XMLNS_ATTRIBUTE, nsCtx.getPrefix(XMLConstants.XMLNS_ATTRIBUTE_NS_URI));
+src/test/java/org/fcrepo/utilities/NamespaceContextImplTest.java:132:        assertEquals(ns, nsCtx.getNamespaceURI(prefix));
+src/test/java/org/fcrepo/server/storage/types/RelationshipTupleTests.java:5:import java.net.URISyntaxException;
+src/test/java/org/fcrepo/server/storage/types/RelationshipTupleTests.java:14:    public void test() throws URISyntaxException {
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:17:import org.jrdf.graph.URIReference;
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:73:                                      String formatURI) {
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:77:        ds.DSFormatURI = formatURI;
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:115:        URIReference[] models = {Models.FEDORA_OBJECT_3_0};
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:126:                                              URIReference[] models,
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:139:        rdf.append(PID.getInstance(pid).toURI() + "\">\n");
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:140:        for (URIReference model : models) {
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:142:                       + model.getURI().toString()
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:210:        x.append(PID.getInstance(pid).toURI());
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:226:        x.append(PID.getInstance(pid).toURI());
+src/test/java/org/fcrepo/server/storage/types/ObjectBuilder.java:231:        x.append("<rdf:Description rdf:about=\"" + PID.getInstance(pid).toURI() + "/DS2" + "\">\n");
+src/test/java/org/fcrepo/server/storage/translation/TestXMLDODeserializer.java:24:import org.jrdf.graph.URIReference;
+src/test/java/org/fcrepo/server/storage/translation/TestXMLDODeserializer.java:309:    protected void doSimpleTest(URIReference... models) {
+src/test/java/org/fcrepo/server/storage/translation/TestXMLDODeserializer.java:313:        for (URIReference model : models) {
+src/test/java/org/fcrepo/server/storage/translation/TestAtomDOSerializer.java:167:                assertEquals(PID.getInstance(TEST_PID).toURI(), feed.getId().toString());
+src/test/java/org/fcrepo/server/storage/translation/TestMETSFedoraExtDOSerializer.java:159:			public Iterator<String> getPrefixes(String namespaceURI) {
+src/test/java/org/fcrepo/server/storage/translation/TestMETSFedoraExtDOSerializer.java:164:			public String getPrefix(String namespaceURI) {
+src/test/java/org/fcrepo/server/storage/translation/TestMETSFedoraExtDOSerializer.java:168:			public String getNamespaceURI(String prefix) {
+src/test/java/org/fcrepo/server/storage/translation/TranslationTest.java:15:import org.jrdf.graph.URIReference;
+src/test/java/org/fcrepo/server/storage/translation/TranslationTest.java:69:    protected static DigitalObject createTestObject(URIReference... contentModelURIs) {
+src/test/java/org/fcrepo/server/storage/translation/TranslationTest.java:79:        rdf.append(PID.getInstance(TEST_PID).toURI() + "\">\n");
+src/test/java/org/fcrepo/server/storage/translation/TranslationTest.java:81:        for (URIReference model : contentModelURIs) {
+src/test/java/org/fcrepo/server/storage/translation/TranslationTest.java:83:                    + model.getURI().toString()
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:7:import java.net.URI;
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:25:    private static final URI URI1 = URI.create("urn:example1");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:26:    private static final URI URI1_ENCODED = URI.create("file:08/86/ca/urn%3Aexample1");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:28:    private static final URI URI2 = URI.create("http://tinyurl.com/cxzzf");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:29:    private static final URI URI2_ENCODED = URI.create("file:62/ca/d6/http%3A%2F%2Ftinyurl.com%2Fcxzzf");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:31:    private static final URI URI3 = URI.create("info:foo/bar.baz.");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:32:    private static final URI URI3_ENCODED = URI.create("file:13/a7/21/info%3Afoo%2Fbar.baz%2E");
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:60:    /** getExternalId should produce the expected URIs. */
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:64:        assertEquals(URI1, mapper.getExternalId(URI1_ENCODED));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:65:        assertEquals(URI2, mapper.getExternalId(URI2_ENCODED));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:66:        assertEquals(URI3, mapper.getExternalId(URI3_ENCODED));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:69:    /** getInternalId should produce the expected URIs. */
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:73:        assertEquals(URI1_ENCODED, mapper.getInternalId(URI1));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:74:        assertEquals(URI2_ENCODED, mapper.getInternalId(URI2));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:75:        assertEquals(URI3_ENCODED, mapper.getInternalId(URI3));
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:100:        checkRoundtrip(mapper, URI1);
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:101:        checkRoundtrip(mapper, URI2);
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:102:        checkRoundtrip(mapper, URI3);
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:105:    private static void checkRoundtrip(IdMapper mapper, URI orig) {
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:106:        URI internal = mapper.getInternalId(orig);
+src/test/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapperTest.java:107:        URI external = mapper.getExternalId(internal);
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:12:import java.net.URI;
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:13:import java.net.URISyntaxException;
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:28:import org.fcrepo.common.rdf.SimpleURIReference;
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:133:    public void testBadSubjectURI() throws Exception {
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:138:        s = PID.getInstance("demo:bar").toURI();
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:145:            fail("RELS-EXT Assertion's subject URI different from digital object URI not allowed");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:149:        s = PID.getInstance("demo:foo").toURI();
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:154:            fail("RELS-INT Assertion's subject URI is digital object URI not allowed");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:158:        s = PID.getInstance("demo:bar").toURI() + "/DS1";
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:163:            fail("RELS-INT Assertion's subject URI is datastream in different digital object not allowed");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:167:        s = PID.getInstance("demo:foo").toURI() + "/";
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:172:            fail("RELS-INT Assertion's subject URI zero length datastream ID not allowed");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:181:            fail("RELS-INT Assertion's subject URI invalid datastream ID not allowed (colon)");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:276:    public void testResourceURI() throws Exception {
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:277:        testResourceURI("RELS-EXT");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:278:        testResourceURI("RELS-INT");
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:280:    private void testResourceURI(String dsId) throws Exception {
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:285:            s = pid.toURI() + "/DS1";
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:287:            s = pid.toURI();
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:325:            s = pid.toURI() + "/DS1";
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:327:            s = pid.toURI();
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:457:        return createTriple(pid.toURI(), predicate, object, isLiteral, datatype);
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:472:                    o = new SimpleLiteral(object, new URI(datatype));
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:475:                o = new SimpleURIReference(new URI(object));
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:477:            return new SimpleTriple(new SimpleURIReference(new URI(subject)),
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:478:                                    new SimpleURIReference(new URI(predicate)),
+src/test/java/org/fcrepo/server/validation/RelsValidatorTest.java:480:        } catch (URISyntaxException e) {
+src/test/java/org/fcrepo/server/journal/readerwriter/multicast/SampleJournalEntries.java:9:import java.net.URI;
+src/test/java/org/fcrepo/server/journal/readerwriter/multicast/SampleJournalEntries.java:66:                    + "  <dc:identifier xsi:type=\"dct:URI\">http://serc.carleton.edu/introgeo/roleplaying/examples/globwarm.html</dc:identifier>\n"
+src/test/java/org/fcrepo/server/journal/readerwriter/multicast/SampleJournalEntries.java:742:    private static MultiValueMap<URI> buildUriMultiMap(String[][] pairs) {
+src/test/java/org/fcrepo/server/journal/readerwriter/multicast/SampleJournalEntries.java:743:        MultiValueMap<URI> map = new MultiValueMap<URI>();
+src/test/java/org/fcrepo/server/journal/readerwriter/multicast/SampleJournalEntries.java:745:            map.set(URI.create(pair[0]), pair[1]);
+src/test/java/org/fcrepo/server/journal/xmlhelpers/TestContextXmlWriterAndReader.java:9:import java.net.URI;
+src/test/java/org/fcrepo/server/journal/xmlhelpers/TestContextXmlWriterAndReader.java:54:        context1.setEnvironmentAttributes(createMap(new URI("envAttr"), "envValue"));
+src/test/java/org/fcrepo/server/journal/xmlhelpers/TestContextXmlWriterAndReader.java:57:        context1.setActionAttributes(createMap(new URI("ActionAttribute"), "ActionValue"));
+src/test/java/org/fcrepo/server/journal/xmlhelpers/TestContextXmlWriterAndReader.java:59:                new URI("recoveryAttribute"),
+src/test/java/org/fcrepo/server/journal/TestJournalRoundTrip.java:160:                            "theFormatURI",
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:141:                                String formatURI,
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:156:                           formatURI,
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:315:                                            String formatURI,
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:330:                              formatURI,
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:345:                                        String formatURI,
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:358:                           formatURI,
+src/test/java/org/fcrepo/server/resourceIndex/ResourceIndexDatePrecisionIntegrationTest.java:120:            assertEquals(dateLiteral.getDatatypeURI().toString(),
+src/test/java/org/fcrepo/server/resourceIndex/ResourceIndexIntegrationTest.java:34:import org.jrdf.graph.URIReference;
+src/test/java/org/fcrepo/server/resourceIndex/ResourceIndexIntegrationTest.java:690:        URIReference[] models = {Models.SERVICE_DEFINITION_3_0};
+src/test/java/org/fcrepo/server/resourceIndex/ResourceIndexIntegrationTest.java:711:        URIReference[] models = {Models.SERVICE_DEPLOYMENT_3_0};
+src/test/java/org/fcrepo/server/security/servletfilters/xmluserfile/TestFedoraUsers.java:30:        FedoraUsers fu = FedoraUsers.getInstance(f.toURI());
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:10:import java.net.URI;
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:67:        URI testUri = URI.create("lol:wut");
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:69:        EvaluationResult eval = test.getResourceAttribute(URI.create(StringAttribute.identifier), testUri, null);
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:71:        test.getResourceAttribute(URI.create(StringAttribute.identifier), testUri, null);
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:73:        verify(mockFinder, times(0)).findAttribute(any(URI.class), any(URI.class), any(URI.class), any(URI.class), any(EvaluationCtx.class), any(Integer.class));
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:79:        URI testUri = URI.create("lol:wut");
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:81:                any(URI.class), eq(testUri), any(URI.class), any(URI.class),
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:84:        EvaluationResult eval = test.getResourceAttribute(URI.create(StringAttribute.identifier), testUri, null);
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:85:        test.getResourceAttribute(URI.create(StringAttribute.identifier), testUri, null);
+src/test/java/org/fcrepo/server/security/impl/TestBasicEvaluationContext.java:87:        verify(mockFinder, times(2)).findAttribute(any(URI.class), any(URI.class), any(URI.class), any(URI.class), any(EvaluationCtx.class), any(Integer.class));
+src/test/java/org/fcrepo/server/security/impl/TestAttributeImpls.java:6:import java.net.URI;
+src/test/java/org/fcrepo/server/security/impl/TestAttributeImpls.java:38:        URI id = URI.create("lol:wut");
+src/test/java/org/fcrepo/server/security/impl/TestAttributeImpls.java:49:        URI id = URI.create("lol:wut");

@@ -1,0 +1,13 @@
+src/main/java/org/fcrepo/server/utilities/TypeUtility.java:616:        // Phaidra: fuer addRelationships, purgeRelationships
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1938:    public boolean addRelationships(Context context,
+src/main/java/org/fcrepo/server/management/DefaultManagement.java:1941:    	logger.debug("Entered addRelationships");
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:656:    public boolean addRelationships(org.fcrepo.server.types.gen.RelationshipTuple[] relationships) throws java.rmi.RemoteException
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:658:        LOG.debug("start: addRelationships");
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:662:            return addRelationships(ReadOnlyContext.getSoapContext(ctx),
+src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:668:            LOG.debug("end: addRelationships");
+src/main/java/org/fcrepo/server/management/Management.java:175:    public boolean addRelationships(@PName("context")Context context,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:572:    public boolean addRelationships(Context context,
+src/main/java/org/fcrepo/server/management/ManagementModule.java:575:    	return mgmt.addRelationships(context, relationships);
+src/test/java/org/fcrepo/server/management/MockManagementDelegate.java:189:    public boolean addRelationships(Context context,
+java.txt:28:[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:[662,19] addRelationships(org.fcrepo.server.types.gen.RelationshipTuple[]) in org.fcrepo.server.management.FedoraAPIMImpl cannot be applied to (org.fcrepo.server.Context,org.fcrepo.server.storage.types.RelationshipTuple[])
+java.txt:45:[ERROR] /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/java/org/fcrepo/server/management/FedoraAPIMImpl.java:[662,19] addRelationships(org.fcrepo.server.types.gen.RelationshipTuple[]) in org.fcrepo.server.management.FedoraAPIMImpl cannot be applied to (org.fcrepo.server.Context,org.fcrepo.server.storage.types.RelationshipTuple[])

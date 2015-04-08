@@ -1,0 +1,700 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Fedora Server Library 3.8.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-remote-resources-plugin:1.5:process (process-remote-resources) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ fcrepo-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO] Copying 1 resource to META-INF/resources
+[INFO] Copying 1 resource to resources
+[INFO] Copying 3 resources to batch-demo
+[INFO] Copying 1 resource
+[INFO] Copying 5 resources
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ fcrepo-server ---
+[INFO] Compiling 2 source files to /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/classes
+[INFO] 
+[INFO] >>> exec-maven-plugin:1.2.1:java (gen-vocab) > validate @ fcrepo-server >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] <<< exec-maven-plugin:1.2.1:java (gen-vocab) < validate @ fcrepo-server <<<
+[INFO] 
+[INFO] --- exec-maven-plugin:1.2.1:java (gen-vocab) @ fcrepo-server ---
+[INFO] 
+[INFO] >>> exec-maven-plugin:1.2.1:java (demo-convert-mets) > validate @ fcrepo-server >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] <<< exec-maven-plugin:1.2.1:java (demo-convert-mets) < validate @ fcrepo-server <<<
+[INFO] 
+[INFO] --- exec-maven-plugin:1.2.1:java (demo-convert-mets) @ fcrepo-server ---
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[INFO] 
+[INFO] >>> exec-maven-plugin:1.2.1:java (demo-convert-atom) > validate @ fcrepo-server >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] <<< exec-maven-plugin:1.2.1:java (demo-convert-atom) < validate @ fcrepo-server <<<
+[INFO] 
+[INFO] --- exec-maven-plugin:1.2.1:java (demo-convert-atom) @ fcrepo-server ---
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[INFO] 
+[INFO] >>> exec-maven-plugin:1.2.1:java (demo-convert-atomzip) > validate @ fcrepo-server >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (default) @ fcrepo-server ---
+[INFO] 
+[INFO] <<< exec-maven-plugin:1.2.1:java (demo-convert-atomzip) < validate @ fcrepo-server <<<
+[INFO] 
+[INFO] --- exec-maven-plugin:1.2.1:java (demo-convert-atomzip) @ fcrepo-server ---
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ fcrepo-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 12 resources
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ fcrepo-server ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ fcrepo-server ---
+[INFO] Surefire report directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.fcrepo.utilities.TestZip
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.2 sec
+Running org.fcrepo.utilities.TestBase64
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 sec
+Running org.fcrepo.utilities.NamespaceContextImplTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running org.fcrepo.utilities.TestFileUtils
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 sec
+Running org.fcrepo.server.BasicServerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.954 sec
+Running org.fcrepo.server.config.TestServerConfiguration
+Warning: at xsl:stylesheet on line 1 of file:/home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/./:
+  Running an XSLT 1.0 stylesheet with an XSLT 2.0 processor
+Warning: at xsl:stylesheet on line 1 of file:/home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/./:
+  Running an XSLT 1.0 stylesheet with an XSLT 2.0 processor
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.261 sec
+Running org.fcrepo.server.proxy.ProxyFactoryTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Running org.fcrepo.server.storage.DefaultExternalContentManagerTest
+WARN 15:41:46.295 (ServerUtility) Unable to read server configuration from /tmp/junit7997903980092593346/fedoraHome/server/config/fedora.fcfg
+java.io.FileNotFoundException: /tmp/junit7997903980092593346/fedoraHome/server/config/fedora.fcfg (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.6.0_37]
+	at java.io.FileInputStream.<init>(FileInputStream.java:120) ~[na:1.6.0_37]
+	at org.fcrepo.server.utilities.ServerUtility.getServerConfig(ServerUtility.java:66) [na:na]
+	at org.fcrepo.server.utilities.ServerUtility.<clinit>(ServerUtility.java:53) [na:na]
+	at sun.reflect.GeneratedSerializationConstructorAccessor21.newInstance(Unknown Source) [na:1.6.0_37]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513) [na:1.6.0_37]
+	at org.objenesis.instantiator.sun.SunReflectionFactoryInstantiator.newInstance(SunReflectionFactoryInstantiator.java:40) [na:na]
+	at org.objenesis.ObjenesisBase.newInstance(ObjenesisBase.java:59) [na:na]
+	at org.mockito.internal.creation.jmock.ClassImposterizer.createProxy(ClassImposterizer.java:128) [na:na]
+	at org.mockito.internal.creation.jmock.ClassImposterizer.imposterise(ClassImposterizer.java:63) [na:na]
+	at org.powermock.api.mockito.internal.mockcreation.MockCreator.createMethodInvocationControl(MockCreator.java:110) [na:na]
+	at org.powermock.api.mockito.internal.mockcreation.MockCreator.mock(MockCreator.java:60) [na:na]
+	at org.powermock.api.mockito.PowerMockito.mockStatic(PowerMockito.java:70) [na:na]
+	at org.fcrepo.server.storage.DefaultExternalContentManagerTest.mockResponseFor(DefaultExternalContentManagerTest.java:107) [na:na]
+	at org.fcrepo.server.storage.DefaultExternalContentManagerTest.testPassthroughHeadMethod(DefaultExternalContentManagerTest.java:113) [na:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.internal.runners.TestMethod.invoke(TestMethod.java:66) [junit-4.10.jar:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunner.runTestMethod(PowerMockJUnit44RunnerDelegateImpl.java:310) [na:na]
+	at org.junit.internal.runners.MethodRoadie$2.run(MethodRoadie.java:86) [junit-4.10.jar:na]
+	at org.junit.internal.runners.MethodRoadie.runBeforesThenTestThenAfters(MethodRoadie.java:94) [junit-4.10.jar:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunner.executeTest(PowerMockJUnit44RunnerDelegateImpl.java:294) [na:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit47RunnerDelegateImpl$PowerMockJUnit47MethodRunner.executeTestInSuper(PowerMockJUnit47RunnerDelegateImpl.java:127) [na:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit47RunnerDelegateImpl$PowerMockJUnit47MethodRunner.executeTest(PowerMockJUnit47RunnerDelegateImpl.java:82) [na:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunner.runBeforesThenTestThenAfters(PowerMockJUnit44RunnerDelegateImpl.java:282) [na:na]
+	at org.junit.internal.runners.MethodRoadie.runTest(MethodRoadie.java:84) [junit-4.10.jar:na]
+	at org.junit.internal.runners.MethodRoadie.run(MethodRoadie.java:49) [junit-4.10.jar:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl.invokeTestMethod(PowerMockJUnit44RunnerDelegateImpl.java:207) [na:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl.runMethods(PowerMockJUnit44RunnerDelegateImpl.java:146) [na:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$1.run(PowerMockJUnit44RunnerDelegateImpl.java:120) [na:na]
+	at org.junit.internal.runners.ClassRoadie.runUnprotected(ClassRoadie.java:34) [junit-4.10.jar:na]
+	at org.junit.internal.runners.ClassRoadie.runProtected(ClassRoadie.java:44) [junit-4.10.jar:na]
+	at org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl.run(PowerMockJUnit44RunnerDelegateImpl.java:118) [na:na]
+	at org.powermock.modules.junit4.common.internal.impl.JUnit4TestSuiteChunkerImpl.run(JUnit4TestSuiteChunkerImpl.java:101) [powermock-module-junit4-common-1.5.1.jar:na]
+	at org.powermock.modules.junit4.common.internal.impl.AbstractCommonPowerMockRunner.run(AbstractCommonPowerMockRunner.java:53) [powermock-module-junit4-common-1.5.1.jar:na]
+	at org.powermock.modules.junit4.PowerMockRunner.run(PowerMockRunner.java:53) [powermock-module-junit4-1.5.1.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:41:46.300 (ServerUtility) Web client config was null; cannot configure web client for class org.fcrepo.server.utilities.ServerUtility
+INFO 15:41:46.301 (ServerUtility) FEDORA_HOME is used to configure web client; was set to /tmp/junit7997903980092593346/fedoraHome
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.989 sec
+Running org.fcrepo.server.storage.translation.TestDOTranslatorImpl
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running org.fcrepo.server.storage.translation.TestFOXML1_0DOSerializer
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.259 sec
+Running org.fcrepo.server.storage.translation.TestMETSFedoraExt1_0DODeserializer
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 sec
+Running org.fcrepo.server.storage.translation.TestFOXML1_1DOSerializer
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 sec
+Running org.fcrepo.server.storage.translation.TestDOTranslationUtility
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.122 sec
+Running org.fcrepo.server.storage.translation.TestMETSFedoraExt1_0DOSerializer
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 sec
+Running org.fcrepo.server.storage.translation.TestAtomDODeserializer
+Test object was: demo:1001
+Test object was: demo:1001
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.915 sec
+Running org.fcrepo.server.storage.translation.TestMETSFedoraExt1_1DODeserializer
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 sec
+Running org.fcrepo.server.storage.translation.TestAtomDOSerializer
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.143 sec
+Running org.fcrepo.server.storage.translation.TestMETSFedoraExt1_1DOSerializer
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 sec
+Running org.fcrepo.server.storage.translation.TestFOXML1_0DODeserializer
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.108 sec
+Running org.fcrepo.server.storage.translation.TestFOXML1_1DODeserializer
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 sec
+Running org.fcrepo.server.storage.DefaultDOManagerTest
+WARN 15:41:54.484 (DefaultDOManager) obj:1 was not in the registry, but appears to be in store. Registry db may be in inconsistent state.
+INFO 15:41:54.583 (DefaultDOManager) Committing addition of obj:1
+INFO 15:41:54.594 (DefaultDOManager) Updating dissemination index for obj:1
+INFO 15:41:54.594 (DefaultDOManager) Updating FieldSearch index
+INFO 15:41:54.596 (DefaultDOManagerTest) Thread-1 - thread caught expected exception: org.fcrepo.server.errors.ObjectExistsException: The PID 'obj:1' already exists in the registry; the object can't be re-created.
+INFO 15:41:54.596 (DefaultDOManagerTest) Thread-2 - thread task completed
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.184 sec
+Running org.fcrepo.server.storage.lowlevel.akubra.HashPathIdMapperTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 sec
+Running org.fcrepo.server.storage.lowlevel.akubra.AkubraLowlevelStorageTest
+Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 sec
+Running org.fcrepo.server.utilities.DCFieldsTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 sec
+Running org.fcrepo.server.utilities.StreamUtilityTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.fcrepo.server.utilities.rebuild.SQLRebuilderTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.411 sec
+Running org.fcrepo.server.utilities.PIDStreamIterableWrapperTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 sec
+Running org.fcrepo.server.validation.ecm.EcmTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.153 sec
+Running org.fcrepo.server.validation.DOValidatorXMLSchemaTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.164 sec
+Running org.fcrepo.server.validation.ValidationUtilityTest
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 sec
+Running org.fcrepo.server.validation.RelsValidatorTest
+WARN 15:41:58.644 (RelsValidator) Not a valid dateTime: abc
+WARN 15:41:58.656 (RelsValidator) Not a valid dateTime: abc
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+Running org.fcrepo.server.search.TestFieldSearchSQLImpl
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.195 sec
+Running org.fcrepo.server.access.DefaultAccessTest
+WARN 15:41:59.021 (ServerUtility) Unable to read server configuration from /tmp/junit7997903980092593346/fedoraHome/server/config/fedora.fcfg
+java.io.FileNotFoundException: /tmp/junit7997903980092593346/fedoraHome/server/config/fedora.fcfg (No such file or directory)
+	at java.io.FileInputStream.open(Native Method) ~[na:1.6.0_37]
+	at java.io.FileInputStream.<init>(FileInputStream.java:120) ~[na:1.6.0_37]
+	at org.fcrepo.server.utilities.ServerUtility.getServerConfig(ServerUtility.java:66) [classes/:na]
+	at org.fcrepo.server.utilities.ServerUtility.<clinit>(ServerUtility.java:53) [classes/:na]
+	at org.fcrepo.server.access.DefaultAccess.getDatastreamDissemination(DefaultAccess.java:1133) [classes/:na]
+	at org.fcrepo.server.access.DefaultAccessTest.testNormalDatastreamDissemination(DefaultAccessTest.java:103) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:41:59.022 (ServerUtility) Web client config was null; cannot configure web client for class org.fcrepo.server.utilities.ServerUtility
+INFO 15:41:59.035 (ServerUtility) FEDORA_HOME is used to configure web client; was set to /tmp/junit7997903980092593346/fedoraHome
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.224 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.TestLocalDirectoryTransport
+INFO 15:41:59.090 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.091 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.092 (MulticastJournalWriter) Transport 'one' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@415ed7e7
+INFO 15:41:59.092 (MulticastJournalWriter) Transport 'two' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@39b0a038
+INFO 15:41:59.092 (JournalWriter) JournalWriter is org.fcrepo.server.journal.readerwriter.multicast.MulticastJournalWriter@49fa269b
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.TestJournalEntrySizeEstimator
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.TestMulticastJournalWriterOperation
+INFO 15:41:59.160 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.161 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.161 (MulticastJournalWriter) Transport 'one' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@1dd88d65
+INFO 15:41:59.161 (MulticastJournalWriter) Transport 'two' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@742af131
+INFO 15:41:59.162 (JournalWriter) JournalWriter is org.fcrepo.server.journal.readerwriter.multicast.MulticastJournalWriter@2f41038c
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.TestMulticastJournalWriterInitializations
+INFO 15:41:59.174 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.175 (MulticastJournalWriter) Journal transport parameters validated.
+INFO 15:41:59.175 (MulticastJournalWriter) Transport 'one' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@53a816e5
+INFO 15:41:59.175 (MulticastJournalWriter) Transport 'two' is org.fcrepo.server.journal.readerwriter.multicast.MockTransport@40773f4b
+INFO 15:41:59.175 (JournalWriter) JournalWriter is org.fcrepo.server.journal.readerwriter.multicast.MulticastJournalWriter@54dc75fd
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.rmi.TestRmiTransportWriter
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.rmi.TestRmiJournalReceiver
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+Running org.fcrepo.server.journal.readerwriter.multicast.rmi.TestRmiTransport
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 sec
+Running org.fcrepo.server.journal.readerwriter.multifile.TestLockingFollowingJournalReader
+INFO 15:41:59.295 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@c5be0a8
+INFO 15:41:59.300 (JournalReader) JournalReader is org.fcrepo.server.journal.readerwriter.multifile.LockingFollowingJournalReader@4174b989, journalDirectory='/tmp/junit6696153699321333232/fedoraTestingJournalFiles', archiveDirectory='/tmp/junit6696153699321333232/fedoraTestingArchiveFiles', filenamePrefix='unit'
+INFO 15:42:04.305 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit6696153699321333232/fedoraTestingArchiveFiles/unit6252208042333928810.tmp
+INFO 15:42:04.305 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit6696153699321333232/fedoraTestingArchiveFiles/unit4803543563602060537.tmp
+INFO 15:42:04.306 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit6696153699321333232/fedoraTestingArchiveFiles/unit3991540499819405022.tmp
+INFO 15:42:04.311 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@540664ca
+INFO 15:42:04.312 (JournalReader) JournalReader is org.fcrepo.server.journal.readerwriter.multifile.LockingFollowingJournalReader@6fc334de, journalDirectory='/tmp/junit4046686560834663452/fedoraTestingJournalFiles', archiveDirectory='/tmp/junit4046686560834663452/fedoraTestingArchiveFiles', filenamePrefix='unit'
+INFO 15:42:06.316 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit4046686560834663452/fedoraTestingArchiveFiles/unit4386012856068229125.tmp
+INFO 15:42:06.316 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit4046686560834663452/fedoraTestingArchiveFiles/unit8218768532698490744.tmp
+INFO 15:42:06.316 (TestLockingFollowingJournalReader) true Cleaned up a archiveDirectory file: /tmp/junit4046686560834663452/fedoraTestingArchiveFiles/unit2101575205658413074.tmp
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.035 sec
+Running org.fcrepo.server.journal.xmlhelpers.TestContextXmlWriterAndReader
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+Running org.fcrepo.server.journal.TestJournalRoundTrip
+INFO 15:42:06.330 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@559fc023
+INFO 15:42:06.330 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@6aff65bf
+INFO 15:42:06.331 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2571157a
+INFO 15:42:06.832 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@7213bc54
+INFO 15:42:06.835 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@6b8192b6
+INFO 15:42:06.835 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@7c721de
+INFO 15:42:07.337 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@5e1f5fc7
+INFO 15:42:07.339 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@5dc93217
+INFO 15:42:07.339 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@43f7b41b
+INFO 15:42:07.840 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@575830c4
+INFO 15:42:07.842 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@5ee9c0a8
+INFO 15:42:07.842 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@44678646
+INFO 15:42:08.344 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@79b1a66b
+INFO 15:42:08.344 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@7e24f937
+INFO 15:42:08.344 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2d65ca94
+INFO 15:42:08.846 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@fa88254
+INFO 15:42:08.847 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@460d4
+INFO 15:42:08.847 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@1f70fe4e
+INFO 15:42:09.349 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@3327d4d9
+INFO 15:42:09.353 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@7c070ccb
+INFO 15:42:09.355 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@32d9230a
+INFO 15:42:09.859 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@702b3cdb
+INFO 15:42:09.859 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@26a88765
+INFO 15:42:09.859 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2510bb7
+INFO 15:42:10.361 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@6c22fde7
+INFO 15:42:10.361 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@6d4b8027
+INFO 15:42:10.361 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@77cab87f
+INFO 15:42:10.862 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@1c18a79e
+INFO 15:42:10.866 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@16a4847b
+INFO 15:42:10.867 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@af5b2da
+INFO 15:42:11.370 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@8d1300
+INFO 15:42:11.372 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@2dda6548
+INFO 15:42:11.372 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@5d2f717c
+INFO 15:42:11.873 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@4383cee3
+INFO 15:42:11.873 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@283bbb6
+INFO 15:42:11.873 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@1698ab04
+INFO 15:42:12.375 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@b3e936f
+INFO 15:42:12.375 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@3941622d
+INFO 15:42:12.375 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@739495b8
+INFO 15:42:12.881 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@2d7fff1f
+INFO 15:42:12.883 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@32725f0e
+INFO 15:42:12.883 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@72beaa01
+INFO 15:42:13.385 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@1b416de4
+INFO 15:42:13.385 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@6495a1b6
+INFO 15:42:13.385 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@1babe751
+INFO 15:42:13.887 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@61b1acc3
+INFO 15:42:13.889 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@57c56850
+INFO 15:42:13.889 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@5bed2ccd
+INFO 15:42:14.391 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@72258097
+INFO 15:42:14.392 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@7c1d740c
+INFO 15:42:14.392 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@71adff7c
+INFO 15:42:14.894 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@3bae7fff
+INFO 15:42:14.894 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@3d555cf5
+INFO 15:42:14.894 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2f49f848
+INFO 15:42:15.395 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@2a5e8368
+INFO 15:42:15.397 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@23053693
+INFO 15:42:15.397 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2b41fedb
+INFO 15:42:15.899 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@7168bd8b
+INFO 15:42:15.900 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@13742ad8
+INFO 15:42:15.900 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@2fa8d4e2
+INFO 15:42:16.405 (JournalWriter) JournalWriter is org.fcrepo.server.journal.MockJournalWriter@66b54ef7
+INFO 15:42:16.406 (JournalRecoveryLog) JournalRecoveryLog is org.fcrepo.server.journal.MockJournalRecoveryLog@9536ecf
+INFO 15:42:16.406 (JournalReader) JournalReader is org.fcrepo.server.journal.MockJournalReader@448fdcd1
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.585 sec
+Running org.fcrepo.server.journal.helpers.TestParameterHelper
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running org.fcrepo.server.journal.helpers.TestPasswordCipher
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 sec
+Running org.fcrepo.server.management.ManagementModuleTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.077 sec
+Running org.fcrepo.server.test.DigitalObjectTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+Running org.fcrepo.server.test.JournalBase64Test
+/tmp/test7225485967294223224.tmp
+/tmp/test8573268166927198377.tmp
+/tmp/test9102303157917753518.tmp
+/tmp/test8392862494721802013.tmp
+/tmp/test1293904786789862992.tmp
+/tmp/test7438454524346176231.tmp
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running org.fcrepo.server.rest.BaseRestResourceTest
+WARN 15:42:17.392 (BaseRestResource) Resource not found: This is testing exception handling; unable to fulfill REST API request
+org.fcrepo.server.errors.ObjectNotFoundException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:72) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:42:17.393 (BaseRestResource) Resource not found: This is testing exception handling; unable to fulfill REST API request
+org.fcrepo.server.errors.ObjectNotInLowlevelStorageException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:74) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:42:17.394 (BaseRestResource) Resource not found: This is testing exception handling; unable to fulfill REST API request
+org.fcrepo.server.errors.DatastreamNotFoundException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:76) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:42:17.395 (BaseRestResource) Lock exception; unable to fulfill REST API request
+org.fcrepo.server.errors.ObjectLockedException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:78) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:42:17.395 (BaseRestResource) Lock exception; unable to fulfill REST API request
+org.fcrepo.server.errors.DatastreamLockedException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:80) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+WARN 15:42:17.396 (BaseRestResource) Bad range request: This is testing exception handling; unable to fulfill REST API request
+org.fcrepo.server.errors.RangeNotSatisfiableException: This is testing exception handling
+	at org.fcrepo.server.rest.BaseRestResourceTest.testExceptionResponses(BaseRestResourceTest.java:82) [test-classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45) [junit-4.10.jar:na]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.10.jar:na]
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20) [junit-4.10.jar:na]
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68) [junit-4.10.jar:na]
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.10.jar:na]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300) [junit-4.10.jar:na]
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37) [mockito-core-1.9.5.jar:na]
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62) [mockito-core-1.9.5.jar:na]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153) [surefire-junit4-2.13.jar:2.13]
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124) [surefire-junit4-2.13.jar:2.13]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_37]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_37]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_37]
+	at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_37]
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208) [surefire-api-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153) [surefire-booter-2.13.jar:2.13]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95) [surefire-booter-2.13.jar:2.13]
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.378 sec
+Running org.fcrepo.server.rest.param.DateTimeParamTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running org.fcrepo.server.security.servletfilters.xmluserfile.TestFedoraUsers
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.158 sec
+Running org.fcrepo.server.security.TestPolicyParser
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 sec
+Running org.fcrepo.server.security.impl.TestBasicRequestCtx
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.114 sec
+Running org.fcrepo.server.security.impl.TestAttributeImpls
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 sec
+Running org.fcrepo.server.security.impl.TestBasicEvaluationContext
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 sec
+Running org.fcrepo.server.messaging.JNDITest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.117 sec
+Running org.fcrepo.server.messaging.JMSManagerTest
+WARN 15:42:18.776 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:18.777 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:19.321 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:19.322 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:20.100 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:20.101 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:20.890 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:20.891 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:21.693 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:21.694 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:27.619 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:27.620 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:38.433 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:38.434 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+WARN 15:42:39.239 (BrokerService) Store limit is 102400 mb, whilst the data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/KahaDB only has 1675 mb of usable space
+ERROR 15:42:39.241 (BrokerService) Temporary Store limit is 51200 mb, whilst the temporary data directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/activemq-data/localhost/tmp_storage only has 1675 mb of usable space
+ERROR 15:42:41.229 (JMSManager) getContext() failed with: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+ERROR 15:42:41.230 (JMSManager) getContext() failed with: Cannot instantiate class: test.InvalidInitialContextFactory
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.607 sec
+
+Results :
+
+Tests run: 375, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ fcrepo-server ---
+[INFO] Building jar: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (jar-tests) @ fcrepo-server ---
+[INFO] Building jar: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (rmi-journal-recv-main) @ fcrepo-server ---
+[INFO] 
+[INFO] --- maven-assembly-plugin:2.4:single (rmi-journal-recv-jar-assembly) @ fcrepo-server ---
+[INFO] Reading assembly descriptor: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/resources/assemblies/rmi-journal-recv-jar.xml
+[WARNING] The following patterns were never triggered in this artifact inclusion filter:
+o  'ch.qos.logback:logback-core:jar:*'
+o  'ch.qos.logback:logback-classic:jar:*'
+
+[INFO] Building jar: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.jar
+[INFO] 
+[INFO] --- maven-assembly-plugin:2.4:single (rmi-journal-recv-zip-assembly) @ fcrepo-server ---
+[INFO] Reading assembly descriptor: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/src/main/resources/assemblies/rmi-journal-recv-zip.xml
+[INFO] Building zip: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.zip
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (int-test) @ fcrepo-server ---
+[INFO] Surefire report directory: /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.fcrepo.server.utilities.DerbyDDLConverterIntegrationTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.355 sec
+Running org.fcrepo.server.search.FieldSearchSQLImplIntegrationTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.264 sec
+Running org.fcrepo.server.resourceIndex.ResourceIndexDatePrecisionIntegrationTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.411 sec
+Running org.fcrepo.server.resourceIndex.ResourceIndexModMiscIntegrationTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.847 sec
+Running org.fcrepo.server.resourceIndex.ResourceIndexAddDelMiscIntegrationTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.683 sec
+Running org.fcrepo.server.resourceIndex.ResourceIndexModDSIntegrationTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.336 sec
+Running org.fcrepo.server.resourceIndex.ResourceIndexAddDelDSIntegrationTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.445 sec
+
+Results :
+
+Tests run: 32, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ fcrepo-server ---
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT.jar to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT.jar
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/pom.xml to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT.pom
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-tests.jar to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT-tests.jar
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv-main.jar to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv-main.jar
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.jar to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.jar
+[INFO] Installing /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/target/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.zip to /root/.m2/repository/org/fcrepo/fcrepo-server/3.8.0-SNAPSHOT/fcrepo-server-3.8.0-SNAPSHOT-rmi-journal-recv.zip
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:48 min
+[INFO] Finished at: 2015-01-27T15:42:58+01:00
+[INFO] Final Memory: 29M/97M
+[INFO] ------------------------------------------------------------------------
