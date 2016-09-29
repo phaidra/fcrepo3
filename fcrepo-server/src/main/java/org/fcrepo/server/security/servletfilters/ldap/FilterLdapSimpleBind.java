@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 
 import javax.servlet.FilterConfig;
+import org.fcrepo.server.security.servletfilters.ldap.FilterLdapConfigBean;
 
 /*
 previous 3.3.x version changed by Hugh Barnard October 2014
@@ -36,6 +37,7 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.NamingException;
 import javax.naming.NamingEnumeration;
+import javax.servlet.ServletException;
 
 /** 
  *  @author Thomas Wana (thomas.wana@univie.ac.at)
@@ -46,6 +48,30 @@ public class FilterLdapSimpleBind extends BaseCaching {
 	public static final String CONTEXT_VERSION_KEY = "java.naming.ldap.version";   
 
 /*
+
+in security.xml
+  <bean id="LdapFilterForAttributes" class="org.fcrepo.server.security.servletfilters.ldap.FilterLdapSimpleBind"
+    lazy-init="true" init-method="init">
+    <property name="config">
+      <bean class="org.fcrepo.server.security.servletfilters.ldap.FilterLdapConfigBean">
+        <property name="filterName" value="LdapFilterForAttributes"/>
+        <property name="version" value="3"/>          
+        <property name="url" value="ldaps://ds.univie.ac.at:636/"/>
+        <property name="securityPrincipal" value="cn=phaidra,ou=accounts,dc=univie,dc=ac,dc=at"/>
+        <property name="securityCredentials" value="blablabla"/>
+        <property name="userSearchBase" value="dc=univie,dc=ac,dc=at"/>
+        <property name="userSearchFilter" value="(&amp;(uid={0})(objectClass=univiePerson))"/>
+        <property name="userIdAttribute" value="uid"/>
+        <property name="userAttributes" value="cn,givenName,mail"/>
+        <property name="groupSearchBase" value="ou=zid,ou=groups,dc=univie,dc=ac,dc=at"/>
+        <property name="groupSearchFilter" value="(member=uid={0},ou=pers,dc=univie,dc=ac,dc=at)"/>
+        <property name="groupAttribute" value="cn"/>
+        <property name="groupAttributeAlias" value="groups"/>        
+      </bean>
+    </property>
+  </bean>
+
+previously in web.xml:
  <init-param>
     <param-name>version</param-name>
     <param-value>3</param-value>
@@ -136,9 +162,62 @@ public class FilterLdapSimpleBind extends BaseCaching {
 
 	private Hashtable envSimpleBind = null;
 
-	public void init(FilterConfig filterConfig) {
-		log.info("initializing start..");
+	@Override
+	public void init(FilterConfig config) {
+		log.info("initializing start..blili");
+		FilterLdapConfigBean filterConfig = (FilterLdapConfigBean)config;
+		log.info(filterConfig.toString());
+
+		VERSION = filterConfig.getVersion();
+		URL = filterConfig.getUrl();		
+		SECURITY_PRINCIPAL = filterConfig.getSecurityPrincipal();
+		SECURITY_CREDENTIALS = filterConfig.getSecurityCredentials();
+
+		String value = filterConfig.getUserSearchBase();
+		String[] user_search_base_array = value.split(";");  	
+		for(int i=0; i < user_search_base_array.length; i++)
+		{
+			String sb = user_search_base_array[i];
+			USER_SEARCH_BASE.add(sb);
+		}	
+		
+		USER_SEARCH_FILTER = filterConfig.getUserSearchFilter();
+		USER_ID_ATTRIBUTE = filterConfig.getUserIdAttribute();
+
+		value = filterConfig.getUserAttributes();
+		if (value.indexOf(",") < 0) {
+			if ("".equals(value)) {
+				USER_ATTRIBUTES = null;
+			} else {
+				USER_ATTRIBUTES = new String[1];
+				USER_ATTRIBUTES[0] = value;
+			}
+		} else {
+			USER_ATTRIBUTES = value.split(",");  							
+		}			
+		
+		GROUP_SEARCH_BASE = filterConfig.getGroupSearchBase();		
+		GROUP_SEARCH_FILTER = filterConfig.getGroupSearchFilter();		
+		GROUP_ATTRIBUTE = filterConfig.getGroupAttribute();		
+		GROUP_ATTRIBUTE_ALIAS = filterConfig.getGroupAttributeAlias();
+
+		log.info("initialized.");
+		log.debug("  VERSION: " + VERSION);
+		log.debug("  URL: " + URL);
+		log.debug("  SECURITY_PRINCIPAL: " + SECURITY_PRINCIPAL);
+		log.debug("  SECURITY_CREDENTIALS: " + SECURITY_CREDENTIALS);
+		for(String s : USER_SEARCH_BASE) {
+		    log.info("  USER_SEARCH_BASE: " + s);
+		}	
+		log.debug("  USER_SEARCH_FILTER: " + USER_SEARCH_FILTER);
+		log.debug("  USER_ID_ATTRIBUTE: " + USER_ID_ATTRIBUTE);
+		log.debug("  GROUP_SEARCH_BASE: " + GROUP_SEARCH_BASE);
+		log.debug("  GROUP_SEARCH_FILTER: " + GROUP_SEARCH_FILTER);
+		log.debug("  GROUP_ATTRIBUTE: " + GROUP_ATTRIBUTE);
+		log.debug("  GROUP_ATTRIBUTE_ALIAS: " + GROUP_ATTRIBUTE_ALIAS);
+
 		super.init(filterConfig);
+
 		inited = false;
 		if (! initErrors) {
 
@@ -154,65 +233,20 @@ public class FilterLdapSimpleBind extends BaseCaching {
 		super.destroy();
 	}
 
-	protected void initThisSubclass(String key, String value) {
-		log.info("initializing..");
-		if (VERSION_KEY.equals(key)) {
-			VERSION = value;
-		} else if (URL_KEY.equals(key)) {
-			URL = value;
-		} else if (SECURITY_PRINCIPAL_KEY.equals(key)) {
-			SECURITY_PRINCIPAL = value;
-		} else if (SECURITY_CREDENTIALS_KEY.equals(key)) {
-			SECURITY_CREDENTIALS = value;
-		} else if (USER_SEARCH_BASE_KEY.equals(key)) {
-			String[] user_search_base_array = value.split(";");  	
-			for(int i=0; i < user_search_base_array.length; i++)
-			{
-				String sb = user_search_base_array[i];
-				USER_SEARCH_BASE.add(sb);
-			}			
-		} else if (USER_SEARCH_FILTER_KEY.equals(key)) {
-			USER_SEARCH_FILTER = value;
-		} else if (USER_ID_ATTRIBUTE_KEY.equals(key)) {
-			USER_ID_ATTRIBUTE = value;
-		} else if (USER_ATTRIBUTES_KEY.equals(key)) {			
-			if (value.indexOf(",") < 0) {
-				if ("".equals(value)) {
-					USER_ATTRIBUTES = null;
-				} else {
-					USER_ATTRIBUTES = new String[1];
-					USER_ATTRIBUTES[0] = value;
-				}
-			} else {
-				USER_ATTRIBUTES = value.split(",");  							
-			}			
-		} else if (GROUP_SEARCH_BASE_KEY.equals(key)) {			
-			GROUP_SEARCH_BASE = value;
-		} else if (GROUP_SEARCH_FILTER_KEY.equals(key)) {
-			GROUP_SEARCH_FILTER = value;
-		} else if (GROUP_ATTRIBUTE_KEY.equals(key)) {
-			GROUP_ATTRIBUTE = value;
-		} else if (GROUP_ATTRIBUTE_ALIAS_KEY.equals(key)) {
-			GROUP_ATTRIBUTE_ALIAS = value;
-		} else if (KEYSTORE_KEY.equals(key)) {
-			KEYSTORE = value;
-		} else if (KEYSTORE_PASSWORD_KEY.equals(key)) {
-			KEYSTORE_PASSWORD = value;
-		} else if (TRUSTSTORE_KEY.equals(key)) {
-			TRUSTSTORE = value;
-		} else if (TRUSTSTORE_PASSWORD_KEY.equals(key)) {
-			TRUSTSTORE_PASSWORD = value;
-		} else if (MEMBER_OF_GROUP_DN_KEY.equals(key)) {
-			MEMBER_OF_GROUP_DN = value;
-		} else if (MEMBER_OF_GROUP_ATTRIBUTE_KEY.equals(key)) {
-			MEMBER_OF_GROUP_ATTRIBUTE = value;
-		} else {
-			super.initThisSubclass(key, value);
-		}
 
-		// TODO check missing attributes
-		
-		log.info("initialized.");
+	protected void initThisSubclass(String key, String value) {
+
+	}
+
+	// implemented from BaseCaching
+	public void populateCacheElement(CacheElement cacheElement, String password) { 
+		Boolean authenticated = null;
+		Map map = new Hashtable();
+		DirContext ctx = null;
+		String dn = null;
+
+		/*
+		log.info("using:");
 		log.debug("  VERSION: " + VERSION);
 		log.debug("  URL: " + URL);
 		log.debug("  SECURITY_PRINCIPAL: " + SECURITY_PRINCIPAL);
@@ -226,20 +260,7 @@ public class FilterLdapSimpleBind extends BaseCaching {
 		log.debug("  GROUP_SEARCH_FILTER: " + GROUP_SEARCH_FILTER);
 		log.debug("  GROUP_ATTRIBUTE: " + GROUP_ATTRIBUTE);
 		log.debug("  GROUP_ATTRIBUTE_ALIAS: " + GROUP_ATTRIBUTE_ALIAS);
-		log.debug("  KEYSTORE: " + KEYSTORE);
-		log.debug("  KEYSTORE_PASSWORD: " + KEYSTORE_PASSWORD);
-		log.debug("  TRUSTSTORE: " + TRUSTSTORE);
-		log.debug("  TRUSTSTORE_PASSWORD: " + TRUSTSTORE_PASSWORD);
-		log.debug("  MEMBER_OF_GROUP_DN: " + MEMBER_OF_GROUP_DN);
-		log.debug("  MEMBER_OF_GROUP_ATTRIBUTE: " + MEMBER_OF_GROUP_ATTRIBUTE);
-	}
-
-	// implemented from BaseCaching
-	public void populateCacheElement(CacheElement cacheElement, String password) { 
-		Boolean authenticated = null;
-		Map map = new Hashtable();
-		DirContext ctx = null;
-		String dn = null;
+		*/
 
 		try
 		{
@@ -330,7 +351,12 @@ public class FilterLdapSimpleBind extends BaseCaching {
 		catch(Exception e)
 		{
 			// fall through
-			log.error("caught exception: "+e.toString());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+
+			log.error("caught exception: "+e.toString() + " " + sw.toString());
+
 		}
 		finally
 		{
