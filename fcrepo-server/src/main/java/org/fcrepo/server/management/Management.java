@@ -10,11 +10,11 @@ import org.fcrepo.server.messaging.PName;
 import org.fcrepo.server.storage.types.Datastream;
 import org.fcrepo.server.storage.types.RelationshipTuple;
 import org.fcrepo.server.storage.types.Validation;
-import org.fcrepo.server.storage.types.RelationshipTuple;
-
 
 import java.io.InputStream;
 import java.util.Date;
+
+import javax.ws.rs.core.StreamingOutput;
 
 
 /**
@@ -45,6 +45,12 @@ public interface Management {
             throws ServerException;
 
     public InputStream export(@PName("context") Context context,
+            @PName("pid") String pid,
+            @PName("format") String format,
+            @PName("exportContext") String exportContext,
+            @PName("encoding") String encoding) throws ServerException;
+
+    public StreamingOutput stream(@PName("context") Context context,
                               @PName("pid") String pid,
                               @PName("format") String format,
                               @PName("exportContext") String exportContext,
@@ -169,19 +175,4 @@ public interface Management {
     public Validation validate(@PName("context") Context context,
                                @PName("pid") String pid,
                                @PName("asOfDateTime") Date asOfDateTime) throws ServerException;
-                               
-   /* Hugh Barnard January 2015 added to interface definitions */
-   // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-
-   
-    public boolean addRelationships(@PName("context")Context context,
-            @PName("relationships")RelationshipTuple[] relationships) throws ServerException;
-
-    // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-    public boolean purgeRelationships(@PName("context")Context context,
-              @PName("relationships")RelationshipTuple[] relationships) throws ServerException;
-
-
-  /* end of additions */            
-                               
 }

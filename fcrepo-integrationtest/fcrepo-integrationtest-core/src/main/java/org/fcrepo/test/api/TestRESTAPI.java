@@ -33,9 +33,12 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeSet;
@@ -60,6 +63,8 @@ import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.AbstractHttpEntity;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.AbstractContentBody;
@@ -77,6 +82,9 @@ import org.fcrepo.common.Models;
 import org.fcrepo.common.PID;
 import org.fcrepo.server.access.FedoraAPIAMTOM;
 import org.fcrepo.server.management.FedoraAPIMMTOM;
+import org.fcrepo.server.storage.translation.DOTranslationUtility;
+import org.fcrepo.server.storage.translation.FOXML1_1DODeserializer;
+import org.fcrepo.server.storage.types.BasicDigitalObject;
 import org.fcrepo.server.types.gen.Datastream;
 import org.fcrepo.server.types.gen.FieldSearchQuery;
 import org.fcrepo.server.types.gen.FieldSearchResult;
@@ -372,11 +380,24 @@ public class TestRESTAPI
         }
         return entity;
     }
+    protected static ByteArrayEntity getBytesEntity(
+            byte[] content, String contentType) {
+            if (content == null) {
+                return null;
+            }
+            
+            ByteArrayEntity entity =
+                new ByteArrayEntity(content);
+            if (contentType != null) {
+                entity.setContentType(contentType);
+            }
+            return entity;
+        }
     
     protected void verifyPOSTStatusOnly(URI url, int expected,
-        StringEntity content, boolean authenticate) throws Exception {
+        AbstractHttpEntity entity, boolean authenticate) throws Exception {
         HttpPost post = new HttpPost(url);
-        HttpResponse response = putOrPost(post, content, authenticate);
+        HttpResponse response = putOrPost(post, entity, authenticate);
         int status = response.getStatusLine().getStatusCode();
         if (status == SC_MOVED_TEMPORARILY) {
             String original = url.toString();
@@ -384,7 +405,7 @@ public class TestRESTAPI
             if (!original.equals(url.toString())) {
                 EntityUtils.consumeQuietly(response.getEntity());
                 post = new HttpPost(url);
-                response = putOrPost(post, content, true);
+                response = putOrPost(post, entity, true);
                 status = response.getStatusLine().getStatusCode();
             }
         }
@@ -393,7 +414,7 @@ public class TestRESTAPI
     }
 
     protected void verifyPOSTStatusOnly(URI url, int expected,
-            StringEntity content, boolean authenticate, boolean validate) throws Exception {
+            AbstractHttpEntity content, boolean authenticate, boolean validate) throws Exception {
             HttpPost post = new HttpPost(url);
             HttpResponse response = putOrPost(post, content, authenticate);
             int status = response.getStatusLine().getStatusCode();
@@ -416,7 +437,7 @@ public class TestRESTAPI
         }
 
     protected void verifyPUTStatusOnly(URI url, int expected,
-            StringEntity content, boolean authenticate) throws Exception {
+            AbstractHttpEntity content, boolean authenticate) throws Exception {
             HttpPut put = new HttpPut(url);
             HttpResponse response = putOrPost(put, content, authenticate);
             int status = response.getStatusLine().getStatusCode();
@@ -1298,6 +1319,28 @@ public class TestRESTAPI
                 url, SC_UNAUTHORIZED, false, false);
         verifyGETStatusString(
                 url, SC_OK, true, true);
+        url =
+                getURI(
+                    String.format("/objects/%s/export?context=archive", DEMO_REST_PID
+                            .toString()));
+            verifyGETStatusString(
+                    url, SC_UNAUTHORIZED, false, false);
+        String src = verifyGETStatusString(
+                    url, SC_OK, true, true);
+        BasicDigitalObject recv = new BasicDigitalObject();
+        ByteArrayInputStream bytes = new ByteArrayInputStream(src.getBytes("UTF-8"));
+        DOTranslationUtility trans =
+                new DOTranslationUtility.Impl(testingTranslationProperties(),true);
+        FOXML1_1DODeserializer deser = new FOXML1_1DODeserializer(trans);
+        deser.deserialize(bytes, recv, "UTF-8", DOTranslationUtility.DESERIALIZE_INSTANCE);
+        Iterator<String> dsids = recv.datastreamIdIterator();
+        while(dsids.hasNext()) {
+            String dsid = dsids.next();
+            for (org.fcrepo.server.storage.types.Datastream ds :recv.datastreams(dsid)) {
+                assertTrue(DEMO_REST_PID + "/" + dsid + " did not validate",
+                        ds.compareChecksum());
+            }
+        }
     }
 
     @Test
@@ -1310,6 +1353,66 @@ public class TestRESTAPI
         verifyDELETEStatusOnly(url, SC_OK, true);
     }
 
+    @Test
+    public void testAtomZipRoundTrip() throws Exception {
+        String format = "info:fedora/fedora-system:ATOMZip-1.1";
+        String testPid= "demo:TEST_ATOM_ZIP_RT";
+        URI obj = getURI("/objects/" + testPid);
+        verifyPOSTStatusOnly(obj, SC_CREATED, getStringEntity("", TEXT_XML), true);
+        String xmlData = "<foo>bar</foo>";
+        String md5 = MD5Utility.getBase16Hash(xmlData);
+        AbstractHttpEntity entity;
+        HashMap<String,String> dsIds = new HashMap<String,String>(2);
+        dsIds.put("FOO", "M");
+        dsIds.put("FOX", "X");
+        for (Entry<String,String>dsEntry:dsIds.entrySet()){
+            String dsid = dsEntry.getKey();
+            String dsPath = "/objects/" + testPid + "/datastreams/" + dsid;
+            HashMap<String, String> dsParms = new HashMap<String, String>();
+            dsParms.put("controlGroup", dsEntry.getValue());
+            dsParms.put("dsLabel", dsid.toLowerCase()+".xml");
+            dsParms.put("checksumType", "MD5");
+            // if inline, the server will munge it
+            if (!"X".equals(dsEntry.getValue())) dsParms.put("checksum", md5);
+            StringBuffer buf = new StringBuffer();
+            for(Entry<String,String>entry:dsParms.entrySet()) {
+                if (buf.length() > 0) {
+                    buf.append('&');
+                } else {
+                    buf.append('?');
+                }
+                buf.append(entry.getKey()).append('=').append(entry.getValue());
+            }
+    
+            URI url = getURI(dsPath + buf.toString());
+            entity = getStringEntity(xmlData, TEXT_XML);
+            verifyPOSTStatusOnly(url, SC_CREATED, entity, true);
+        }
+
+        URI url = getURI(
+            String.format("/objects/%s/export?context=archive&format=%s",
+                    testPid, format));
+        byte[] src = verifyGETStatusBytes(
+                    url, SC_OK, true, true);
+        verifyDELETEStatusOnly(obj, SC_OK, true);
+        url = getURI(String.format("/objects/%s?format=%s",testPid, format));
+        entity = getBytesEntity(src, "application/zip");
+        HttpPost post = new HttpPost(url);
+        HttpResponse response = putOrPost(post, entity, true);
+
+        readString(response);
+        assertEquals(SC_CREATED, response.getStatusLine().getStatusCode());
+        
+        for (Entry<String,String>dsEntry:dsIds.entrySet()){
+            String dsid = dsEntry.getKey();
+            String dsPath = "/objects/" + testPid + "/datastreams/" + dsid;
+            url = getURI(dsPath + "/content");
+            String contents = verifyGETStatusString(url, 200, true, false);
+            // clean up the formatting whitespace for inline content
+            if ("X".equals(dsEntry.getValue())) contents = contents.trim();
+            assertEquals(xmlData,contents);
+        }
+    }
     @Test
     public void testAddDatastream() throws Exception {
         // inline (X) datastream
@@ -1490,6 +1593,17 @@ public class TestRESTAPI
         assertXMLEqual(xmlData,
                        new String(TypeUtility.convertDataHandlerToBytes(ds1
                                .getStream()), "UTF-8"));
+        MIMETypedStream dc =
+                apia.getDatastreamDissemination(DEMO_REST_PID.toString(), "DC", null);
+        String dc_src = new String(TypeUtility.convertDataHandlerToBytes(dc
+                .getStream()), "UTF-8");
+        dc_src.replace("Staples", "Clips");
+        url = getURI(
+                String.format(
+                    "/objects/%s/datastreams/DC",
+                    DEMO_REST_PID.toString()));
+        verifyPUTStatusOnly(url, SC_OK, getStringEntity(dc_src, TEXT_XML), true);
+
     }
 
     @Test
@@ -1847,6 +1961,10 @@ public class TestRESTAPI
         assertEquals(SC_OK, response.getStatusLine().getStatusCode());
         Header[] actualHeaders = response.getAllHeaders();
         assertHeadersEquals(expectedHeaders, actualHeaders);
+        head.addHeader(HttpHeaders.IF_NONE_MATCH, etag);
+        response = getOrDelete(head, getAuthAccess(), false);
+        assertEquals(SC_NOT_MODIFIED, response.getStatusLine().getStatusCode());
+        assertNull(response.getEntity());
         // test a managed (type M) datastream 
         // info:fedora/demo:REST/DS2 is a type 'M'
         url = getURI("/objects/demo:REST/datastreams/DS2/content");
@@ -2086,7 +2204,7 @@ public class TestRESTAPI
         EntityUtils.consumeQuietly(response.getEntity());
         get.releaseConnection();
         assertEquals(SC_OK, status);
-        assertEquals("19498", cLen);
+        assertEquals("19468", cLen);
     }
 
     private MultipartEntity _doUploadPost() throws Exception {
@@ -2346,7 +2464,20 @@ public class TestRESTAPI
                            + ", " + p + ", " + o + " ] \n " + sb.toString(),
                    exists == found);
     }
-    
+
+    private Properties testingTranslationProperties() {
+        Properties transProps = new Properties(System.getProperties());
+        if (transProps.getProperty("fedora.hostname") == null) {
+            transProps.setProperty("fedora.hostname","localhost");
+        }
+        if (transProps.getProperty("fedora.port") == null) {
+            transProps.setProperty("fedora.port","1024");
+        }
+        if (transProps.getProperty("fedora.appServerContext") == null) {
+            transProps.setProperty("fedora.appServerContext","fedora");
+        }
+        return transProps;
+    }
     private static void assertHeadersEquals(Header[] expectedHeaders, 
             Header[] actualHeaders) {
         Map<String, String> expected = mapHeaders(expectedHeaders);

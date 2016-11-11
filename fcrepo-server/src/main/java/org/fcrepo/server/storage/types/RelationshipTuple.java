@@ -45,11 +45,9 @@ public class RelationshipTuple
 
     public final boolean isLiteral;
 
-    public final URI datatype; // Hugh Barnard used to be String in 3.3
+    public final URI datatype;
     
     public final String language;
-
-   
 
     public RelationshipTuple(String subject,
                              String predicate,
@@ -58,7 +56,6 @@ public class RelationshipTuple
                              URI datatype) {
         this(subject, predicate, object, isLiteral, datatype, null);
     }
-
     
     public RelationshipTuple(String subject,
                              String predicate,

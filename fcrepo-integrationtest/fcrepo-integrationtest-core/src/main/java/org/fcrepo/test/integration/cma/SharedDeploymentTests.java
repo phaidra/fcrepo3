@@ -16,6 +16,7 @@ import org.fcrepo.server.access.FedoraAPIAMTOM;
 import org.fcrepo.server.types.gen.ObjectMethodsDef;
 import org.fcrepo.test.FedoraServerTestCase;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -29,7 +30,7 @@ import org.junit.Test;
  * model. Furthermore, individual methods/operations/endpoints are defined
  * within each individual service object. In order to invoke a specific method,
  * the identites of the object, the sDef, and the method need to be specified.
- * In that light, this suite tests the following:
+ * In that light, this suite tests the following:</p>
  * <ul>
  * <li>The system will enumerate (via iewItemIndex, listMethods, etc) ONLY those
  * services/methods/endpoints that are specified by the graph containing the
@@ -44,7 +45,6 @@ import org.junit.Test;
  * may make use of multiple SDeps to provide full deployment coverage of all its
  * methods.</li>
  * </ul>
- * </p>
  *
  * @author birkland
  */
@@ -82,6 +82,8 @@ public class SharedDeploymentTests {
 
     private static FedoraClient s_client;
 
+    private static int s_items_ingested = 0;
+
     public static junit.framework.Test suite() {
         return new junit.framework.JUnit4TestAdapter(SharedDeploymentTests.class);
     }
@@ -93,13 +95,18 @@ public class SharedDeploymentTests {
                 new FedoraClient(FedoraServerTestCase.getBaseURL(),
                                  FedoraServerTestCase.getUsername(),
                                  FedoraServerTestCase.getPassword());
-        Util.ingestTestObjects(s_client, SHARED_DEPLOYMENT_BASE);
+        s_items_ingested = Util.ingestTestObjects(s_client, SHARED_DEPLOYMENT_BASE);
     }
 
     @AfterClass
     public static void cleanUp() throws Exception {
         s_client.shutdown();
         FedoraServerTestCase.purgeDemoObjects(s_client);
+    }
+
+    @Before
+    public void setUp() {
+        assertTrue("Nothing was ingested from " + Util.resourcePath(SHARED_DEPLOYMENT_BASE), s_items_ingested > 0);
     }
 
     @Test

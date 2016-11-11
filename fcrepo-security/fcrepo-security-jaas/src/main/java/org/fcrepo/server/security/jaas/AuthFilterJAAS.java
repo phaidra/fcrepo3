@@ -294,7 +294,7 @@ public class AuthFilterJAAS
         }
 
         Subject subject = authenticate(req);
-        
+
         if (subject == null) {
             if (doChallenge) {
                 loginForm(res);
@@ -327,9 +327,7 @@ public class AuthFilterJAAS
         populateFedoraAttributes(subject, userRoles, authRequest);
 
         chain.doFilter(authRequest, response);
-        logger.info("in here authenticate request " + authRequest);
-        logger.info("in here authenticate reponse " + response);
-        logger.info("in here authenticate3 chain " + authRequest);
+
         if (logger.isDebugEnabled()) {
             logger.debug("outgoing filter: " + this.getClass().getName());
         }
@@ -349,7 +347,6 @@ public class AuthFilterJAAS
      *        the response to set the headers and status
      */
     private void loginForm(HttpServletResponse response) throws IOException {
-		
         response.reset();
         response.addHeader("WWW-Authenticate",
                            "Basic realm=\"!!Fedora Repository Server\"");
@@ -370,7 +367,6 @@ public class AuthFilterJAAS
      * @return a user principal that was extracted from the login context.
      */
     private Subject authenticate(HttpServletRequest req) {
-	
         String authorization = req.getHeader("authorization");
         if (authorization == null || authorization.trim().isEmpty()) {
             return null;

@@ -165,13 +165,6 @@ public interface JournalConstants {
 
     String METHOD_PURGE_RELATIONSHIP = "purgeRelationship";
 
-    /* Hugh Barnard January 2015 Added */
-    String METHOD_ADD_RELATIONSHIPS = "addRelationships";
-
-    String METHOD_PURGE_RELATIONSHIPS = "purgeRelationships";    
-
-
-
     // Types of arguments to the management methods, as written to the Journal
     String ARGUMENT_TYPE_STRING = "string";
 
@@ -259,8 +252,6 @@ public interface JournalConstants {
     String ARGUMENT_NAME_VERSION_DATE = "versionDate";
 
     String ARGUMENT_NAME_RELATIONSHIP = "relationship";
-    
-    String ARGUMENT_NAME_RELATIONSHIPS = "relationships";    // Hugh Barnard January 2015
 
     String ARGUMENT_NAME_OBJECT = "object";
 

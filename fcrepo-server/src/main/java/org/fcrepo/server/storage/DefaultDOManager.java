@@ -21,10 +21,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -77,6 +79,7 @@ import org.fcrepo.server.validation.DOObjectValidator;
 import org.fcrepo.server.validation.DOValidator;
 import org.fcrepo.server.validation.ValidationUtility;
 import org.fcrepo.utilities.ReadableByteArrayOutputStream;
+import org.jrdf.graph.Triple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -398,24 +401,9 @@ implements DOManager {
             throw new ModuleInitializationException("Couldn't get required "
                     + "connection pool; wasn't found", getRole());
         }
-        try {
-            String dbSpec =
-                    "org/fcrepo/server/storage/resources/DefaultDOManager.dbspec";
-            InputStream specIn =
-                    this.getClass().getClassLoader()
-                            .getResourceAsStream(dbSpec);
-            if (specIn == null) {
-                throw new IOException("Cannot find required " + "resource: " +
-                        dbSpec);
-            }
-            SQLUtility.createNonExistingTables(m_connectionPool, specIn);
-        } catch (Exception e) {
-            throw new ModuleInitializationException(
-                    "Error while attempting to " +
-                            "check for and create non-existing table(s): " +
-                            e.getClass().getName() + ": " + e.getMessage(),
-                    getRole(), e);
-        }
+        ensureTableSpec("org/fcrepo/server/storage/resources/DefaultDOManager.dbspec");
+        // the cModel cache relies on the lastMod date from doFields table
+        ensureTableSpec("org/fcrepo/server/storage/resources/FieldSearchSQLImpl.dbspec");
 
         // get ref to lowlevelstorage module
         m_permanentStore =
@@ -451,6 +439,25 @@ implements DOManager {
                 cModelPid, sDefPid));
     }
 
+    private void ensureTableSpec(String dbSpec) throws ModuleInitializationException {
+        try {
+            InputStream specIn =
+                    this.getClass().getClassLoader()
+                            .getResourceAsStream(dbSpec);
+            if (specIn == null) {
+                throw new IOException("Cannot find required " + "resource: " +
+                        dbSpec);
+            }
+            SQLUtility.createNonExistingTables(m_connectionPool, specIn);
+        } catch (Exception e) {
+            throw new ModuleInitializationException(
+                    "Error while attempting to " +
+                            "check for and create non-existing table(s): " +
+                            e.getClass().getName() + ": " + e.getMessage(),
+                    getRole(), e);
+        }
+    }
+
     private void initializeCModelDeploymentCache() {
         // Initialize Map containing links from Content Models to the Service
         // Deployments.
@@ -478,7 +485,7 @@ implements DOManager {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error loading cModel deployment cach",
+            throw new RuntimeException("Error loading cModel deployment cache",
                     e);
         } finally {
             try {
@@ -703,7 +710,7 @@ implements DOManager {
     }
     
     /**
-     * Gets a reader on an an existing digital object.
+     * Gets a reader on an existing digital object.
      */
     @Override
     public DOReader getReader(boolean cachedObjectRequired, Context context,
@@ -743,7 +750,7 @@ implements DOManager {
     }
 
     /**
-     * Gets a reader on an an existing service deployment object.
+     * Gets a reader on an existing service deployment object.
      */
     @Override
     public ServiceDeploymentReader getServiceDeploymentReader(
@@ -758,7 +765,7 @@ implements DOManager {
     }
 
     /**
-     * Gets a reader on an an existing service definition object.
+     * Gets a reader on an existing service definition object.
      */
     @Override
     public ServiceDefinitionReader getServiceDefinitionReader(
@@ -773,7 +780,7 @@ implements DOManager {
     }
 
     /**
-     * Gets a writer on an an existing object.
+     * Gets a writer on an existing object.
      */
     @Override
     public DOWriter getWriter(boolean cachedObjectRequired, Context context,
@@ -783,15 +790,23 @@ implements DOManager {
                     "A DOWriter is unavailable in a cached context.");
         } else {
             BasicDigitalObject obj = new BasicDigitalObject();
-            m_translator.deserialize(m_permanentStore.retrieveObject(pid), obj,
-                    m_defaultStorageFormat, m_storageCharacterEncoding,
-                    DOTranslationUtility.DESERIALIZE_INSTANCE);
-            DOWriter w =
-                    new SimpleDOWriter(context, this, m_translator,
-                            m_defaultStorageFormat, m_storageCharacterEncoding,
-                            obj);
-            getWriteLock(obj.getPid());
-            return w;
+            getWriteLock(pid);
+            boolean clean = false;
+            try {
+                m_translator.deserialize(m_permanentStore.retrieveObject(pid), obj,
+                        m_defaultStorageFormat, m_storageCharacterEncoding,
+                        DOTranslationUtility.DESERIALIZE_INSTANCE);
+                DOWriter w =
+                        new SimpleDOWriter(context, this, m_translator,
+                                m_defaultStorageFormat, m_storageCharacterEncoding,
+                                obj);
+                clean = true;
+                return w;
+            } finally {
+                if (!clean) {
+                    releaseWriteLock(pid);
+                }
+            }
         }
     }
 
@@ -1003,14 +1018,14 @@ implements DOManager {
                 // of it in the digital object registry
                 registerObject(obj);
                 return w;
-            } catch (IOException e) {
+            } catch (IOException ioe) {
 
                 if (w != null) {
                     releaseWriteLock(obj.getPid());
                 }
 
                 throw new GeneralException("Error reading/writing temporary "
-                        + "ingest file", e);
+                        + "ingest file", ioe);
             } catch (Exception e) {
 
                 if (w != null) {
@@ -1117,7 +1132,10 @@ implements DOManager {
                     null, null, null, obj));
 
             try { // for cleanup catch
-
+                boolean riEnabled = (m_resourceIndex != null &&
+                        m_resourceIndex.getIndexLevel() != ResourceIndex.INDEX_LEVEL_OFF);
+                List<Triple> before = (riEnabled && !obj.isNew()) ? m_resourceIndex.exportObject(
+                        getReader(false, null, obj.getPid())) : Collections.<Triple>emptyList();
                 // DATASTREAM STORAGE:
                 // copy and store any datastreams of type Managed Content
                 Iterator<String> dsIDIter = obj.datastreamIdIterator();
@@ -1183,7 +1201,7 @@ implements DOManager {
                                 } else {
                                     ContentManagerParams params =
                                             new ContentManagerParams(
-                                                    DOTranslationUtility
+                                                    DOTranslationUtility.defaultInstance()
                                                             .makeAbsoluteURLs(dmc.DSLocation
                                                                     .toString()),
                                                     dmc.DSMIME, null, null);
@@ -1336,14 +1354,24 @@ implements DOManager {
                 if (m_resourceIndex != null &&
                         m_resourceIndex.getIndexLevel() != ResourceIndex.INDEX_LEVEL_OFF) {
                     logger.info("Adding to ResourceIndex");
+                    List<Triple> after = (riEnabled) ? m_resourceIndex.exportObject(
+                            new SimpleDOReader(null,
+                                    null, null, null, null, obj)) : Collections.<Triple>emptyList();
+
                     if (obj.isNew()) {
-                        m_resourceIndex.addObject(new SimpleDOReader(null,
-                                null, null, null, null, obj));
+                        m_resourceIndex.add(after,m_resourceIndex.getSync());
                     } else {
+                        List<Triple> deletes = new ArrayList<Triple>(before);
+                        deletes.removeAll(after);
+                        List<Triple> adds = new ArrayList<Triple>(after);
+                        adds.removeAll(before);
+                        m_resourceIndex.delete(deletes,false);
+                        m_resourceIndex.add(adds,m_resourceIndex.getSync());
+                        /**
                         m_resourceIndex.modifyObject(getReader(false, null, obj
                                 .getPid()), new SimpleDOReader(null, null,
                                 null, null, null, obj));
-
+                                */
                     }
                     logger.debug("Finished adding {} to ResourceIndex.", pid);
                 }
@@ -1488,31 +1516,9 @@ implements DOManager {
         final String pid = obj.getPid();
         logger.info("Committing removal of {}", pid);
 
-        // RESOURCE INDEX:
-        // remove digital object from the resourceIndex
-        // (nb: must happen before datastream storage removal - as
-        // relationships might be in managed datastreams)
-        if (m_resourceIndex.getIndexLevel() != ResourceIndex.INDEX_LEVEL_OFF) {
-            try {
-                logger.info("Deleting {} from ResourceIndex", pid);
-                m_resourceIndex.deleteObject(new SimpleDOReader(null, null,
-                        null, null, null, obj));
-                logger.debug("Finished deleting {} from ResourceIndex", pid);
-            } catch (ServerException se) {
-                if (failSafe) {
-                    logger.warn("Object " + pid +
-                            " couldn't be removed from ResourceIndex (" +
-                            se.getMessage() +
-                            "), but that might be ok; continuing with purge");
-                } else {
-                    logger.error("Object " + pid +
-                            " couldn't be removed from ResourceIndex (" +
-                            se.getMessage() + ")");
-
-                }
-
-            }
-        }
+        List<Triple> before = (m_resourceIndex.getIndexLevel() != ResourceIndex.INDEX_LEVEL_OFF) ?
+                m_resourceIndex.exportObject(new SimpleDOReader(null, null,
+                        null, null, null, obj)) : Collections.<Triple>emptyList();
 
         // DATASTREAM STORAGE:
         // remove any managed content datastreams associated with object
@@ -1603,6 +1609,26 @@ implements DOManager {
                         " couldn't be removed from FieldSearch index (" +
                         se.getMessage() + ")");
             }
+        }
+        // RESOURCE INDEX:
+        // remove digital object from the resourceIndex
+        try {
+            logger.info("Deleting {} from ResourceIndex", pid);
+            m_resourceIndex.delete(before,m_resourceIndex.getSync());
+            logger.debug("Finished deleting {} from ResourceIndex", pid);
+        } catch (Exception se) {
+            if (failSafe) {
+                logger.warn("Object " + pid +
+                        " couldn't be removed from ResourceIndex (" +
+                        se.getMessage() +
+                        "), but that might be ok; continuing with purge");
+            } else {
+                logger.error("Object " + pid +
+                        " couldn't be removed from ResourceIndex (" +
+                        se.getMessage() + ")");
+
+            }
+
         }
 
     }

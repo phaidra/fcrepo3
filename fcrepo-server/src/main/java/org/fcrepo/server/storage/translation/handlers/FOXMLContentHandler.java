@@ -52,7 +52,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Deserializes objects in the constructor-provided version of FOXML.
- *
+ * This class is not thread-safe or re-usable.
  * @author Sandy Payette
  * @author Chris Wilper
  */
@@ -72,6 +72,9 @@ public class FOXMLContentHandler
 
     /** The format this deserializer reads. */
     private final XMLFormat m_format;
+
+    /** The translation utility is use */
+    private DOTranslationUtility m_translator;
 
     /** The current translation context. */
     private int m_transContext;
@@ -180,26 +183,28 @@ public class FOXMLContentHandler
     private ReadableCharArrayWriter m_dsXMLBuffer; // chunks of inline XML metadata
     
     /**
-     * Creates a deserializer that reads the default FOXML format.
-     */
-    public FOXMLContentHandler(DigitalObject obj,
-            String encoding,
-            int transContext) {
-        this(obj, DEFAULT_FORMAT, encoding, transContext);
-    }
-
-    /**
-     * Creates a deserializer that reads the given FOXML format.
+     * Creates a content handler that reads the given FOXML format.
      *
      * @param format
      *        the version-specific FOXML format.
+     * @param translator
+     *        the translation utility for URLs
+     * @param transContext
+     *        the translation context
+     * @param encoding
+     *        the character encoding to use
+     * @param obj
+     *        the DigitalObject receiver
      * @throws IllegalArgumentException
      *         if format is not a known FOXML format.
      */
-    public FOXMLContentHandler(DigitalObject obj,
+    public FOXMLContentHandler(
             XMLFormat format,
+            DOTranslationUtility translator,
+            int transContext,
             String encoding,
-            int transContext) {
+            DigitalObject obj
+            ) {
         if (format.equals(FOXML1_0) || format.equals(FOXML1_1)) {
             m_format = format;
         } else {
@@ -210,6 +215,7 @@ public class FOXMLContentHandler
         m_obj.setLabel("");
         m_obj.setOwnerId("");
         m_characterEncoding = encoding;
+        m_translator = (translator == null) ? DOTranslationUtility.defaultInstance() : translator;
         m_transContext = transContext;
         initialize();
     }
@@ -810,7 +816,7 @@ public class FOXMLContentHandler
 
         // Normalize the dsLocation for the deserialization context
         ds.DSLocation =
-                (DOTranslationUtility.normalizeDSLocationURLs(m_obj.getPid(),
+                (m_translator.normalizeDSLocationURLs(m_obj.getPid(),
                                                               ds,
                                                               m_transContext)).DSLocation;
 

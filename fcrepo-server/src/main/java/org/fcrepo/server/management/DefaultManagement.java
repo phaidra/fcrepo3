@@ -32,6 +32,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.ws.rs.core.StreamingOutput;
+
 import org.apache.commons.betwixt.XMLUtils;
 import org.fcrepo.common.Constants;
 import org.fcrepo.common.PID;
@@ -90,7 +92,6 @@ import org.fcrepo.server.hooks.*;
  * @author Chris Wilper
  * @version $Id$
  */
-
 public class DefaultManagement
         implements Constants, Management, ManagementDelegate {
 
@@ -118,8 +119,6 @@ public class DefaultManagement
     private final long m_purgeDelayInMillis;
     private final EcmValidator ecmValidator;
 
-    
-
     // FCREPO-765: move to Admin module
     private static final byte[] xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             .getBytes(Charset.forName("UTF-8"));
@@ -127,11 +126,9 @@ public class DefaultManagement
     /**
      * @param purgeDelayInMillis milliseconds to delay before removing
      *                           old uploaded files
-     * @author Frederic Buffet & Tommy Bourdin (Atos Worldline)
-     * @date August 1, 2008
+     * @author Frederic Buffet &amp; Tommy Bourdin (Atos Worldline)
+     * @since August 1, 2008
      */
-
-     
     public DefaultManagement(Authorization authz,
                              DOManager doMgr,
                              ExternalContentManager ecMgr,
@@ -348,13 +345,56 @@ public class DefaultManagement
             DOReader reader =
                     m_manager.getReader(Server.USE_DEFINITIVE_STORE,
                                         context,
-                                        pid);
-            InputStream instream = reader.Export(format, exportContext);
+                                        pid);            
+
+	    InputStream instream = reader.Export(format, exportContext);
             /* Hugh Barnard January 2015 Added runHook */
             String hv = m_hooks.runHook("export", null, context, pid, null);
             if(!hv.startsWith("OK"))
                 throw new APIHookException(hv);
             return instream;
+        } finally {
+            // Logger completion
+            if (logger.isInfoEnabled()) {
+                StringBuilder logMsg = new StringBuilder("Completed export(");
+         InputStream instream = reader.Export(format, exportContext);
+            /* Hugh Barnard January 2015 Added runHook */
+            String hv = m_hooks.runHook("export", null, context, pid, null);
+            if(!hv.startsWith("OK"))
+                throw new APIHookException(hv);
+            return instream;       
+                logMsg.append("pid: ").append(pid);
+                logMsg.append(", format: ").append(format);
+                logMsg.append(", exportContext: ").append(exportContext);
+                logMsg.append(", encoding: ").append(encoding);
+                logMsg.append(")");
+                logger.info(logMsg.toString());
+            }
+
+            logger.debug("Exiting export");
+        }
+    }
+
+    @Override
+    public StreamingOutput stream(Context context,
+                              String pid,
+                              String format,
+                              String exportContext,
+                              String encoding) throws ServerException {
+        try {
+            logger.debug("Entered export");
+
+            m_authz.enforceExport(context,
+                                  pid,
+                                  format,
+                                  exportContext,
+                                  encoding);
+
+            DOReader reader =
+                    m_manager.getReader(Server.USE_DEFINITIVE_STORE,
+                                        context,
+                                        pid);
+            return reader.Stream(format, exportContext);
         } finally {
             // Logger completion
             if (logger.isInfoEnabled()) {
@@ -1042,9 +1082,7 @@ public class DefaultManagement
  
 
             }
-           
-           
-            
+
             // update ds attributes that are common to all versions...
             // first, those that cannot be changed by client...
             newds.DatastreamID = orig.DatastreamID;
@@ -1092,8 +1130,8 @@ public class DefaultManagement
                 throw new APIHookException(hv);
 
             w.commit(logMessage);
+
             return nowUTC;
-            
         } finally {
             // Logger completion
             if (logger.isInfoEnabled()) {
@@ -1930,57 +1968,6 @@ public class DefaultManagement
         }
     }
 
-   /* Hugh Barnard Added Multiple relationship creation/removal to 3.8
-    * Added conversion to URI from string + checking
-    * */
-   // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-
-
-   
-    public boolean addRelationships(Context context,
-            RelationshipTuple[] relationships) throws ServerException
-    {
-    	logger.debug("Entered addRelationships");
-    	boolean rval = true;
-    	for(int i=0;i<relationships.length;i++)
-    	{
-
-			// added conversion to string Hugh Barnard January 2015
-    		boolean r = addRelationship(context, relationships[i].subject,
-    				relationships[i].predicate, relationships[i].object,
-    				relationships[i].isLiteral, String.valueOf(relationships[i].datatype));
-    		if(r==false)
-    		{
-    			rval = false;
-    		}
-    	}
-    	return rval;
-    }
-
-   // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-
-   
-    public boolean purgeRelationships(Context context,
-              RelationshipTuple[] relationships) throws ServerException
-	{
-    	logger.debug("Entered purgeRelationships");
-    	boolean rval = true;
-    	for(int i=0;i<relationships.length;i++)
-    	{
-			// added conversion to string Hugh Barnard January 2015
-    		boolean r = purgeRelationship(context, relationships[i].subject,
-    				relationships[i].predicate, relationships[i].object,
-    				relationships[i].isLiteral, String.valueOf(relationships[i].datatype));
-    		if(r==false)
-    		{
-    			rval = false;
-    		}
-    	}
-    	return rval;
-	}
- /*  end of multiple relationship creation/removal */
-
-
     /**
      * Validate the object against the datacontracts from the objects content model. This method just delegates the validation
      * to EcmValidator
@@ -2138,7 +2125,6 @@ public class DefaultManagement
      * @param pid
      * @param dsID
      * @param controlGroup - new Control Group for datastream
-     * @param ignoreAlreadyDone - if true don't return an error if datastream already has desired control group
      * @param addXMLHeader - add an XML header declaring UTF-8 character encoding to datastream content
      * @param reformat - reformat the XML (in the same format as used for inline XML)
      * @param setMIMETypeCharset - add charset declaration (UTF-8) to the MIMEType, and add text/xml MIMEType if no MIMEType is set

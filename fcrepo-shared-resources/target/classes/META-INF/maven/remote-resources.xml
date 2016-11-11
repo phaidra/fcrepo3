@@ -3,10 +3,10 @@
     xmlns="http://maven.apache.org/remote-resources/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <remoteResources>
-    <remoteResource>server/org/fcrepo/utilities/install/OptionDefinition.properties</remoteResource>
-    <remoteResource>server/org/fcrepo/server/resources/MIMETypes.properties</remoteResource>
-    <remoteResource>server/org/fcrepo/server/resources/Server.properties</remoteResource>
     <remoteResource>webapp-context/context.xml</remoteResource>
+    <remoteResource>server/org/fcrepo/utilities/install/OptionDefinition.properties</remoteResource>
+    <remoteResource>server/org/fcrepo/server/resources/Server.properties</remoteResource>
+    <remoteResource>server/org/fcrepo/server/resources/MIMETypes.properties</remoteResource>
   </remoteResources>
   <sourceEncoding>UTF-8</sourceEncoding>
 </remoteResourcesBundle>

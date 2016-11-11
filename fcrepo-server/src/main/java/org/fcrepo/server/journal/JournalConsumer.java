@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Map;
 
+import javax.ws.rs.core.StreamingOutput;
+
 
 /**
  * The JournalWorker class to use in recovery mode or in* following mode.
@@ -283,23 +285,6 @@ public class JournalConsumer
         throw rejectCallsFromOutsideWhileInRecoveryMode();
     }
 
-    /* Hugh Barnard January 2015 Added */
-        /**
-     * Reject API calls from outside while we are in recovery mode.
-     */
-    public boolean addRelationships(Context context,
-    								RelationshipTuple[] relationships) throws ServerException {
-        throw rejectCallsFromOutsideWhileInRecoveryMode();
-    }
-
-    /**
-     * Reject API calls from outside while we are in recovery mode.
-     */
-    public boolean purgeRelationships(Context context,
-    		RelationshipTuple[] relationships) throws ServerException {
-        throw rejectCallsFromOutsideWhileInRecoveryMode();
-    }    
-
     //
     // -------------------------------------------------------------------------
     //
@@ -332,6 +317,17 @@ public class JournalConsumer
                               String exportContext,
                               String encoding) throws ServerException {
         return delegate.export(context, pid, format, exportContext, encoding);
+    }
+
+    /**
+     * Read-only method: pass the call to the {@link ManagementDelegate}.
+     */
+    public StreamingOutput stream(Context context,
+                              String pid,
+                              String format,
+                              String exportContext,
+                              String encoding) throws ServerException {
+        return delegate.stream(context, pid, format, exportContext, encoding);
     }
 
     /**

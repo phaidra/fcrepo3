@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ws.rs.core.StreamingOutput;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
@@ -25,10 +26,7 @@ import org.fcrepo.server.Server;
 import org.fcrepo.server.errors.ModuleInitializationException;
 import org.fcrepo.server.errors.StorageDeviceException;
 import org.fcrepo.server.utilities.CXFUtility;
-
 import org.fcrepo.server.utilities.TypeUtility;
-import org.fcrepo.server.storage.types.RelationshipTuple;
-
 import org.fcrepo.utilities.DateUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -162,14 +160,13 @@ public class FedoraAPIMImpl
         try {
             MessageContext ctx =
                     FedoraAPIMImpl.this.context.getMessageContext();
-            InputStream in =
-                    m_management.export(ReadOnlyContext.getSoapContext(ctx),
+            StreamingOutput so = m_management.stream(ReadOnlyContext.getSoapContext(ctx),
                                         pid,
                                         format,
                                         context,
                                         "UTF-8");
             ByteArrayOutputStream out = new ByteArrayOutputStream(2048);
-            pipeStream(in, out);
+            so.write(out);
             return out.toByteArray();
         } catch (Throwable th) {
             LOG.error("Error exporting object", th);
@@ -341,7 +338,7 @@ public class FedoraAPIMImpl
                                                                               dsLabel,
                                                                               mimeType,
                                                                               formatURI,
-                                                                              new ByteArrayInputStream(dsContent),
+                                                                              dsContent != null ? new ByteArrayInputStream(dsContent) : null,
                                                                               checksumType,
                                                                               checksum,
                                                                               logMessage,
@@ -651,41 +648,6 @@ public class FedoraAPIMImpl
         }
     }
 
-       /* Hugh Barnard January 2015 */
-       // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-    public boolean addRelationships(org.fcrepo.server.types.gen.RelationshipTuple[] relationships) throws java.rmi.RemoteException
-	{
-        LOG.debug("start: addRelationships");
-        assertInitialized();
-        try {
-			MessageContext ctx = context.getMessageContext(); // Hugh Barnard Added January 2015, to conform
-            return m_management.addRelationships(ReadOnlyContext.getSoapContext(ctx),
-                                                  getRelsTuples(relationships));
-        } catch (Throwable th) {
-            LOG.error("Error adding relationships", th);
-            throw CXFUtility.getFault(th);
-        } finally {
-            LOG.debug("end: addRelationships");
-        }
-	}
-   
-    // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-    public boolean purgeRelationships(org.fcrepo.server.types.gen.RelationshipTuple[] relationships) throws java.rmi.RemoteException
-	{
-        LOG.debug("start: purgeRelationships");
-        assertInitialized();
-        try {
-			MessageContext ctx = context.getMessageContext(); // Hugh Barnard Added January 2015, to conform
-            return m_management.purgeRelationships(ReadOnlyContext.getSoapContext(ctx),
-                                                          getRelsTuples(relationships));
-        } catch (Throwable th) {
-            LOG.error("Error purging relationships", th);
-            throw CXFUtility.getFault(th);
-        } finally {
-            LOG.debug("end: purgeRelationships");
-        }
-	}
-
     /*
      * (non-Javadoc)
      * @see org.fcrepo.server.management.FedoraAPIMMTOM#validate(String pid
@@ -751,18 +713,6 @@ public class FedoraAPIMImpl
         }
         return genRelsTuples;
     }
-    
-
-    private org.fcrepo.server.storage.types.RelationshipTuple[] getRelsTuples(org.fcrepo.server.types.gen.RelationshipTuple[] intRelsTuples) {
-    	org.fcrepo.server.storage.types.RelationshipTuple[] relsTuples =
-                new org.fcrepo.server.storage.types.RelationshipTuple[intRelsTuples.length];
-        for (int i = 0; i < intRelsTuples.length; i++) {
-            relsTuples[i] =
-                    TypeUtility.convertGenRelsTupleToRelsTuple(intRelsTuples[i]);
-        }
-        return relsTuples;
-    }    
-
 
     private List<String> toStringList(Date[] dates) throws Exception {
         List<String> out = new ArrayList<String>(dates.length);

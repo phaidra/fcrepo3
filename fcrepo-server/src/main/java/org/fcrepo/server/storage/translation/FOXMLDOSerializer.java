@@ -6,11 +6,13 @@
 package org.fcrepo.server.storage.translation;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -26,7 +28,6 @@ import org.fcrepo.server.storage.types.DatastreamXMLMetadata;
 import org.fcrepo.server.storage.types.DigitalObject;
 import org.fcrepo.server.storage.types.Disseminator;
 import org.fcrepo.server.utilities.StreamUtility;
-import org.fcrepo.server.utilities.StringUtility;
 import org.fcrepo.utilities.Base64;
 import org.fcrepo.utilities.DateUtility;
 import org.slf4j.Logger;
@@ -59,14 +60,15 @@ public class FOXMLDOSerializer
     /** The format this serializer writes. */
     private final XMLFormat m_format;
 
-    /** The current translation context. */
-    private int m_transContext;
+    /** The translation utility is use */
+    private DOTranslationUtility m_translator;
 
     /**
      * Creates a serializer that writes the default FOXML format.
      */
     public FOXMLDOSerializer() {
         m_format = DEFAULT_FORMAT;
+        m_translator = DOTranslationUtility.defaultInstance();
     }
 
     /**
@@ -78,14 +80,18 @@ public class FOXMLDOSerializer
      *         if format is not a known FOXML format.
      */
     public FOXMLDOSerializer(XMLFormat format) {
+        this(format, null);
+    }
+
+    public FOXMLDOSerializer(XMLFormat format, DOTranslationUtility translator) {
         if (format.equals(FOXML1_0) || format.equals(FOXML1_1)) {
             m_format = format;
         } else {
             throw new IllegalArgumentException("Not a FOXML format: "
                     + format.uri);
         }
+        m_translator = (translator == null) ? DOTranslationUtility.defaultInstance() : translator;
     }
-
     //---
     // DOSerializer implementation
     //---
@@ -94,7 +100,7 @@ public class FOXMLDOSerializer
      * {@inheritDoc}
      */
     public DOSerializer getInstance() {
-        return new FOXMLDOSerializer(m_format);
+        return new FOXMLDOSerializer(m_format, m_translator);
     }
 
     /**
@@ -107,15 +113,14 @@ public class FOXMLDOSerializer
             StreamIOException, UnsupportedEncodingException {
         logger.debug("Serializing {} for transContext: {}",
                 m_format.uri, transContext);
-        m_transContext = transContext;
         OutputStreamWriter osWriter = new OutputStreamWriter(out, encoding);
         PrintWriter writer = new PrintWriter(new BufferedWriter(osWriter));
         try {
             appendXMLDeclaration(obj, encoding, writer);
-            appendRootElementStart(obj, writer);
+            appendRootElementStart(obj, writer, transContext);
             appendProperties(obj, writer, encoding);
-            appendAudit(obj, writer, encoding);
-            appendDatastreams(obj, writer, encoding);
+            appendAudit(obj, writer, encoding, transContext);
+            appendDatastreams(obj, writer, encoding, transContext);
             if (m_format.equals(FOXML1_0)) {
                 appendDisseminators(obj, writer);
             }
@@ -137,7 +142,7 @@ public class FOXMLDOSerializer
         writer.print("\"?>\n");
     }
 
-    private void appendRootElementStart(DigitalObject obj, PrintWriter writer)
+    private void appendRootElementStart(DigitalObject obj, PrintWriter writer, int transContext)
             throws ObjectIntegrityException {
         writer.print('<');
         writer.print(FOXML.DIGITAL_OBJECT.qName);
@@ -151,7 +156,7 @@ public class FOXMLDOSerializer
         writer.print("=\"");
         writer.print(obj.getPid());
         writer.print('"');
-        if (m_transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
+        if (transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
             writer.print(' ');
             writer.print(FOXML.FEDORA_URI.localName);
             writer.print("=\"info:fedora/");
@@ -248,7 +253,7 @@ public class FOXMLDOSerializer
 
     private void appendDatastreams(DigitalObject obj,
                                    PrintWriter writer,
-                                   String encoding)
+                                   String encoding, int transContext)
             throws ObjectIntegrityException, UnsupportedEncodingException,
             StreamIOException {
         Iterator<String> iter = obj.datastreamIdIterator();
@@ -275,7 +280,7 @@ public class FOXMLDOSerializer
                     writer.print(":datastream ID=\"");
                     writer.print(vds.DatastreamID);
                     writer.print('"');
-                    if (m_transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
+                    if (transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
                         writer.print(" FEDORA_URI=\"");
                         writer.print("info:fedora/");
                         writer.print(obj.getPid());
@@ -354,34 +359,26 @@ public class FOXMLDOSerializer
                     writer.print(":contentLocation TYPE=\"");
                     writer.print(Datastream.DS_LOCATION_TYPE_URL);
                     writer.print("\" REF=\"");
-                    String urls = DOTranslationUtility.normalizeDSLocationURLs(
+                    String urls = m_translator.normalizeDSLocationURLs(
                             obj.getPid(),
                             vds,
-                            m_transContext).DSLocation;
+                            transContext).DSLocation;
                     StreamUtility.enc(urls, writer);
                     writer.print("\"/>\n");
                     // if M insert ds content location as an internal identifier
                 } else if (vds.DSControlGrp.equalsIgnoreCase("M")) {
-                    if (m_transContext == DOTranslationUtility.SERIALIZE_EXPORT_ARCHIVE) {
-                        writer.print('<');
-                        writer.print(FOXML.prefix);
-                        writer.print(":binaryContent> \n");
-                        String encoded = Base64.encodeToString(vds.getContentStream());
-                        StringUtility.splitAndIndent(encoded,
-                                14, 80, writer);
-                        writer.print("</");
-                        writer.print(FOXML.prefix);
-                        writer.print(":binaryContent> \n");
+                    if (transContext == DOTranslationUtility.SERIALIZE_EXPORT_ARCHIVE) {
+                        serializeDatastreamContent(vds, writer);
                     } else {
                         writer.print('<');
                         writer.print(FOXML.prefix);
                         writer.print(":contentLocation TYPE=\"");
                         writer.print(Datastream.DS_LOCATION_TYPE_INTERNAL);
                         writer.print("\" REF=\"");
-                        String urls = DOTranslationUtility.normalizeDSLocationURLs(
+                        String urls = m_translator.normalizeDSLocationURLs(
                                 obj.getPid(),
                                 vds,
-                                m_transContext).DSLocation;
+                                transContext).DSLocation;
                         StreamUtility.enc(urls, writer);
                         writer.print("\"/>\n");
                     }
@@ -390,7 +387,7 @@ public class FOXMLDOSerializer
                     appendInlineXML(obj,
                                     (DatastreamXMLMetadata) vds,
                                     writer,
-                                    encoding);
+                                    encoding, transContext);
                 }
                 writer.print("</");
                 writer.print(FOXML.prefix);
@@ -402,9 +399,32 @@ public class FOXMLDOSerializer
         }
     }
 
+    protected void serializeDatastreamContent(Datastream dsc, PrintWriter writer)
+            throws StreamIOException {
+        writer.print("<");
+        writer.print(FOXML.prefix);
+        writer.print(":binaryContent> \n");
+        Reader encoded = new InputStreamReader(Base64.encodeToStream(dsc.getContentStream()));
+        char [] buffer = new char[80];
+        int len = 0;
+
+        try{
+            while ((len = encoded.read(buffer)) > -1){
+                writer.write(DOSerializer.DS_INDENT);
+                writer.write(buffer,0,len);
+                writer.write('\n');
+            }
+        } catch (IOException ioe) {
+           throw new StreamIOException(ioe.getMessage()); 
+        }
+        writer.print("</");
+        writer.print(FOXML.prefix);
+        writer.print(":binaryContent> \n");
+    }
+
     private void appendAudit(DigitalObject obj,
                              PrintWriter writer,
-                             String encoding) throws ObjectIntegrityException {
+                             String encoding, int transContext) throws ObjectIntegrityException {
 
         if (obj.getAuditRecords().size() > 0) {
             // Audit trail datastream re-created from audit records.
@@ -413,7 +433,7 @@ public class FOXMLDOSerializer
             writer.print(FOXML.prefix);
             writer.print(":datastream ID=\"");
             writer.print("AUDIT\"");
-            if (m_transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
+            if (transContext == DOTranslationUtility.SERIALIZE_EXPORT_PUBLIC) {
                 writer.print(" FEDORA_URI=\"info:fedora/");
                 writer.print(obj.getPid());
                 writer.print("/AUDIT\"");
@@ -447,7 +467,7 @@ public class FOXMLDOSerializer
     private void appendInlineXML(DigitalObject obj,
                                  DatastreamXMLMetadata ds,
                                  PrintWriter writer,
-                                 String encoding)
+                                 String encoding, int transContext)
             throws ObjectIntegrityException, UnsupportedEncodingException,
             StreamIOException {
 
@@ -465,9 +485,9 @@ public class FOXMLDOSerializer
             // FIXME! We need a more efficient way than to search
             // the whole block of inline XML. We really only want to
             // look at service URLs in the XML.
-            writer.print(DOTranslationUtility
+            writer.print(m_translator
                     .normalizeInlineXML(new String(ds.xmlContent, "UTF-8")
-                            .trim(), m_transContext));
+                            .trim(), transContext));
         } else {
             DOTranslationUtility.appendXMLStream(ds.getContentStream(),
                                                  writer,

@@ -22,15 +22,17 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Map;
 
+import javax.ws.rs.core.StreamingOutput;
+
 
 /**
- * This is the worker class to use in Journaling mode (normal mode).
- * <p/>
+ * <p>This is the worker class to use in Journaling mode (normal mode).
+ * </p><p>
  * Each time a "writing" Management method is called, create a
  * CreatorJournalEntry and ask it to invoke the method on the
  * ManagementDelegate. If a "read-only" Management method is called, just pass
  * it along to the ManagementDelegate.
- *
+ * </p>
  * @author Jim Blake
  */
 public class JournalCreator
@@ -408,32 +410,6 @@ public class JournalCreator
         }
     }
 
-/* Hugh Barnard January 2015 Added */
-
-    public boolean addRelationships(Context context,
-            RelationshipTuple[] relationships) throws ServerException {
-	try {
-		CreatorJournalEntry cje =
-		new CreatorJournalEntry(METHOD_ADD_RELATIONSHIPS, context);
-		cje.addArgument(ARGUMENT_NAME_RELATIONSHIPS, relationships);
-		return (Boolean) cje.invokeAndClose(delegate, writer);
-	} catch (JournalException e) {
-		throw new GeneralException("Problem creating the Journal", e);
-	}
-}
-
-public boolean purgeRelationships(Context context,
-		RelationshipTuple[] relationships) throws ServerException {
-	try {
-		CreatorJournalEntry cje =
-		new CreatorJournalEntry(METHOD_PURGE_RELATIONSHIPS, context);
-		cje.addArgument(ARGUMENT_NAME_RELATIONSHIPS, relationships);
-		return (Boolean) cje.invokeAndClose(delegate, writer);
-	} catch (JournalException e) {
-		throw new GeneralException("Problem creating the Journal", e);
-	}
-}    
-
 
     //
     // -------------------------------------------------------------------------
@@ -484,6 +460,17 @@ public boolean purgeRelationships(Context context,
                               String exportContext,
                               String encoding) throws ServerException {
         return delegate.export(context, pid, format, exportContext, encoding);
+    }
+
+    /**
+     * Let the delegate do it.
+     */
+    public StreamingOutput stream(Context context,
+                              String pid,
+                              String format,
+                              String exportContext,
+                              String encoding) throws ServerException {
+        return delegate.stream(context, pid, format, exportContext, encoding);
     }
 
     /**

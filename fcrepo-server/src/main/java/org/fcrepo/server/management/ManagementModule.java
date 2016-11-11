@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.core.StreamingOutput;
+
 import org.fcrepo.server.Context;
 import org.fcrepo.server.Module;
 import org.fcrepo.server.Server;
@@ -304,6 +306,18 @@ public class ManagementModule
      * {@inheritDoc}
      */
     @Override
+    public StreamingOutput stream(Context context,
+                              String pid,
+                              String format,
+                              String exportContext,
+                              String encoding) throws ServerException {
+        return mgmt.stream(context, pid, format, exportContext, encoding);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Datastream getDatastream(Context context,
                                     String pid,
                                     String datastreamID,
@@ -547,7 +561,7 @@ public class ManagementModule
     }
 
     /**
-     * {@inheritDoce}
+     * {@inheritDoc}
      */
     @Override
     public Date setDatastreamVersionable(Context context,
@@ -562,32 +576,6 @@ public class ManagementModule
                                              versionable,
                                              logMessage);
     }
-
-    /* Hugh Barnard January 2015 Added to follow 3.3 Hacks */
-    
-    // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-    /**
-     * {@inheritDoc}
-     */
-    public boolean addRelationships(Context context,
-            RelationshipTuple[] relationships) throws ServerException
-    {
-    	return mgmt.addRelationships(context, relationships);
-    }
-
-    // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-    /**
-     * {@inheritDoc}
-     */    
-    public boolean purgeRelationships(Context context,
-              RelationshipTuple[] relationships) throws ServerException
-	{
-    	return mgmt.purgeRelationships(context, relationships);
-	}
-
-
-
-
 
     /**
      * Build a proxy chain as configured by the module parameters.
@@ -667,7 +655,6 @@ public class ManagementModule
      * @param pid
      * @param dsID
      * @param controlGroup - new Control Group for datastream
-     * @param ignoreAlreadyDone - if true don't return an error if datastream already has desired control group
      * @param addXMLHeader - add an XML header declaring UTF-8 character encoding to datastream content
      * @param reformat - reformat the XML (in the same format as used for inline XML)
      * @param setMIMETypeCharset - add charset declaration (UTF-8) to the MIMEType, and add text/xml MIMEType if no MIMEType is set

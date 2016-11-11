@@ -12,7 +12,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-
 import java.util.Date;
 import java.util.Iterator;
 
@@ -56,13 +55,11 @@ public class METSFedoraExtDOSerializer
     private static final Logger logger =
             LoggerFactory.getLogger(METSFedoraExtDOSerializer.class);
 
-    private static final char [] DS_INDENT = "              ".toCharArray();
-    
     /** The format this serializer writes. */
     private final XMLFormat m_format;
 
-    /** The current translation context. */
-    private int m_transContext;
+    /** The translation utility is use */
+    private DOTranslationUtility m_translator;
 
     /**
      * Creates a serializer that writes the default METS Fedora Extension
@@ -70,6 +67,7 @@ public class METSFedoraExtDOSerializer
      */
     public METSFedoraExtDOSerializer() {
         m_format = DEFAULT_FORMAT;
+        m_translator = DOTranslationUtility.defaultInstance();
     }
 
     /**
@@ -81,12 +79,25 @@ public class METSFedoraExtDOSerializer
      *         if format is not a known METS Fedora extension format.
      */
     public METSFedoraExtDOSerializer(XMLFormat format) {
+        this(format, null);
+    }
+ 
+    /**
+     * Creates a serializer that writes the given METS Fedora Extension format.
+     *
+     * @param format
+     *        the version-specific METS Fedora Extension format.
+     * @throws IllegalArgumentException
+     *         if format is not a known METS Fedora extension format.
+     */
+    public METSFedoraExtDOSerializer(XMLFormat format, DOTranslationUtility translator) {
         if (format.equals(METS_EXT1_0) || format.equals(METS_EXT1_1)) {
             m_format = format;
         } else {
             throw new IllegalArgumentException("Not a METS Fedora Extension "
                     + "format: " + format.uri);
         }
+        m_translator = (translator == null) ? DOTranslationUtility.defaultInstance() : translator;
     }
 
     //---
@@ -97,7 +108,7 @@ public class METSFedoraExtDOSerializer
      * {@inheritDoc}
      */
     public DOSerializer getInstance() {
-        return new METSFedoraExtDOSerializer(m_format);
+        return new METSFedoraExtDOSerializer(m_format, m_translator);
     }
 
     /**
@@ -112,17 +123,16 @@ public class METSFedoraExtDOSerializer
             logger.debug("Serializing " + m_format.uri + " for transContext: "
                 + transContext);
         }
-        m_transContext = transContext;
         OutputStreamWriter osWriter = new OutputStreamWriter(out, encoding);
         PrintWriter writer = new PrintWriter(osWriter);
         try {
             appendXMLDeclaration(obj, encoding, writer);
             appendRootElementStart(obj, writer);
             appendHdr(obj, writer);
-            appendDescriptiveMD(obj, writer, encoding);
+            appendDescriptiveMD(obj, writer, transContext, encoding);
             appendAuditRecordAdminMD(obj, writer);
-            appendOtherAdminMD(obj, writer, encoding);
-            appendFileSecs(obj, writer);
+            appendOtherAdminMD(obj, writer, transContext, encoding);
+            appendFileSecs(obj, writer, transContext);
             if (m_format.equals(METS_EXT1_0)) {
                 appendStructMaps(obj, writer);
                 appendDisseminators(obj, writer);
@@ -255,6 +265,7 @@ public class METSFedoraExtDOSerializer
 
     private void appendDescriptiveMD(DigitalObject obj,
                                      PrintWriter writer,
+                                     int transContext,
                                      String encoding)
             throws ObjectIntegrityException, UnsupportedEncodingException,
             StreamIOException {
@@ -269,6 +280,7 @@ public class METSFedoraExtDOSerializer
                             "descMD",
                             obj.datastreams(id),
                             writer,
+                            transContext,
                             encoding);
             }
         }
@@ -279,6 +291,7 @@ public class METSFedoraExtDOSerializer
                              String innerName,
                              Iterable<Datastream> XMLMetadata,
                              PrintWriter writer,
+                             int transContext,
                              String encoding) throws ObjectIntegrityException,
             UnsupportedEncodingException, StreamIOException {
         DatastreamXMLMetadata first =
@@ -378,9 +391,9 @@ public class METSFedoraExtDOSerializer
             if (obj.hasContentModel(SERVICE_DEPLOYMENT_3_0)
                     && ds.DatastreamID.equals("SERVICE-PROFILE")
                     || ds.DatastreamID.equals("WSDL")) {
-                writer.print(DOTranslationUtility
+                writer.print(m_translator
                         .normalizeInlineXML(new String(ds.xmlContent, "UTF-8")
-                                .trim(), m_transContext));
+                                .trim(), transContext));
             } else {
                 DOTranslationUtility.appendXMLStream(ds.getContentStream(),
                                                      writer,
@@ -445,6 +458,7 @@ public class METSFedoraExtDOSerializer
 
     private void appendOtherAdminMD(DigitalObject obj,
                                     PrintWriter writer,
+                                    int transContext,
                                     String encoding)
             throws ObjectIntegrityException, UnsupportedEncodingException,
             StreamIOException {
@@ -476,12 +490,13 @@ public class METSFedoraExtDOSerializer
                             mdClass,
                             obj.datastreams(id),
                             writer,
+                            transContext,
                             encoding);
             }
         }
     }
 
-    private void appendFileSecs(DigitalObject obj, PrintWriter writer)
+    private void appendFileSecs(DigitalObject obj, PrintWriter writer, int transContext)
             throws ObjectIntegrityException, StreamIOException {
         Iterator<String> iter = obj.datastreamIdIterator();
         boolean didFileSec = false;
@@ -559,7 +574,7 @@ public class METSFedoraExtDOSerializer
                     writer.print(" OWNERID=\"");
                     writer.print(dsc.DSControlGrp);
                     writer.print("\">\n");
-                    if (m_transContext == DOTranslationUtility.SERIALIZE_EXPORT_ARCHIVE
+                    if (transContext == DOTranslationUtility.SERIALIZE_EXPORT_ARCHIVE
                             && dsc.DSControlGrp.equalsIgnoreCase("M")) {
                         serializeDatastreamContent(dsc, writer);
                     } else {
@@ -577,10 +592,10 @@ public class METSFedoraExtDOSerializer
                         writer.print(XLINK.prefix);
                         writer.print(":href=\"");
                         StreamUtility.enc(
-                                DOTranslationUtility.normalizeDSLocationURLs(
+                                m_translator.normalizeDSLocationURLs(
                                         obj.getPid(),
                                         dsc,
-                                        m_transContext).DSLocation, writer);
+                                        transContext).DSLocation, writer);
                         writer.print("\"/>\n");
                     }
                     writer.print("</");
@@ -613,7 +628,7 @@ public class METSFedoraExtDOSerializer
         
         try{
             while ((len = encoded.read(buffer)) > -1){
-                writer.write(DS_INDENT);
+                writer.write(DOSerializer.DS_INDENT);
                 writer.write(buffer,0,len);
                 writer.write('\n');
             }

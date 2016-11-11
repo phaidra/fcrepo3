@@ -6,7 +6,6 @@ package org.fcrepo.server.resourceIndex;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.jrdf.graph.ObjectNode;
 import org.jrdf.graph.PredicateNode;
 import org.jrdf.graph.SubjectNode;
 import org.jrdf.graph.Triple;
-
 import org.trippi.FlushErrorHandler;
 import org.trippi.RDFFormat;
 import org.trippi.TripleIterator;
@@ -24,7 +22,6 @@ import org.trippi.TripleUpdate;
 import org.trippi.TriplestoreConnector;
 import org.trippi.TrippiException;
 import org.trippi.TupleIterator;
-
 import org.fcrepo.common.Constants;
 import org.fcrepo.server.Module;
 import org.fcrepo.server.Parameterized;
@@ -73,24 +70,24 @@ public class ResourceIndexModule
      * Perform post-initialization of this module. ResourceIndexModule takes the
      * following parameters:
      * <ul>
-     * <li> level (required, integer between 0 and 1)<br/> The level of
+     * <li> level (required, integer between 0 and 1)<br> The level of
      * indexing that should be performed. Values correspond to
      * <code>INDEX_LEVEL_OFF</code>, and <code>INDEX_LEVEL_ON</code>.
      * </li>
-     * <li> datastore (required)<br/> The name of the datastore element that
-     * contains the Trippi Connector configuration.
+     * <li> datastore (required)<br> The name of the datastore element that
+     * contains the Trippi Connector configuration.</li>
      * <li> connectionPool (optional, default is ConnectionPoolManager's
-     * default)<br/> Which connection pool to use for updating the database of
-     * method information. </li>
-     * <li> syncUpdates (optional, default is false)<br/> Whether to flush the
+     * default)<br> Which connection pool to use for updating the database of
+     * method information.</li>
+     * <li> syncUpdates (optional, default is false)<br> Whether to flush the
      * triple buffer before returning from object modification operations.
      * Specifying this as true will ensure that RI queries always reflect the
-     * latest triples. </li>
-     * <li> alias:xyz (optional, uri)<br/> Any parameter starting with "alias:"
+     * latest triples.</li>
+     * <li> alias:xyz (optional, uri)<br> Any parameter starting with "alias:"
      * will be put into Trippi's alias map, and can be used for queries. For
      * example, alias:xyz with a value of urn:example:long:uri:x:y:z: will make
      * it possible to use "xyz:a" to mean "urn:example:long:uri:x:y:z:a" in
-     * queries. </li>
+     * queries.</li>
      * </ul>
      */
     @Override
@@ -257,6 +254,13 @@ public class ResourceIndexModule
     /**
      * {@inheritDoc}
      */
+    public boolean getSync() {
+        return _ri.getSync();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void addObject(DOReader reader) throws ResourceIndexException {
         _ri.addObject(reader);
     }
@@ -274,6 +278,13 @@ public class ResourceIndexModule
      */
     public void deleteObject(DOReader oldReader) throws ResourceIndexException {
         _ri.deleteObject(oldReader);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<Triple> exportObject(DOReader object) throws ResourceIndexException {
+        return _ri.exportObject(object);
     }
 
     /**

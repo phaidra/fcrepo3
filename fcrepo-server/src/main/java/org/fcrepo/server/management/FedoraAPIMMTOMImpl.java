@@ -17,6 +17,7 @@ import java.util.List;
 import javax.activation.DataHandler;
 import javax.annotation.Resource;
 import javax.mail.util.ByteArrayDataSource;
+import javax.ws.rs.core.StreamingOutput;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
@@ -27,7 +28,6 @@ import org.fcrepo.server.errors.ModuleInitializationException;
 import org.fcrepo.server.errors.StorageDeviceException;
 import org.fcrepo.server.utilities.CXFUtility;
 import org.fcrepo.server.utilities.TypeUtility;
-import org.fcrepo.server.storage.types.RelationshipTuple; // Hugh Barnard January 2015 Added
 import org.fcrepo.utilities.DateUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -160,14 +160,14 @@ public class FedoraAPIMMTOMImpl
         try {
             MessageContext ctx =
                     FedoraAPIMMTOMImpl.this.context.getMessageContext();
-            InputStream in =
-                    m_management.export(ReadOnlyContext.getSoapContext(ctx),
+            StreamingOutput so =
+                    m_management.stream(ReadOnlyContext.getSoapContext(ctx),
                                         pid,
                                         format,
                                         context,
                                         "UTF-8");
             ByteArrayOutputStream out = new ByteArrayOutputStream(2048);
-            pipeStream(in, out);
+            so.write(out);
             return new DataHandler(new ByteArrayDataSource(out.toByteArray(),
                                                            "text/xml"));
         } catch (Throwable th) {
@@ -654,42 +654,6 @@ public class FedoraAPIMMTOMImpl
         }
     }
 
-       /* Hugh Barnard January 2015 Added also added MTOM to log messages */
-       // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-    public boolean addRelationships(org.fcrepo.server.types.gen.RelationshipTuple[] relationships) throws java.rmi.RemoteException
-	{
-        LOG.debug("start: addRelationships MTOM");
-        assertInitialized();
-        try {
-			MessageContext ctx = context.getMessageContext(); // Hugh Barnard Added January 2015, to conform
-            return m_management.addRelationships(ReadOnlyContext.getSoapContext(ctx),
-                                                  getRelsTuples(relationships));
-        } catch (Throwable th) {
-            LOG.error("Error adding relationships MTOM", th);
-            throw CXFUtility.getFault(th);
-        } finally {
-            LOG.debug("end: addRelationships MTOM");
-        }
-	}
-   
-    // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-    public boolean purgeRelationships(org.fcrepo.server.types.gen.RelationshipTuple[] relationships) throws java.rmi.RemoteException
-	{
-        LOG.debug("start: purgeRelationships MTOM");
-        assertInitialized();
-        try {
-			MessageContext ctx = context.getMessageContext(); // Hugh Barnard Added January 2015, to conform
-            return m_management.purgeRelationships(ReadOnlyContext.getSoapContext(ctx),
-                                                          getRelsTuples(relationships));
-        } catch (Throwable th) {
-            LOG.error("Error purging relationships MTOM", th);
-            throw CXFUtility.getFault(th);
-        } finally {
-            LOG.debug("end: purgeRelationships MTOM");
-        }
-	}
-
-
     /*
      * (non-Javadoc)
      * @see org.fcrepo.server.management.FedoraAPIMMTOM#validate(String pid
@@ -712,8 +676,6 @@ public class FedoraAPIMMTOMImpl
             LOG.debug("end: validate");
         }
     }
-
-    
 
     private void assertInitialized() throws SoapFault {
         if (m_server == null) {
@@ -756,20 +718,6 @@ public class FedoraAPIMMTOMImpl
         return genRelsTuples;
     }
 
-    // Hugh Barnard January 2015, added to be equivalent to FedoraAPIImpl.java
-    private org.fcrepo.server.storage.types.RelationshipTuple[] getRelsTuples(org.fcrepo.server.types.gen.RelationshipTuple[] intRelsTuples) {
-    	org.fcrepo.server.storage.types.RelationshipTuple[] relsTuples =
-                new org.fcrepo.server.storage.types.RelationshipTuple[intRelsTuples.length];
-        for (int i = 0; i < intRelsTuples.length; i++) {
-            relsTuples[i] =
-                    TypeUtility.convertGenRelsTupleToRelsTuple(intRelsTuples[i]);
-        }
-        return relsTuples;
-    }    
-
-
-
-
     private List<String> toStringList(Date[] dates) throws Exception {
         List<String> out = new ArrayList<String>(dates.length);
         for (Date date : dates) {
@@ -787,5 +735,4 @@ public class FedoraAPIMMTOMImpl
         }
         return genDatastreams;
     }
-
 }

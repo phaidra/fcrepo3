@@ -6,14 +6,18 @@
 package org.fcrepo.server.storage.translation;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.Properties;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.jrdf.graph.URIReference;
-import org.junit.Before;
 import org.fcrepo.common.PID;
 import org.fcrepo.server.Context;
 import org.fcrepo.server.errors.StreamIOException;
@@ -40,32 +44,22 @@ public abstract class TranslationTest
     protected static final String TEST_PID = "test:pid";
 
     //---
-    // Setup/Teardown
-    //---
-
-    @Override
-    @Before
-    public void setUp() {
-        // HACK: make DOTranslationUtility happy; does this still do anything?
-        //System.setProperty("fedoraServerHost", "localhost");
-        //System.setProperty("fedoraServerPort", "8080");
-        //System.setProperty("fedoraAppServerContext", Constants.FEDORA_DEFAULT_APP_CONTEXT);
-        if (System.getProperty("fedora.hostname") == null) {
-            System.setProperty("fedora.hostname","localhost");
-        }
-        if (System.getProperty("fedora.port") == null) {
-            System.setProperty("fedora.port","1024");
-        }
-        if (System.getProperty("fedora.appServerContext") == null) {
-            System.setProperty("fedora.appServerContext","fedora");
-        }
-        DOTranslationUtility.init((File)null);
-    }
-
-    //---
     // Static helpers
     //---
 
+    protected static DOTranslationUtility translationUtility() {
+        Properties transProps = new Properties(System.getProperties());
+        if (transProps.getProperty("fedora.hostname") == null) {
+            transProps.setProperty("fedora.hostname","localhost");
+        }
+        if (transProps.getProperty("fedora.port") == null) {
+            transProps.setProperty("fedora.port","1024");
+        }
+        if (transProps.getProperty("fedora.appServerContext") == null) {
+            transProps.setProperty("fedora.appServerContext","fedora");
+        }
+        return new DOTranslationUtility.Impl(transProps, true);
+    }
     protected static DigitalObject createTestObject(URIReference... contentModelURIs) {
         DigitalObject obj = new BasicDigitalObject();
         obj.setPid(TEST_PID);
@@ -145,6 +139,37 @@ public abstract class TranslationTest
         }
         diss.dsBindMap.dsBindings = dsBindings;
         return diss;
+    }
+
+    protected void runConcurrent(Callable<?>[] callables) throws Exception {
+        
+        final int numThreads = callables.length;
+        final ExecutorService threadPool = Executors.newFixedThreadPool(numThreads);
+        try {
+          final CountDownLatch allExecutorThreadsReady = new CountDownLatch(numThreads);
+          final CountDownLatch afterInitBlocker = new CountDownLatch(1);
+          final CountDownLatch allDone = new CountDownLatch(numThreads);
+          for (final Callable<?> submittedTestCallable : callables) {
+            threadPool.submit(new Callable<Object>() {
+              public Object call() throws Exception {
+                allExecutorThreadsReady.countDown();
+                try {
+                  afterInitBlocker.await();
+                  return submittedTestCallable.call();
+                } finally {
+                  allDone.countDown();
+                }
+              }
+            });
+          }
+          // wait until all threads are ready
+          assertTrue("Timeout initializing threads! Perform long lasting initializations before passing runnables to assertConcurrent", allExecutorThreadsReady.await(callables.length * 10, TimeUnit.MILLISECONDS));
+          // start all test runners
+          afterInitBlocker.countDown();
+          assertTrue("Thread timeout! More than 5 seconds", allDone.await(5, TimeUnit.SECONDS));
+        } finally {
+          threadPool.shutdownNow();
+        }
     }
 
 }

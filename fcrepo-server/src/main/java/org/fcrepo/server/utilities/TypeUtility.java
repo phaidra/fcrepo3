@@ -14,10 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import java.net.URI;  // Hugh Barnard added January 2015 to cast String to URI
-import java.net.URISyntaxException; // Hugh Barnard added January 2015 for checking later on
-
-
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
 
@@ -615,25 +611,4 @@ public abstract class TypeUtility {
             return null;
     }
 
-    /* Hugh Barnard January 2015 Added + checking for URI conversion */
-    // Phaidra: fuer addRelationships, purgeRelationships
-    public static org.fcrepo.server.storage.types.RelationshipTuple convertGenRelsTupleToRelsTuple(org.fcrepo.server.types.gen.RelationshipTuple in) {
-        if (in == null) {
-            return null;
-        }
-        URI casted_uri ;
-        try {
-           casted_uri = new URI(in.getDatatype()) ;
-        } catch (URISyntaxException e) {
-			logger.error("Error converting datatype", e);
-			return null ;
-        }
-        org.fcrepo.server.storage.types.RelationshipTuple out =
-                new org.fcrepo.server.storage.types.RelationshipTuple(
-                		in.getSubject(), in.getPredicate(), in.getObject(),
-                		in.isIsLiteral(), casted_uri);
-        return out;
-    }    
-   // end of add
- 
 }

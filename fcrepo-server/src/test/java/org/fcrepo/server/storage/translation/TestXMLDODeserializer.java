@@ -13,18 +13,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-
 import java.lang.reflect.Field;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.jrdf.graph.URIReference;
-
 import org.junit.Test;
-
 import org.fcrepo.server.errors.ObjectIntegrityException;
 import org.fcrepo.server.errors.StreamIOException;
 import org.fcrepo.server.storage.translation.DODeserializer;
@@ -188,6 +184,7 @@ public abstract class TestXMLDODeserializer
      * Currently, this test assures that null iproperty values are handled consistently
      * among serializers and deserializers.   The expected behaviour is a bit un-intuitive,
      * but represents the "status quo" that satisfies existing server code:
+     * </p>
      * <dl>
      * <dt>CreatedDate, LastModifiedDate, External properties</dt>
      * <dd>Null value should be interpreted as null</dd>
@@ -196,7 +193,6 @@ public abstract class TestXMLDODeserializer
      * <dt>State</dt>
      * <dd>Null value should be interpreted as "Active"</dd>
      * </dl>
-     * </p>
      */
     @Test
     public void testNullObjectProperties() {
@@ -223,13 +219,13 @@ public abstract class TestXMLDODeserializer
      * <p>
      * Currently, this test assures that empty string property values are handled consistently
      * among serializers and deserializers.   The expected behaviour is as follows:
+     * </p>
      * <dl>
      * <dt>Label, Ownerid, External properties</dt>
      * <dd>Empty string value should be interpreted the empty string ("")</dd>
      * <dt>State</dt>
      * <dd>Empty string values should be interpreted as "Active"</dd>
      * </dl>
-     * </p>
      */
     @Test
     public void testEmptyObjectProperties() {

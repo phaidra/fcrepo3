@@ -13,11 +13,16 @@ import org.fcrepo.server.storage.types.RelationshipTuple;
 import org.fcrepo.server.storage.types.Validation;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.StreamingOutput;
 
 
 /**
@@ -184,25 +189,6 @@ public class MockManagementDelegate
         return true;
     }
 
-    /* Hugh Barnard January 2015 Added */
-    // Fuer Phaidra: mehrere Relationships auf einmal anlegen
-    public boolean addRelationships(Context context,
-            RelationshipTuple[] relationships) throws ServerException
-    {
-	    return true;
-    }
-
-    // Fuer Phaidra: mehrere Relationships auf einmal entfernen
-    public boolean purgeRelationships(Context context,
-              RelationshipTuple[] relationships) throws ServerException
-    {
-	    return true;
-    }
-
-
-
-
-
     public String compareDatastreamChecksum(Context context,
                                             String pid,
                                             String dsID,
@@ -228,6 +214,25 @@ public class MockManagementDelegate
                            exportContext,
                            encoding));
         return new ByteArrayInputStream(new byte[0]);
+    }
+
+    public StreamingOutput stream(Context context,
+            String pid,
+            String format,
+            String exportContext,
+            String encoding) throws ServerException {
+        calls.add(new Call("stream",
+                context,
+                pid,
+                format,
+                exportContext,
+                encoding));
+        return new StreamingOutput(){
+
+            @Override
+            public void write(OutputStream output) throws IOException,
+                WebApplicationException {}
+        };
     }
 
     public Datastream getDatastream(Context context,

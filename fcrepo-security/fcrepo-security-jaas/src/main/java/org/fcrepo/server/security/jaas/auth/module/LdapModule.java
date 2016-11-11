@@ -141,8 +141,8 @@ public class LdapModule
         }
 
         successLogin = authenticate(username, password);
-        logger.debug("login success or not: " + successLogin);
-       return successLogin;
+
+        return successLogin;
     }
 
     @Override
