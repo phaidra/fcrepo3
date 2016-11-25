@@ -347,22 +347,18 @@ public class DefaultManagement
                                         context,
                                         pid);            
 
-	    InputStream instream = reader.Export(format, exportContext);
+	       InputStream instream = reader.Export(format, exportContext);
+            
             /* Hugh Barnard January 2015 Added runHook */
             String hv = m_hooks.runHook("export", null, context, pid, null);
             if(!hv.startsWith("OK"))
                 throw new APIHookException(hv);
             return instream;
+
         } finally {
             // Logger completion
             if (logger.isInfoEnabled()) {
-                StringBuilder logMsg = new StringBuilder("Completed export(");
-         InputStream instream = reader.Export(format, exportContext);
-            /* Hugh Barnard January 2015 Added runHook */
-            String hv = m_hooks.runHook("export", null, context, pid, null);
-            if(!hv.startsWith("OK"))
-                throw new APIHookException(hv);
-            return instream;       
+                StringBuilder logMsg = new StringBuilder("Completed export(");                
                 logMsg.append("pid: ").append(pid);
                 logMsg.append(", format: ").append(format);
                 logMsg.append(", exportContext: ").append(exportContext);
