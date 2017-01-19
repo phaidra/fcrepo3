@@ -47,8 +47,8 @@ public class FilterMongoDB extends BaseCaching {
 
 		FilterMongoDBConfigBean filterConfig = (FilterMongoDBConfigBean)config;	
 
-		String value = filterConfig.getAssociatedFilters();
-		String[] temp = value.split(",");
+		String assFilters = filterConfig.getAssociatedFilters();
+		String[] temp = assFilters.split(",");
         FILTERS_CONTRIBUTING_AUTHENTICATED_ATTRIBUTES = new Vector<String>(temp.length);
         for (String element : temp) {
         	log.debug("FilterMongoDB:   ASSOCIATED FILTER: " + element);
@@ -79,7 +79,7 @@ public class FilterMongoDB extends BaseCaching {
 
 		}
 		else {
-			log.error("FilterDB not initialized; see previous error");
+			log.error("FilterMongoDB not initialized; see previous error");
 		}
 		
 		inited = true;		

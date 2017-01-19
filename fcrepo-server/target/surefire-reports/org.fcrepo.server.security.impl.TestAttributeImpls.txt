@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.fcrepo.server.security.impl.TestAttributeImpls
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec

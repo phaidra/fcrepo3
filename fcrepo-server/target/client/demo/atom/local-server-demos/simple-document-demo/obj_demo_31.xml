@@ -64,16 +64,16 @@
   <entry>
     <id>info:fedora/demo:31/DS3</id>
     <title type="text">DS3</title>
-    <updated>2015-01-27T14:41:29.299Z</updated>
-    <link href="info:fedora/demo:31/DS3/2015-01-27T14:41:29.299Z" rel="alternate"/>
+    <updated>2017-01-19T09:25:11.356Z</updated>
+    <link href="info:fedora/demo:31/DS3/2017-01-19T09:25:11.356Z" rel="alternate"/>
     <category scheme="info:fedora/fedora-system:def/model#state" term="A"/>
     <category scheme="info:fedora/fedora-system:def/model#controlGroup" term="R"/>
     <category scheme="info:fedora/fedora-system:def/model#versionable" term="true"/>
   </entry>
   <entry xmlns:thr="http://purl.org/syndication/thread/1.0">
-    <id>info:fedora/demo:31/DS3/2015-01-27T14:41:29.299Z</id>
+    <id>info:fedora/demo:31/DS3/2017-01-19T09:25:11.356Z</id>
     <title type="text">DS3.0</title>
-    <updated>2015-01-27T14:41:29.299Z</updated>
+    <updated>2017-01-19T09:25:11.356Z</updated>
     <thr:in-reply-to ref="info:fedora/demo:31/DS3"/>
     <category scheme="info:fedora/fedora-system:def/model#label" term="Another local copy of batikBatik.svg (control group R)"/>
     <summary type="text">DS3.0</summary>

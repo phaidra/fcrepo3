@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Tue Jan 27 15:42:49 CET 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-014b-2bd8-4878-0000029d87b0 
-on database directory /home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server/test  with class loader sun.misc.Launcher$AppClassLoader@1a45a877 
-Loaded from file:/root/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
-java.vendor=Sun Microsystems Inc.
-java.runtime.version=1.6.0_37-b06
-user.dir=/home/barnarh9/fcrepo-3.8.0-SNAPSHOT/fcrepo-server
+Thu Jan 19 10:26:20 CET 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0159-b60c-59ed-00000682bef8 
+on database directory /home/hudakr4/git/fcrepo3/fcrepo-server/test  with class loader sun.misc.Launcher$AppClassLoader@135fbaa4 
+Loaded from file:/home/hudakr4/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-8u111-b14-2ubuntu0.16.10.2-b14
+user.dir=/home/hudakr4/git/fcrepo3/fcrepo-server
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

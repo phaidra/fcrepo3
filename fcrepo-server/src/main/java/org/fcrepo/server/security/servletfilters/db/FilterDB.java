@@ -1,80 +1,83 @@
 // $Id$
 
-package org.fcrepo.server.security.servletfilters.db; // changed to org.fcrepo
+package org.fcrepo.server.security.servletfilters.db;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Hashtable;
 import java.sql.*;
 import javax.sql.*;
+import java.util.Vector;
 import javax.servlet.FilterConfig;
 
-/*
-previous 3.3.x version changed by Hugh Barnard October 2014
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-*/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// changed path of these two, added org, Hugh Barnard October 2014
 import org.fcrepo.server.security.servletfilters.BaseCaching;
 import org.fcrepo.server.security.servletfilters.CacheElement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-/** 
- *  @author Thomas Wana (thomas.wana@univie.ac.at)
- */
 public class FilterDB extends BaseCaching {
 	protected static Logger log = LoggerFactory.getLogger(FilterDB.class);
-
-/*
- <init-param>
-    <param-name>resource</param-name>
-    <param-value>jdbc/webdb</param-value>
- </init-param>
- <init-param>
-    <param-name>query</param-name>
-    <param-value>SELECT d.inum,
-     NVL2(i.name1, i.name1 || ' ', '') || NVL2(i.name2, i.name2 || ' ', '') || NVL(i.name3, '') AS institut,
-     f.code,
-     f.name
-FROM pers.user_main u,
-     pers.dienstverhaeltnis d,
-     pers.instic i,
-     pers.fakultaeten f
-WHERE u.username = RPAD(?, 8)
-AND u.pkey = d.pkey
-AND d.inum = i.inum
-AND i.fakcode = f.code
-AND d.eintritt <= SYSDATE
-AND d.austritt >= SYSDATE</param-value>
- </init-param>
- <init-param>
-    <param-name>bindparams</param-name>
-    <param-value>username,username</param-name>
- </init-param>
- <init-param>
-    <param-name>attributes</param-name>
-    <param-value>inum,institute,fakcode,faculty</param-value>
- </init-param> 
-*/
-
-	public static final String RESOURCE_KEY = "resource";       
-	public static final String QUERY_KEY = "query";   
-	public static final String ATTRIBUTES_KEY = "attributes";
-	public static final String BINDPARAMS_KEY = "bindparams";
 
 	private String RESOURCE = null;
 	private String QUERY = null;
 	private String[] ATTRIBUTES = null;
 	private String[] BINDPARAMS = null;
 
-	public void init(FilterConfig filterConfig) {
+	@Override
+	public void init(FilterConfig config) {
+		log.info("initializing start..");
+
+		FilterDBConfigBean filterConfig = (FilterDBConfigBean)config;	
+
+		String assFilters = filterConfig.getAssociatedFilters();
+		String[] temp = assFilters.split(",");
+        FILTERS_CONTRIBUTING_AUTHENTICATED_ATTRIBUTES = new Vector<String>(temp.length);
+        for (String element : temp) {
+        	log.debug("FilterDB:   ASSOCIATED FILTER: " + element);
+            FILTERS_CONTRIBUTING_AUTHENTICATED_ATTRIBUTES.add(element);
+        }
+
+		RESOURCE = filterConfig.getResource();
+		QUERY = filterConfig.getQuery();
+		String attributesStr = filterConfig.getAttributes();
+		if (attributesStr.indexOf(",") < 0) {
+			if ("".equals(attributesStr)) {
+				ATTRIBUTES = null;
+			} else {
+				ATTRIBUTES = new String[1];					
+				ATTRIBUTES[0] = attributesStr;
+			}
+		} else {
+			ATTRIBUTES = attributesStr.split(",");  							
+		}
+		String bindparamsStr = filterConfig.getBindparams();
+		if (bindparamsStr.indexOf(",") < 0) {
+			if ("".equals(bindparamsStr)) {
+				BINDPARAMS = null;
+			} else {
+				BINDPARAMS = new String[1];					
+				BINDPARAMS[0] = bindparamsStr;
+			}
+		} else {
+			BINDPARAMS = bindparamsStr.split(",");  							
+		}
+			
+		log.info("FilterDB: initialized.");
+		log.debug("  RESOURCE: " + RESOURCE);
+		log.debug("  QUERY: " + QUERY);
+		for(int i=0,j=1;i<BINDPARAMS.length;i++){
+			log.debug("  BINDPARAM: " + BINDPARAMS[i]);
+		}
+		for(int i=0,j=1;i<ATTRIBUTES.length;i++){
+			log.debug("  ATTRIBUTE: " + ATTRIBUTES[i]);
+		}
+
 		super.init(filterConfig);
+
 		inited = false;
 		if (! initErrors) {
 
@@ -82,7 +85,8 @@ AND d.austritt >= SYSDATE</param-value>
 		else {
 			log.error("FilterDB not initialized; see previous error");
 		}
-		inited = true;
+		
+		inited = true;	
 	}
 
 	public void destroy() {
@@ -90,41 +94,7 @@ AND d.austritt >= SYSDATE</param-value>
 	}
 
 	protected void initThisSubclass(String key, String value) {
-		if (RESOURCE_KEY.equals(key)) {
-			RESOURCE = value;
-		} else if (QUERY_KEY.equals(key)) {
-			QUERY = value;
-		} else if (ATTRIBUTES_KEY.equals(key)) {			
-			if (value.indexOf(",") < 0) {
-				if ("".equals(value)) {
-					ATTRIBUTES = null;
-				} else {
-					ATTRIBUTES = new String[1];
-					ATTRIBUTES[0] = value;
-				}
-			} else {
-				ATTRIBUTES = value.split(",");  							
-			}	
-		} else if (BINDPARAMS_KEY.equals(key)) {			
-			if (value.indexOf(",") < 0) {
-				if ("".equals(value)) {
-					BINDPARAMS = null;
-				} else {
-					BINDPARAMS = new String[1];
-					BINDPARAMS[0] = value;
-				}
-			} else {
-				BINDPARAMS = value.split(",");  							
-			}	
-		} else {
-			super.initThisSubclass(key, value);
-		}
-
-		// TODO check missing attributes
 		
-		log.info("FilterDB: initialized.");
-		log.debug("  RESOURCE: " + RESOURCE);
-		log.debug("  QUERY: " + QUERY);
 	}
 
 	// implemented from BaseCaching
