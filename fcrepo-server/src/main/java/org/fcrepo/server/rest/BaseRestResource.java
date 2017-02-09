@@ -179,7 +179,7 @@ public class BaseRestResource {
             return Response.status(Status.NOT_FOUND).entity(ex.getMessage()).type("text/plain").build();
         } else if (ex instanceof AuthzException) {
             LOGGER.warn("Authorization failed; unable to fulfill REST API request", ex);
-            return Response.status(Status.UNAUTHORIZED).entity(ex.getMessage()).type("text/plain").build();
+            return Response.status(Status.UNAUTHORIZED).entity(ex.getMessage()).type("text/plain").header("WWW-Authenticate","BASIC realm=\"fedora\"").build();
         } else if (ex instanceof IllegalArgumentException) {
             LOGGER.warn("Bad request; unable to fulfill REST API request", ex);
             return Response.status(Status.BAD_REQUEST).entity(ex.getMessage()).type("text/plain").build();
