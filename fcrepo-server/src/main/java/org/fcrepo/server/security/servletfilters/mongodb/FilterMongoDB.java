@@ -103,7 +103,7 @@ public class FilterMongoDB extends BaseCaching {
 		Map map = new Hashtable();
 		map.put("gruppe", groups);
 
-		cacheElement.populate(true, null, map, null);
+		cacheElement.populate(null, null, map, null);
 
 		log.debug("searching "+"mongodb://"+USERNAME+":<see config>@"+HOST+":"+PORT+"/?authSource="+DATABASE+" for groups of user " + userId);
 
@@ -129,7 +129,7 @@ public class FilterMongoDB extends BaseCaching {
 					log.info("group " + groupid + " added for user " + userId);
 				}
 			  }
-			  cacheElement.populate(true, null, map, null);
+			  cacheElement.populate(null, null, map, null);
 			} catch(Exception e) {			
 				log.error("error while querying database: " + e.toString());
 				e.printStackTrace();			
