@@ -321,30 +321,34 @@ previously in web.xml:
 			}
 
 			// reopen context, so we can switch the search base
-			if(!SECURITY_PRINCIPAL.equals(""))
-			{
+			if(!GROUP_SEARCH_BASE.equals("")){
+				if(!SECURITY_PRINCIPAL.equals(""))
+				{
+					try
+					{
+						ctx.close();
+						ctx = connectLdap(GROUP_SEARCH_BASE);
+					}
+					catch(Exception e)
+					{
+						log.error("re-connectLdap failed: "+e.toString());
+						throw e;
+					}
+				}
+
+				// get group memberships
 				try
 				{
-					ctx.close();
-					ctx = connectLdap(GROUP_SEARCH_BASE);
+					//getGroupMemberships(ctx, cacheElement.getUserid(), map);
+					getGroupMemberships(ctx, dn, map);
 				}
 				catch(Exception e)
 				{
-					log.error("re-connectLdap failed: "+e.toString());
+					log.error("getGroupDetails failed: "+e.toString());
 					throw e;
 				}
 			}
 
-			// get group memberships
-			try
-			{
-				//getGroupMemberships(ctx, cacheElement.getUserid(), map);
-			}
-			catch(Exception e)
-			{
-				log.error("getGroupDetails failed: "+e.toString());
-				throw e;
-			}
 			log.debug("authenticated = "+authenticated+", map = "+map);
 			cacheElement.populate(authenticated, null, map, null);
 		}
