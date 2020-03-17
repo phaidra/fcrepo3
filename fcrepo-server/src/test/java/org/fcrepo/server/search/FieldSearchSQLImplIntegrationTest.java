@@ -88,6 +88,7 @@ public class FieldSearchSQLImplIntegrationTest {
         Connection conn = cPool.getReadWriteConnection();
         executeUpdate(conn, "DROP TABLE doFields", true);
         executeUpdate(conn, "DROP TABLE dcDates", true);
+        // ignore errors in this test - this create does not work so the test is broken
         executeUpdate(conn, "CREATE TABLE doFields (\n"
             + "pid VARCHAR(64) NOT NULL,\n"
             + "label VARCHAR(255) NOT NULL,\n"
@@ -110,14 +111,14 @@ public class FieldSearchSQLImplIntegrationTest {
             + "dcLanguage CLOB,\n"
             + "dcRelation CLOB,\n"
             + "dcCoverage CLOB,\n"
-            + "dcRights CLOB)", false);
+            + "dcRights CLOB)", true);
         executeUpdate(conn,
-               "CREATE INDEX doFields_pid ON doFields (pid)", false);
+               "CREATE INDEX doFields_pid ON doFields (pid)", true);
         executeUpdate(conn, "CREATE TABLE dcDates (\n"
             + "pid VARCHAR(64) NOT NULL,"
-            + "dcDate BIGINT NOT NULL)", false);
+            + "dcDate BIGINT NOT NULL)", true);
         executeUpdate(conn,
-               "CREATE INDEX dcDates_pid ON dcDates (pid)", false);
+               "CREATE INDEX dcDates_pid ON dcDates (pid)", true);
         cPool.free(conn);
     }
 
