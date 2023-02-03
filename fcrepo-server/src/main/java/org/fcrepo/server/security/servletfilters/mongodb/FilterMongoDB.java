@@ -38,6 +38,7 @@ public class FilterMongoDB extends BaseCaching {
     private String USERNAME = null;
     private String PASSWORD = null;
     private String DATABASE = null; 
+		private String AUTHDATABASE = null; 
     private String COLLECTION = null;
 	private MongoClient CLIENT = null;
 
@@ -60,6 +61,7 @@ public class FilterMongoDB extends BaseCaching {
 		USERNAME = filterConfig.getUsername();
 		PASSWORD = filterConfig.getPassword();
 		DATABASE = filterConfig.getDatabase();
+		AUTHDATABASE = filterConfig.getAuthdatabase();
 		COLLECTION = filterConfig.getCollection();
 						
 		log.info("FilterMongoDB:   HOST: " + HOST);
@@ -67,10 +69,11 @@ public class FilterMongoDB extends BaseCaching {
 		log.info("FilterMongoDB:   USERNAME: " + USERNAME);
 		log.info("FilterMongoDB:   PASSWORD: see config");
 		log.info("FilterMongoDB:   DATABASE: " + DATABASE);
+		log.info("FilterMongoDB:   AUTHDATABASE: " + AUTHDATABASE);
 		log.info("FilterMongoDB:   COLLECTION: " + COLLECTION);
 
 		// this handles pooling
-		CLIENT = new MongoClient(new MongoClientURI("mongodb://"+USERNAME+":"+PASSWORD+"@"+HOST+":"+PORT+"/?authSource="+DATABASE));
+		CLIENT = new MongoClient(new MongoClientURI("mongodb://"+USERNAME+":"+PASSWORD+"@"+HOST+":"+PORT+"/?authSource="+AUTHDATABASE));
 		
 		super.init(filterConfig);
 
@@ -105,7 +108,7 @@ public class FilterMongoDB extends BaseCaching {
 
 		cacheElement.populate(null, null, map, null);
 
-		log.debug("searching "+"mongodb://"+USERNAME+":<see config>@"+HOST+":"+PORT+"/?authSource="+DATABASE+" for groups of user " + userId);
+		log.debug("searching "+"mongodb://"+USERNAME+":<see config>@"+HOST+":"+PORT+"/?authSource="+AUTHDATABASE+" for groups of user " + userId);
 
 		try
 		{			
