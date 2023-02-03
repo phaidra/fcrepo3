@@ -21,7 +21,8 @@ public class FilterMongoDBConfigBean
     private String PORT = null;
     private String USERNAME = null;
     private String PASSWORD = null;
-    private String DATABASE = null; 
+    private String DATABASE = null;
+    private String AUTHDATABASE = null;
     private String COLLECTION = null;
 
     private final Map<String, String> params =
@@ -81,6 +82,14 @@ public class FilterMongoDBConfigBean
 
     public String getDatabase() {
         return DATABASE;
+    }
+
+    public void setAuthdatabase(String v) {
+        AUTHDATABASE = v;
+    }
+
+    public String getAuthdatabase() {
+        return AUTHDATABASE;
     }
 
     public void setCollection(String v) {
