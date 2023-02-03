@@ -77,42 +77,48 @@ public class FilterRestService extends BaseCaching {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String inputLine = in.readLine();
-    	    in.close();
+			in.close();
+			
+			log.info("rest service reply: " + inputLine);
 
-    	    // UID;EMAIL;NACHNAME;VORNAME;TITELPRE;TITELPOST
-    	    String[] parts = inputLine.split(";");
+			if (inputLine != "NOK") {
+				// UID;EMAIL;NACHNAME;VORNAME;TITELPRE;TITELPOST
+				String[] parts = inputLine.split(";");
 
-    	    String uid = parts[0];
-    	    String email = parts[1];
-    	    String lastname = parts[2];
-    	    String firstname = parts[3];
+				String uid = parts[0];
+				String email = parts[1];
+				String lastname = parts[2];
+				String firstname = parts[3];
 
-    	    if(uid != null && !uid.isEmpty() && email != null && !email.isEmpty()){
-    	    	authenticated = Boolean.TRUE;
+				if(uid != null && !uid.isEmpty() && email != null && !email.isEmpty()){
+					authenticated = Boolean.TRUE;
 
-    	    	Set uid_val = new HashSet();
-    	    	uid_val.add(uid);
-    	    	map.put("uid", uid_val);
+					Set uid_val = new HashSet();
+					uid_val.add(uid);
+					map.put("uid", uid_val);
 
-    	    	Set email_val = new HashSet();
-    	    	email_val.add(email);
-    	    	map.put("email", email_val);
+					Set email_val = new HashSet();
+					email_val.add(email);
+					map.put("email", email_val);
 
-    	    	Set lastname_val = new HashSet();
-    	    	lastname_val.add(lastname);
-    	    	map.put("lastname", lastname_val);
+					Set lastname_val = new HashSet();
+					lastname_val.add(lastname);
+					map.put("lastname", lastname_val);
 
-    	    	Set firstname_val = new HashSet();
-    	    	firstname_val.add(firstname);
-    	    	map.put("firstname", firstname_val);
+					Set firstname_val = new HashSet();
+					firstname_val.add(firstname);
+					map.put("firstname", firstname_val);
 
-    	    	cacheElement.populate(authenticated, null, map, null);
-    		}
+					cacheElement.populate(authenticated, null, map, null);
+				}
+			} else {
+				log.error("error while querying rest service: inputLine: " + inputLine);
+			}
 			
 		}
 		catch(Exception e)
 		{
-			log.error("error while querying ret service: " + e.toString());
+			log.error("error while querying rest service: " + e.toString());
 			e.printStackTrace();
 		}
 
