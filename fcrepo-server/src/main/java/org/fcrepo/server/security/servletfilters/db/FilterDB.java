@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.sql.*;
 import javax.sql.*;
 import java.util.Vector;
@@ -16,6 +17,15 @@ import org.slf4j.LoggerFactory;
 import org.fcrepo.server.security.servletfilters.BaseCaching;
 import org.fcrepo.server.security.servletfilters.CacheElement;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
@@ -26,6 +36,8 @@ public class FilterDB extends BaseCaching {
 	private String QUERY = null;
 	private String[] ATTRIBUTES = null;
 	private String[] BINDPARAMS = null;
+	private Boolean isUnivie = false;
+	private Map ORGPARENTS = new LinkedHashMap<String, String>();
 
 	@Override
 	public void init(FilterConfig config) {
@@ -38,6 +50,9 @@ public class FilterDB extends BaseCaching {
         FILTERS_CONTRIBUTING_AUTHENTICATED_ATTRIBUTES = new Vector<String>(temp.length);
         for (String element : temp) {
         	log.debug("FilterDB:   ASSOCIATED FILTER: " + element);
+					if (element.equals("DBFilterAffiliationUnivie")) {
+						isUnivie = true;
+					}
             FILTERS_CONTRIBUTING_AUTHENTICATED_ATTRIBUTES.add(element);
         }
 
@@ -65,6 +80,7 @@ public class FilterDB extends BaseCaching {
 		} else {
 			BINDPARAMS = bindparamsStr.split(",");  							
 		}
+		
 			
 		log.info("FilterDB: initialized.");
 		log.debug("  RESOURCE: " + RESOURCE);
@@ -75,6 +91,31 @@ public class FilterDB extends BaseCaching {
 		for(int i=0,j=1;i<ATTRIBUTES.length;i++){
 			log.debug("  ATTRIBUTE: " + ATTRIBUTES[i]);
 		}
+		log.debug("is univie: " + isUnivie);
+
+		if (isUnivie) {
+			log.info("FilterDB: reading org json...");
+			JSONParser parser = new JSONParser();
+			try {     
+					JSONArray a = (JSONArray) parser.parse(new FileReader("/usr/local/phaidra/phaidra-api/lib/phaidra_directory/Phaidra/Directory/univie.json"));
+
+					for (Object o : a)
+					{
+							JSONObject u = (JSONObject) o;
+							log.info("reading parent org mapping: " + u.get("oracle_id").toString() + " <- " + u.get("parent_oracle_id").toString());
+							String id = u.get("oracle_id").toString();
+							String parent = u.get("parent_oracle_id").toString();
+
+							ORGPARENTS.put(id, parent);
+					}
+			} catch (FileNotFoundException e) {
+					e.printStackTrace();
+			} catch (IOException e) {
+					e.printStackTrace();
+			} catch (ParseException e) {
+					e.printStackTrace();
+			}
+	}
 
 		super.init(filterConfig);
 
@@ -134,7 +175,29 @@ public class FilterDB extends BaseCaching {
 				for(int i=0; i < ATTRIBUTES.length; i++)
 				{
 					String key = ATTRIBUTES[i];
+					log.debug("FilterDB: inspecting key: " + key);
 					String value = res.getString(i+1);
+					log.debug("FilterDB: value: " + value);
+					if (isUnivie) {
+						if (value != null) {
+							if (key.equals("fakcode") && value.equals("A0")) {
+								log.debug("FilterDB: reading inum");
+								if(map.containsKey("inum"))
+								{
+									log.debug("FilterDB: map contains inum");
+									Set inums = (Set)map.get("inum");
+									log.debug("FilterDB: inums: " + inums.toString());
+									String inum = (String) inums.toArray()[0];
+									log.debug("FilterDB: inum: " + inum.toString());
+
+									String parent = (String) ORGPARENTS.get(inum);
+									log.debug("FilterDB: rewriting |" + value + "| to |" + parent + "|");
+									value = parent;
+								}
+							}
+						}
+					}
+
 					Set values;
 					if(map.containsKey(key))
 					{
@@ -153,7 +216,7 @@ public class FilterDB extends BaseCaching {
 					}
 				}
 			}
-			
+
 			cacheElement.populate(authenticated, null, map, null);
 		}
 		catch(Exception e)
